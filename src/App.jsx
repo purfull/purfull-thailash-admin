@@ -6,21 +6,27 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TemplateMainPage from "./pages/dashboard/usertemplates/userTemplate";
 import NewTemplate from "./pages/dashboard/new-template/NewTemplate";
 import Settings from "./pages/dashboard/settings-page/Settings";
+import Testimonial from "./pages/Testimonial/testimonial";
+import { Provider } from "react-redux"
+import store from "./store/store";
 
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Console />}>
-            <Route path="reports" element={<Dashboard />} />
-            <Route path="new-template" element={<NewTemplate />} />
-            <Route path="my-template" element={<TemplateMainPage />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-        </Routes>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Routes >
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<Console />}>
+              <Route path="reports" element={<Dashboard />} />
+              <Route path="new-template" element={<NewTemplate />} />
+              <Route path="my-template" element={<TemplateMainPage />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="Testimonial" element={<Testimonial />} />
+            </Route>
+          </Routes>
+        </Router>
+      </Provider>
     </>
   );
 }
