@@ -1,0 +1,66 @@
+/* Template.css */
+
+.template-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.template-box {
+  width: 71%;
+  background-color: white;
+  padding: 24px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.template-heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.template-input {
+  margin-bottom: 16px;
+}
+
+.template-textarea {
+  margin-bottom: 16px;
+  min-height: 30vh;
+}
+
+.template-select {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.template-buttons {
+  width: 20%;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.primary-button {
+  background-color: #1677ff;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #ccc;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}

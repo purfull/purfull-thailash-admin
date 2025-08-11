@@ -1,0 +1,49 @@
+.dashboard-container {
+  display: grid;
+  gap: 24px;
+  padding: 16px;
+  width: 78%;
+  position: absolute;
+  top: 10vh;
+  right: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background-color: white;
+  height: 40vh;
+  grid-column: span 4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.card.tall {
+  height: 60vh;
+  grid-column: span 6;
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.subtext {
+  font-size: 0.9rem;
+  color: gray;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.amount {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3b4056;
+  margin-bottom: 16px;
+}
