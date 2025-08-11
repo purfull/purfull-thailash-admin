@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
-import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
+import {  
+  ShoppingOutlined,
+  UserOutlined,
   PieChartOutlined,
   MenuOutlined,
+  MessageOutlined,
+  BookOutlined,
+  FileTextOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
@@ -35,47 +37,61 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       icon: <PieChartOutlined />,
       label: <Link to="/dashboard/reports">Dashboard</Link>,
     },
+    // {
+    //   key: "2",
+    //   icon: <ContainerOutlined />,
+    //   label: "Template",
+    //   children: [
+    //     {
+    //       key: "2-1",
+    //       label: <Link to="/dashboard/new-template">Add Template</Link>,
+    //     },
+    //     {
+    //       key: "2-2",
+    //       label: <Link to="/dashboard/my-template">My Template</Link>,
+    //     },
+    //   ],
+    // },
     {
-      key: "2",
-      icon: <ContainerOutlined />,
-      label: "Template",
-      children: [
-        {
-          key: "2-1",
-          label: <Link to="/dashboard/new-template">Add Template</Link>,
-        },
-        {
-          key: "2-2",
-          label: <Link to="/dashboard/my-template">My Template</Link>,
-        },
-      ],
+      label: "Menu"
     },
     {
       key: "3",
-      icon: <DesktopOutlined />,
-      label: "Channels",
-      children: [
-        {
-          key: "3-1",
-          label: <Link to="/dashboard/contact">WhatsApp</Link>,
-        },
-      ],
+      icon: <ShoppingOutlined />,
+      label: "Products",
+      // children: [
+      //   {
+      //     key: "3-1",
+      //     label: <Link to="/dashboard/contact">WhatsApp</Link>,
+      //   },
+      // ],
     },
     {
       key: "4",
-      icon: <AppstoreOutlined />,
-      label: <Link to="/dashboard/settings">Settings</Link>,
+      icon: <UserOutlined />,
+      label: <Link to="/dashboard/settings">Customers</Link>,
     },
     {
       key: "5",
-      icon: <AppstoreOutlined />,
-      label: <Link to="/dashboard/support">Support</Link>,
+      icon: <ShoppingOutlined />,
+      label: <Link to="/dashboard/support">Orders</Link>,
     },
     {
       key: "6",
-      icon: <AppstoreOutlined />,
-      label: <Link to="/dashboard/support">Home</Link>,
+      icon: < MessageOutlined/>,
+      label: <Link to="/dashboard/support">Testimonial</Link>,
     },
+       {
+      key: "7",
+      icon: < BookOutlined/>,
+      label: <Link to="/dashboard/support">Blogs</Link>,
+    },
+        {
+      key: "8",
+      icon: < FileTextOutlined/>,
+      label: <Link to="/dashboard/support">Billing</Link>,
+    },
+
   ];
 
   return (
@@ -86,9 +102,8 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     // >
     // <div className={`side-nav-bar-container`}>
     <div
-      className={`side-nav-bar-container ${
-        isMobile || isTablet ? (expand ? "expand" : "collapsed") : ""
-      }`}
+      className={`side-nav-bar-container ${isMobile || isTablet ? (expand ? "expand" : "collapsed") : ""
+        }`}
     >
       {/*  <div
       className={`side-nav-bar-container ${expand ? "expand" : "collapsed"}`}
@@ -96,7 +111,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       <div className="side-nav-logo-container">
         <div className="logo-row">
           <span className="logo-icon">{/* icon */} </span>
-          {!collapsed && <div className="logo-title">Botho Admin</div>}
+          {!collapsed && <div className="logo-title">  Thailash Admin New</div>}
           {(isMobile || isTablet) && (
             <div className="hamburger-menu">
               <MenuOutlined onClick={toggleexpanded} />

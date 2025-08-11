@@ -10,7 +10,9 @@
     grid-template-columns: 2fr 1fr;
     grid-gap: 0px;
 }
-
+.login-wrapper{
+    background-color: #006D3B ;
+}
 
 .login-component .login-image {
     /* background-image: url('../Images/LoginImage.png'); */
@@ -50,8 +52,8 @@
 
 .login-form-container .sign-in-button {
     color: #fff !important;
-    background-color: #841d2e !important;
-    border-color: #841d2e !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
     transition: opacity 0.5s ease !important;
     padding: 20px 20px !important;
     font-weight: 600;
@@ -72,7 +74,7 @@
 }
 
 .login-form-container .forgot-password {
-    color: #841d2e;
+    color: #006D3B;
     text-decoration: none;
 }
 
@@ -92,6 +94,7 @@
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
+    border-radius: 20px;
 }
 
 .login-form-container {
@@ -127,7 +130,7 @@
 }
 
 .forgot-password {
-    color: #841d2e;
+    color: #006D3B;
     text-decoration: none;
 }
 
@@ -137,8 +140,8 @@
 
 .sign-in-button {
     color: #fff !important;
-    background-color: #841d2e !important;
-    border-color: #841d2e !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
     transition: opacity 0.5s ease !important;
     padding: 12px 16px !important;
     font-weight: 600;
@@ -192,7 +195,7 @@
 }
 
 .switch-link {
-    color: #841d2e;
+    color: #006D3B;
     text-decoration: none;
     margin-left: 4px;
 }
