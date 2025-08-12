@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const testimonialapi = createAsyncThunk("testimonialapi", async () => {
+export const testimonialGetAll = createAsyncThunk("testimonial/get-all", async () => {
 
     const responce = await fetch("https://api.thailash.com/testimonial")
     const data = responce.json()
@@ -12,7 +12,8 @@ export const testimonialapi = createAsyncThunk("testimonialapi", async () => {
 
 const testimonialSlice = createSlice({
     initialState: {
-        isloader: false,
+        isLoading: false,
+        testimonialTableData: [],
         message: null
     },
     name: "testimonial",
@@ -22,14 +23,16 @@ const testimonialSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(testimonialapi.fulfilled, (state, action) => {
-                
+        builder.addCase(testimonialGetAll.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.testimonialTableData = action.payload.data
+        })
+        builder.addCase(testimonialGetAll.pending, (state, action) => {
+            state.isLoading = true
 
         })
-        builder.addCase(testimonialapi.pending, (state, action) => {
-
-        })
-        builder.addCase(testimonialapi.rejected, (state, action) => {
+        builder.addCase(testimonialGetAll.rejected, (state, action) => {
+            state.isLoading = false
 
         })
     }

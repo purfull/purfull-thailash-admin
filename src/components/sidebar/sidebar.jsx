@@ -58,7 +58,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     {
       key: "3",
       icon: <ShoppingOutlined />,
-      label: "Products",
+      label: <Link to="/dashboard/product">Product</Link>,
       // children: [
       //   {
       //     key: "3-1",
@@ -69,7 +69,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     {
       key: "4",
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/settings">Customers</Link>,
+      label: <Link to="/dashboard/customers">Customers</Link>,
     },
     {
       key: "5",

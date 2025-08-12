@@ -1,6 +1,7 @@
-import React from 'react'
-import { show } from '../../store/slice/testimonailSlice'
+import React, { useEffect } from 'react'
+import { show, testimonialGetAll } from '../../store/slice/testimonailSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import CustomTable from '../../components/table/Table'
 
 
 
@@ -9,12 +10,21 @@ const Testimonial = () => {
 
     const testimonialSelector =  useSelector((state)=> state.testimonial) 
     
-    const dispatch = useDispatch(show());
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(testimonialGetAll())
+    },[])
 
-     
+    // const data = [{name: "aaa", age:"bbb"}]
+    const columns = [
+      { title: 'Name', dataIndex: 'name' },
+      { title: 'Rating', dataIndex: 'retting' },
+      { title: 'createdAt', dataIndex: 'createdAt' },
+      { title: 'Action', dataIndex: 'action' },
+    ]
 
   return (
-    <h1>{testimonialSelector}</h1>
+    <CustomTable columns={columns} data={testimonialSelector.testimonialTableData} />
   )
 }
 
