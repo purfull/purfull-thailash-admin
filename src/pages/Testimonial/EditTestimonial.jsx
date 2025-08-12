@@ -1,19 +1,130 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTestimonialById } from "../../store/slice/testimonailSlice";
+import { useParams } from "react-router-dom";
+import {
+  getTestimonialById,
+  resetEditTestimonialData,
+} from "../../store/slice/testimonailSlice";
+import "../Testimonial/EditTestimonial.css";
 
 const EditTestimonial = () => {
   const testimonialSelector = useSelector((state) => state.testimonial);
+  const { editTestimonialData } = useSelector((state) => state.testimonial);
+
+  const { id } = useParams();
+  const [editData, setEditData] = useState({
+    name: "",
+    rating: "",
+    message: "",
+    is_active: false,
+  });
+
   const dispatch = useDispatch();
 
+  const handleSave = (id) => {
+    setEditData(id);
+    console.log("success");
+  };
+  const handleCancel = (id) => {
+    dispatch(resetEditTestimonialData());
+  };
 
   useEffect(() => {
-    dispatch(getTestimonialById(1));
-  },[])
-  return (
-  <div>EditTestimonial</div>
+    if (testimonialSelector.editTestimonialData) {
+      setEditData({
+        name: testimonialSelector.editTestimonialData.name || "",
+        rating: testimonialSelector.editTestimonialData.rating || "",
+        message: testimonialSelector.editTestimonialData.message || "",
+        is_active: testimonialSelector.editTestimonialData.is_active || false,
+      });
+    }
+  }, [testimonialSelector.editTestimonialData]);
 
-);
+  useEffect(() => {
+    dispatch(getTestimonialById(id));
+  }, []);
+  return (
+    <div>
+      <form>
+        <div className="main-container">
+          <div className="name-container">
+            <label htmlFor="name" className="name-labels">
+              Name
+            </label>
+            <div className="input-1">
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                required
+                // value={editData?.name || ""}
+                // onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="name-container">
+            <label htmlFor="rating" className="name-labels">
+              Rating
+            </label>
+            <div className="input-1">
+              <input
+                type="text"
+                className="form-control"
+                id="retting"
+                required
+                // value={editData?.retting || ""}
+                // onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="name-container">
+            <label htmlFor="message" className="name-labels">
+              Message
+            </label>
+            <div className="input-1">
+              <textarea
+                className="form-control"
+                id="message"
+                rows="4"
+                required
+                // value={editData?.message || ""}
+                // onChange={handleChange}
+              ></textarea>
+            </div>
+          </div>
+
+          {/* <div className="w-full sm:w-[70%] flex justify-between my-[4vh]"> */}
+          <div className="name-container">
+            <label htmlFor="is_active" className="name-labels">
+              Is Active
+            </label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                id="is_active"
+                // checked={editData?.is_active || false}
+                // onChange={(e) =>
+                // setEditData({ ...editData, is_active: e.target.checked })
+                // }
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+        </div>
+        {/* </div> */}
+        <div className="testimonial-buttons">
+          <button className="button-save" onClick={handleSave}>
+            Save
+          </button>
+          <button className="button-cancel" onClick={handleCancel}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default EditTestimonial;
