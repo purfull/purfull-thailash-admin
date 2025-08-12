@@ -79,18 +79,14 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     {
       key: "6",
       icon: < MessageOutlined/>,
-      label: <Link to="/dashboard/support">Testimonial</Link>,
+      label: <Link to="/dashboard/testimonial">Testimonial</Link>,
     },
        {
       key: "7",
       icon: < BookOutlined/>,
       label: <Link to="/dashboard/support">Blogs</Link>,
     },
-        {
-      key: "8",
-      icon: < FileTextOutlined/>,
-      label: <Link to="/dashboard/support">Billing</Link>,
-    },
+   
 
   ];
 
