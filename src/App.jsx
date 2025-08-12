@@ -22,7 +22,7 @@ function App() {
               <Route path="new-template" element={<NewTemplate />} />
               <Route path="my-template" element={<TemplateMainPage />} />
               <Route path="settings" element={<Settings />} />
-              <Route path="Testimonial" element={<Testimonial />} />
+              <Route path="testimonial" element={<Testimonial />} />
             </Route>
           </Routes>
         </Router>

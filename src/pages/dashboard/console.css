@@ -9,6 +9,10 @@
   left: 0;
 }
 
+/* .outlet-containerr {
+  
+  padding: 24px;
+} */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .outlet-containerr {
@@ -57,7 +61,7 @@
 @media only screen and (min-width: 1200px) {
   .outlet-containerr {
     position: absolute !important;
-    padding: 6px !important;
+    padding: 24px !important;
     right: 0 !important;
     top: 10vh !important;
     width: 80% !important;

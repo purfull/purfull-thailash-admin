@@ -19,6 +19,11 @@
   --secondary-shadow: 0 0.25rem 0.875rem 0 rgba(38, 43, 67, 0.16);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;
