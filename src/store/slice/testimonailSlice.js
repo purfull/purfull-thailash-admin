@@ -9,11 +9,19 @@ export const testimonialGetAll = createAsyncThunk("testimonial/get-all", async (
 
 })
 
+export const getTestimonialById = createAsyncThunk("testimonial/get-testimonial", async (payload) => {
+
+    const responce = await fetch(`https://api.thailash.com/testimonial/get-testimonial/${payload}`)
+    const data = responce.json()
+    return data
+
+})
 
 const testimonialSlice = createSlice({
     initialState: {
         isLoading: false,
         testimonialTableData: [],
+        EditTestimonialData: [],
         message: null
     },
     name: "testimonial",
@@ -32,6 +40,18 @@ const testimonialSlice = createSlice({
 
         })
         builder.addCase(testimonialGetAll.rejected, (state, action) => {
+            state.isLoading = false
+
+        })
+        builder.addCase(getTestimonialById.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.EditTestimonialData = action.payload.data
+        })
+        builder.addCase(getTestimonialById.pending, (state, action) => {
+            state.isLoading = true
+
+        })
+        builder.addCase(getTestimonialById.rejected, (state, action) => {
             state.isLoading = false
 
         })

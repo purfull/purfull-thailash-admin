@@ -16,7 +16,7 @@ const Testimonial = () => {
     dispatch(testimonialGetAll());
   }, []);
   const handleEdit = (record) => {
-    navigate(`dashboard/edit-testimonial/${record.id}`);
+    navigate(`/dashboard/edit-testimonial/${record.id}`);
   };
   // const data = [{name: "aaa", age:"bbb"}]
   const columns = [
