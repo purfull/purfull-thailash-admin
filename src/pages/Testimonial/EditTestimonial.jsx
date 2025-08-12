@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getTestimonialById,
   resetEditTestimonialData,
@@ -8,6 +8,7 @@ import {
 import "../Testimonial/EditTestimonial.css";
 
 const EditTestimonial = () => {
+  const navigate = useNavigate();
   const testimonialSelector = useSelector((state) => state.testimonial);
   const { editTestimonialData } = useSelector((state) => state.testimonial);
 
@@ -27,18 +28,19 @@ const EditTestimonial = () => {
   };
   const handleCancel = (id) => {
     dispatch(resetEditTestimonialData());
+    navigate(`/dashboard/testimonial`);
   };
 
   useEffect(() => {
     if (testimonialSelector.editTestimonialData) {
       setEditData({
         name: testimonialSelector.editTestimonialData.name || "",
-        rating: testimonialSelector.editTestimonialData.rating || "",
+        rating: testimonialSelector.editTestimonialData.retting || "",
         message: testimonialSelector.editTestimonialData.message || "",
         is_active: testimonialSelector.editTestimonialData.is_active || false,
       });
     }
-  }, [testimonialSelector.editTestimonialData]);
+  }, [testimonialSelector]);
 
   useEffect(() => {
     dispatch(getTestimonialById(id));
@@ -57,7 +59,7 @@ const EditTestimonial = () => {
                 className="form-control"
                 id="name"
                 required
-                // value={editData?.name || ""}
+                value={editData?.name || ""}
                 // onChange={handleChange}
               />
             </div>
@@ -73,7 +75,7 @@ const EditTestimonial = () => {
                 className="form-control"
                 id="retting"
                 required
-                // value={editData?.retting || ""}
+                value={editData?.retting || ""}
                 // onChange={handleChange}
               />
             </div>
@@ -89,7 +91,7 @@ const EditTestimonial = () => {
                 id="message"
                 rows="4"
                 required
-                // value={editData?.message || ""}
+                value={editData?.message || ""}
                 // onChange={handleChange}
               ></textarea>
             </div>
@@ -115,11 +117,11 @@ const EditTestimonial = () => {
         </div>
         {/* </div> */}
         <div className="testimonial-buttons">
-          <button className="button-save" onClick={handleSave}>
-            Save
-          </button>
           <button className="button-cancel" onClick={handleCancel}>
             Cancel
+          </button>
+          <button className="button-save" onClick={handleSave}>
+            Save
           </button>
         </div>
       </form>
