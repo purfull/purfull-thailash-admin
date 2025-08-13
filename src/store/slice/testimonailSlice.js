@@ -21,6 +21,34 @@ export const getTestimonialById = createAsyncThunk(
   }
 );
 
+export const deleteTestimonialById = createAsyncThunk(
+  "testimonial/delete-testimonial",
+  async (id) => {
+    const responce = await fetch(
+      `https://api.thailash.com/testimonial/delete-testimonial/${id}`,
+      { method: "DELETE" }
+    );
+    const data = responce.json();
+    return { id, ...data };
+  }
+);
+
+// export const updateTestimonialById = createAsyncThunk(
+//   "testimonial/update-testimonial",
+//   async ({ id, updatedData }) => {
+//     const response = await fetch(
+//       `https://api.thailash.com/testimonial/update-testimonial/${id}`,
+//       {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(updatedData),
+//       }
+//     );
+//     const data = response.json();
+//     return { id, ...data };
+//   }
+// );
+
 const testimonialSlice = createSlice({
   initialState: {
     isLoading: false,
@@ -58,8 +86,38 @@ const testimonialSlice = createSlice({
     builder.addCase(getTestimonialById.rejected, (state, action) => {
       state.isLoading = false;
     });
+    builder.addCase(deleteTestimonialById.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.testimonialTableData = state.testimonialTableData.filter(
+        (item) => item.id !== action.payload.id
+      );
+    });
+    builder.addCase(deleteTestimonialById.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteTestimonialById.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+    // builder.addCase(updateTestimonialById.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   const index = state.testimonialTableData.findIndex(
+    //     (item) => item.id == action.payload.id
+    //   );
+    //   if (index !== -1) {
+    //     state.testimonialTableData[index] = {
+    //       ...state.testimonialTableData[index],
+    //       ...action.payload,
+    //     };
+    //   }
+    // });
+    // builder.addCase(updateTestimonialById.pending, (state, action) => {
+    //   state.isLoading = true;
+    // });
+    // builder.addCase(updateTestimonialById.rejected, (state, action) => {
+    //   state.isLoading = false;
+    // });
   },
 });
 
 export default testimonialSlice.reducer;
-export const { show, resetEditTestimonialData} = testimonialSlice.actions;
+export const { show, resetEditTestimonialData } = testimonialSlice.actions;

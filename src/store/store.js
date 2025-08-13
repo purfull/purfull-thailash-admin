@@ -8,17 +8,16 @@
 
 // export default store
 
-
 import { configureStore } from "@reduxjs/toolkit";
+import orderSlice from "./slice/orderSlice";
 
-import testimonialSlice from "./slice/testimonailSlice"
-
-
+import testimonialSlice from "./slice/testimonailSlice";
 
 const store = configureStore({
-    reducer: {
-        testimonial:testimonialSlice ,
-    }
-})
+  reducer: {
+    testimonial: testimonialSlice,
+    order: orderSlice,
+  },
+});
 
-export default store
+export default store;
