@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   show,
   testimonialGetAll,
@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Testimonial = () => {
   //   const useselector = useSelector((state) => state.com);
+  const [newPage, setNewPage] = useState(false);
 
   const testimonialSelector = useSelector((state) => state.testimonial);
   const navigate = useNavigate();
@@ -77,6 +78,8 @@ const Testimonial = () => {
   return (
     <CustomTable
       columns={columns}
+      // addButtonClick={() => setNewPage(true)}
+      // addButtonClick={() => navigate("/dashboard/testimonial/add")}
       data={testimonialSelector.testimonialTableData.map((row) => ({
         ...row,
         key: row.id, // or row._id, must be unique

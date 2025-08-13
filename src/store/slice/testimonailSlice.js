@@ -33,21 +33,21 @@ export const deleteTestimonialById = createAsyncThunk(
   }
 );
 
-export const updateTestimonialById = createAsyncThunk(
-  "testimonial/update-testimonial",
-  async ({ id, updatedData }) => {
-    const response = await fetch(
-      `https://api.thailash.com/testimonial/update-testimonial/${id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      }
-    );
-    const data = response.json();
-    return { id, ...data };
-  }
-);
+// export const updateTestimonialById = createAsyncThunk(
+//   "testimonial/update-testimonial",
+//   async ({ id, updatedData }) => {
+//     const response = await fetch(
+//       `https://api.thailash.com/testimonial/update-testimonial/${id}`,
+//       {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(updatedData),
+//       }
+//     );
+//     const data = response.json();
+//     return { id, ...data };
+//   }
+// );
 
 const testimonialSlice = createSlice({
   initialState: {
@@ -98,24 +98,24 @@ const testimonialSlice = createSlice({
     builder.addCase(deleteTestimonialById.rejected, (state, action) => {
       state.isLoading = false;
     });
-    builder.addCase(updateTestimonialById.fulfilled, (state, action) => {
-      state.isLoading = false;
-      const index = state.testimonialTableData.findIndex(
-        (item) => item.id == action.payload.id
-      );
-      if (index !== -1) {
-        state.testimonialTableData[index] = {
-          ...state.testimonialTableData[index],
-          ...action.payload,
-        };
-      }
-    });
-    builder.addCase(updateTestimonialById.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(updateTestimonialById.rejected, (state, action) => {
-      state.isLoading = false;
-    });
+    // builder.addCase(updateTestimonialById.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   const index = state.testimonialTableData.findIndex(
+    //     (item) => item.id == action.payload.id
+    //   );
+    //   if (index !== -1) {
+    //     state.testimonialTableData[index] = {
+    //       ...state.testimonialTableData[index],
+    //       ...action.payload,
+    //     };
+    //   }
+    // });
+    // builder.addCase(updateTestimonialById.pending, (state, action) => {
+    //   state.isLoading = true;
+    // });
+    // builder.addCase(updateTestimonialById.rejected, (state, action) => {
+    //   state.isLoading = false;
+    // });
   },
 });
 
