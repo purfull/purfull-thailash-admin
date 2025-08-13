@@ -8,8 +8,8 @@
 
 // export default store
 
-
 import { configureStore } from "@reduxjs/toolkit";
+import orderSlice from "./slice/orderSlice";
 
 import testimonialSlice from "./slice/testimonailSlice"
 import productSlice from "./slice/productSlice"
@@ -23,8 +23,10 @@ const store = configureStore({
         testimonial:testimonialSlice ,
         product : productSlice,
         customer :customerSlice,
-        billings :billingsSlice
+        billings :billingsSlice,
+      
+    order: orderSlice,
     }
 })
 
-export default store
+export default store;
