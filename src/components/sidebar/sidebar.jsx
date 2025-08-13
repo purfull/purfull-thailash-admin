@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
-import {  
+import {
   ShoppingOutlined,
   UserOutlined,
   PieChartOutlined,
   MenuOutlined,
   MessageOutlined,
   BookOutlined,
-  FileTextOutlined
+  FileTextOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
@@ -53,7 +53,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     //   ],
     // },
     {
-      label: "Menu"
+      label: "Menu",
     },
     {
       key: "3",
@@ -74,20 +74,18 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     {
       key: "5",
       icon: <ShoppingOutlined />,
-      label: <Link to="/dashboard/support">Orders</Link>,
+      label: <Link to="/dashboard/order">Orders</Link>,
     },
     {
       key: "6",
-      icon: < MessageOutlined/>,
+      icon: <MessageOutlined />,
       label: <Link to="/dashboard/testimonial">Testimonial</Link>,
     },
-       {
+    {
       key: "7",
-      icon: < BookOutlined/>,
+      icon: <BookOutlined />,
       label: <Link to="/dashboard/support">Blogs</Link>,
     },
-   
-
   ];
 
   return (
@@ -98,8 +96,9 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     // >
     // <div className={`side-nav-bar-container`}>
     <div
-      className={`side-nav-bar-container ${isMobile || isTablet ? (expand ? "expand" : "collapsed") : ""
-        }`}
+      className={`side-nav-bar-container ${
+        isMobile || isTablet ? (expand ? "expand" : "collapsed") : ""
+      }`}
     >
       {/*  <div
       className={`side-nav-bar-container ${expand ? "expand" : "collapsed"}`}
@@ -107,7 +106,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       <div className="side-nav-logo-container">
         <div className="logo-row">
           <span className="logo-icon">{/* icon */} </span>
-          {!collapsed && <div className="logo-title">  Thailash Admin New</div>}
+          {!collapsed && <div className="logo-title"> Thailash Admin New</div>}
           {(isMobile || isTablet) && (
             <div className="hamburger-menu">
               <MenuOutlined onClick={toggleexpanded} />
