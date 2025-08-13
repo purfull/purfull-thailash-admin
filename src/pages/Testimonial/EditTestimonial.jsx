@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getTestimonialById,
   resetEditTestimonialData,
+  updateTestimonialById,
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
+import { message } from "antd";
 
 const EditTestimonial = () => {
   const navigate = useNavigate();
@@ -15,27 +17,49 @@ const EditTestimonial = () => {
   const { id } = useParams();
   const [editData, setEditData] = useState({
     name: "",
-    rating: "",
+    retting: "",
     message: "",
     is_active: false,
   });
 
   const dispatch = useDispatch();
 
-  const handleSave = (id) => {
-    setEditData(id);
-    console.log("success");
-  };
+  // const handleSave = (id) => {
+  //   setEditData(id);
+  //   console.log("success");
+  // };
   const handleCancel = (id) => {
     dispatch(resetEditTestimonialData());
     navigate(`/dashboard/testimonial`);
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setEditData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    dispatch(updateTestimonialById({ id, updatedData: editData }))
+      .unwrap()
+      .then(() => {
+        message.success("Data updated successfully!");
+        navigate("/dashboard/testimonial");
+      })
+      .catch((err) => {
+        message.error("Failed to update data!");
+        console.error("Update failed", err);
+      });
   };
 
   useEffect(() => {
     if (testimonialSelector.editTestimonialData) {
       setEditData({
         name: testimonialSelector.editTestimonialData.name || "",
-        rating: testimonialSelector.editTestimonialData.retting || "",
+        retting: testimonialSelector.editTestimonialData.retting || "",
         message: testimonialSelector.editTestimonialData.message || "",
         is_active: testimonialSelector.editTestimonialData.is_active || false,
       });
@@ -45,6 +69,7 @@ const EditTestimonial = () => {
   useEffect(() => {
     dispatch(getTestimonialById(id));
   }, []);
+
   return (
     <div>
       <form>
@@ -60,13 +85,13 @@ const EditTestimonial = () => {
                 id="name"
                 required
                 value={editData?.name || ""}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
 
           <div className="name-container">
-            <label htmlFor="rating" className="name-labels">
+            <label htmlFor="retting" className="name-labels">
               Rating
             </label>
             <div className="input-1">
@@ -76,7 +101,7 @@ const EditTestimonial = () => {
                 id="retting"
                 required
                 value={editData?.retting || ""}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -92,7 +117,7 @@ const EditTestimonial = () => {
                 rows="4"
                 required
                 value={editData?.message || ""}
-                // onChange={handleChange}
+                onChange={handleChange}
               ></textarea>
             </div>
           </div>
@@ -106,10 +131,10 @@ const EditTestimonial = () => {
               <input
                 type="checkbox"
                 id="is_active"
-                // checked={editData?.is_active || false}
-                // onChange={(e) =>
-                // setEditData({ ...editData, is_active: e.target.checked })
-                // }
+                checked={editData?.is_active || false}
+                onChange={(e) =>
+                  setEditData({ ...editData, is_active: e.target.checked })
+                }
               />
               <span className="slider round"></span>
             </label>
