@@ -1,0 +1,76 @@
+
+import CustomTable from "../../../components/table/Table";
+import { Button, Space } from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+// import { useNavigate } from "react-router-dom";
+import { billingsGetAll } from "../../../store/slice/billingsSlice";
+
+
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+const billings = () => {
+    const billingsselector = useSelector((state) => state.billings)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(billingsGetAll())
+    })
+
+
+
+    // const navigate = useNavigate()
+    //     const handleEdit = (record) => {
+    //     navigate(`/dashboard/edit-product/${record.id}`);
+    //   };
+
+    const columns = [
+        { title: "id", dataIndex: "id" },
+        { title: " Name", dataIndex: "buyerName" },
+        { title: "Invoice Amount", dataIndex: "invoiceAmount" },
+        { title: "GSTIN", dataIndex: "customerBillToGST" },
+
+        // { title: "title", dataIndex: "title" },
+        // { title: "actual_price", dataIndex: "actual_price" },
+        {
+            title: "createdAt",
+            dataIndex: "createdAt",
+            key: "createdAt",
+            render: (text) => {
+                if (!text) return "";
+                const date = new Date(text);
+                const day = String(date.getDate()).padStart(2, "0");
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+            },
+        },
+        {
+            title: "Action",
+            dataIndex: "action",
+            key: "action",
+            render: (_, record) => (
+                <Space>
+
+                    <Button type="primary"
+                        icon={<EyeOutlined />}
+                        onClick={() => handleEdit(record)}>view bill</Button>
+                </Space>
+            ),
+        },
+    ];
+
+    return (
+        <CustomTable
+            columns={columns}
+            data={billingsselector.billingsTableData.map((row) => ({
+                ...row,
+                key: row.id,
+            }))}
+        />
+    );
+
+};
+
+export default billings;

@@ -69,7 +69,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     {
       key: "4",
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/customers">Customers</Link>,
+      label: <Link to="/dashboard/customer">Customers</Link>,
     },
     {
       key: "5",
@@ -85,6 +85,12 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       key: "7",
       icon: < BookOutlined/>,
       label: <Link to="/dashboard/support">Blogs</Link>,
+    },
+    
+       {
+      key: "8",
+      icon: < FileTextOutlined/>,
+      label: <Link to="/dashboard/billings">Billings</Link>,
     },
    
 

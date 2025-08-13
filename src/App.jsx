@@ -7,10 +7,13 @@ import TemplateMainPage from "./pages/dashboard/usertemplates/userTemplate";
 import NewTemplate from "./pages/dashboard/new-template/NewTemplate";
 import Settings from "./pages/dashboard/settings-page/Settings";
 import Testimonial from "./pages/Testimonial/testimonial";
-
+import Product from "./pages/dashboard/product/product";
+import Customer from "./pages/dashboard/customer/customer";
+import Billings from "./pages/dashboard/billings/billings";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import EditTestimonial from "./pages/Testimonial/EditTestimonial";
+import EditProduct from "./pages/dashboard/product/editproduct";
 
 function App() {
   return (
@@ -29,6 +32,15 @@ function App() {
                 path="edit-testimonial/:id"
                 element={<EditTestimonial />}
               />
+              <Route path="product" element={<Product />}></Route>
+              <Route
+                path="edit-product/:id"
+                element={<EditProduct />}
+              />
+              <Route path="customer" element={<Customer />}></Route>
+                            <Route path="billings" element={<Billings />}></Route>
+
+
             </Route>
           </Routes>
         </Router>
