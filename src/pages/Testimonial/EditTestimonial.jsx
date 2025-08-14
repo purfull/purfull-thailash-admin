@@ -15,7 +15,9 @@ const EditTestimonial = () => {
   const { editTestimonialData } = useSelector((state) => state.testimonial);
 
   const { id } = useParams();
+  
   const [editData, setEditData] = useState({
+    id:"",
     name: "",
     retting: "",
     message: "",
@@ -58,6 +60,7 @@ const EditTestimonial = () => {
   useEffect(() => {
     if (testimonialSelector.editTestimonialData) {
       setEditData({
+        id: testimonialSelector.editTestimonialData.id || "",
         name: testimonialSelector.editTestimonialData.name || "",
         retting: testimonialSelector.editTestimonialData.retting || "",
         message: testimonialSelector.editTestimonialData.message || "",

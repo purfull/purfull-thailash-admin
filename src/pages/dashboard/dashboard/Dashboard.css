@@ -1,11 +1,11 @@
 .dashboard-container {
   display: grid;
   gap: 24px;
-  padding: 16px;
-  width: 78%;
+  /* padding: 16px; */
+  width: 90%;
   position: absolute;
-  top: 10vh;
-  right: 0;
+  /* top: 10vh; */
+  /* right: 0; */
 }
 
 .row {

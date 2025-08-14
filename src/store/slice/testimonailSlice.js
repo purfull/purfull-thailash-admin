@@ -37,7 +37,7 @@ export const updateTestimonialById = createAsyncThunk(
   "testimonial/update-testimonial",
   async (payload) => {
     const response = await fetch(
-      `https://api.thailash.com/testimonial/update-testimonial/${payload.id}`,
+      `https://api.thailash.com/testimonial/update-testimonial`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
