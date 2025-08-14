@@ -14,7 +14,7 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(productGetAll())
-    })
+    },[])
 
 
     const navigate = useNavigate()

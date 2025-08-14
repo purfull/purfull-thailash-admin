@@ -16,7 +16,7 @@ const Customer = () => {
 
     useEffect(() => {
         dispatch(customerGetAll())
-    })
+    },[])
 
 
 

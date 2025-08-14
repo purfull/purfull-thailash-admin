@@ -16,7 +16,7 @@ const billings = () => {
 
     useEffect(() => {
         dispatch(billingsGetAll())
-    })
+    },[])
 
 
 

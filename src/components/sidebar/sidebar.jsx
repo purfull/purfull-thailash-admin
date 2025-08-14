@@ -81,18 +81,17 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       icon: <MessageOutlined />,
       label: <Link to="/dashboard/testimonial">Testimonial</Link>,
     },
+    // {
+    //   key: "7",
+    //   icon: <BookOutlined />,
+    //   label: <Link to="/dashboard/blogs">Blogs</Link>,
+    // },
+
     {
       key: "7",
-      icon: <BookOutlined />,
-      label: <Link to="/dashboard/support">Blogs</Link>,
-    },
-    
-       {
-      key: "8",
-      icon: < FileTextOutlined/>,
+      icon: <FileTextOutlined />,
       label: <Link to="/dashboard/billings">Billings</Link>,
     },
-   
   ];
 
   return (
