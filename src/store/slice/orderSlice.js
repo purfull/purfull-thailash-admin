@@ -5,12 +5,29 @@ export const getAllProduct = createAsyncThunk("order/get-all", async () => {
   const data = await response.json();
   return data;
 });
+
+export const updateOrder = createAsyncThunk("order/post", async (payload) => {
+  const response = await fetch(`https://api.thailash.com/order/update-status`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to update product: ${response.statusText}`);
+  }
+  const data = await response.json();
+  return data;
+});
+
 const orderSlice = createSlice({
   name: "order",
   initialState: {
     isLoading: false,
     message: null,
     orderTableData: [],
+    editOrderData: [],
   },
   reducers: {
     show(state, action) {
@@ -27,6 +44,17 @@ const orderSlice = createSlice({
       }),
       builder.addCase(getAllProduct.rejected, (state, action) => {
         (state.isLoading = false), (state.message = "order is rejected");
+      });
+    builder.addCase(updateOrder.fulfilled, (state, action) => {
+      (state.message = "Refund status updated"),
+        (state.editOrderData = action.payload.data);
+      state.isLoading = false;
+    });
+    builder.addCase(updateOrder.pending, (state, action) => {
+      (state.isLoading = true), (state.message = "refund loading");
+    }),
+      builder.addCase(updateOrder.rejected, (state, action) => {
+        (state.isLoading = false), (state.message = "refund is rejected");
       });
   },
 });

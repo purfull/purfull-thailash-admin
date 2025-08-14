@@ -3,7 +3,12 @@ import "./Table.css";
 import { useState } from "react";
 const { Option } = Select;
 
-const CustomTable = ({ columns, data, addButtonClick }) => {
+const CustomTable = ({
+  columns,
+  data,
+  addButtonClick,
+  showAddButton = true,
+}) => {
   const [pageSize, setPageSize] = useState(10);
 
   const handleChange = (value) => {
@@ -37,9 +42,11 @@ const CustomTable = ({ columns, data, addButtonClick }) => {
 
         <div className="toolbar-right">
           <Input placeholder="Search" className="toolbar-search" />
-          <button className="primary-button font-medium" onClick={handleAdd}>
-            + Add New
-          </button>
+          {showAddButton && (
+            <button className="primary-button font-medium" onClick={handleAdd}>
+              + Add New
+            </button>
+          )}
         </div>
       </div>
 
