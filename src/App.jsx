@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import EditTestimonial from "./pages/Testimonial/EditTestimonial";
 import EditProduct from "./pages/dashboard/product/editproduct";
+// import Blogs from "./pages/dashboard/blogs/Blogs";
 
 function App() {
   return (
@@ -30,19 +31,15 @@ function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="testimonial" element={<Testimonial />} />
               <Route path="order" element={<Order />} />
+              {/* <Route path="blogs" element={<Blogs />} /> */}
               <Route
                 path="edit-testimonial/:id"
                 element={<EditTestimonial />}
               />
               <Route path="product" element={<Product />}></Route>
-              <Route
-                path="edit-product/:id"
-                element={<EditProduct />}
-              />
+              <Route path="edit-product/:id" element={<EditProduct />} />
               <Route path="customer" element={<Customer />}></Route>
-                            <Route path="billings" element={<Billings />}></Route>
-
-
+              <Route path="billings" element={<Billings />}></Route>
             </Route>
           </Routes>
         </Router>

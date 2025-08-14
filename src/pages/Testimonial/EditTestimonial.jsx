@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getTestimonialById,
   resetEditTestimonialData,
+  updateTestimonialById,
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
 import { message } from "antd";
@@ -42,7 +43,7 @@ const EditTestimonial = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(getTestimonialById({ id, updatedData: editData }))
+    dispatch(updateTestimonialById({ id, updatedData: editData }))
       .unwrap()
       .then(() => {
         message.success("Data updated successfully!");
