@@ -11,10 +11,12 @@ import Product from "./pages/dashboard/product/product";
 import Customer from "./pages/dashboard/customer/customer";
 import Billings from "./pages/dashboard/billings/billings";
 import Order from "./pages/dashboard/order/order";
+import ViewOrder from "./pages/dashboard/order/viewOrder";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import EditTestimonial from "./pages/Testimonial/EditTestimonial";
 import EditProduct from "./pages/dashboard/product/editproduct";
+import ViewCustomer from "./pages/dashboard/customer/viewCustomer";
 // import Blogs from "./pages/dashboard/blogs/Blogs";
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="testimonial" element={<Testimonial />} />
               <Route path="order" element={<Order />} />
+              <Route path="order/view/:id" element={<ViewOrder />} />
               {/* <Route path="blogs" element={<Blogs />} /> */}
               <Route
                 path="edit-testimonial/:id"
@@ -39,6 +42,10 @@ function App() {
               <Route path="product" element={<Product />}></Route>
               <Route path="edit-product/:id" element={<EditProduct />} />
               <Route path="customer" element={<Customer />}></Route>
+              <Route
+                path="customer/view-customer/:id"
+                element={<ViewCustomer />}
+              />
               <Route path="billings" element={<Billings />}></Route>
             </Route>
           </Routes>
