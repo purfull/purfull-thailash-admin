@@ -33,6 +33,21 @@ export const deleteTestimonialById = createAsyncThunk(
   }
 );
 
+export const updateTestimonialById = createAsyncThunk(
+  "testimonial/update-testimonial",
+  async (payload) => {
+    const response = await fetch(
+      `https://api.thailash.com/testimonial/update-testimonial`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload.updatedData),
+      }
+    );
+    const data = response.json();
+    return data;
+  }
+);
 // export const updateTestimonialById = createAsyncThunk(
 //   "testimonial/update-testimonial",
 //   async (payload) => {

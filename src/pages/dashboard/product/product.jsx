@@ -1,26 +1,43 @@
 
 import CustomTable from "../../../components/table/Table";
-import { Button, Space } from "antd";
+import { Button, Space, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { show, productGetAll, productEditById } from "../../../store/slice/productSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { show, productGetAll, deleteProductById, productEditById } from "../../../store/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Product = () => {
     const productselector = useSelector((state) => state.product);
     const dispatch = useDispatch();
 
+    const { id } = useParams();
+
+
+    //product edit data useeffect 
+    // useEffect(() => {
+    //     dispatch(productEditById(id))
+    // }, [])
+
 
     useEffect(() => {
         dispatch(productGetAll())
-    },[])
+    }, [])
+
+    //delete product
+    const handleDelete = (record) => {
+        dispatch(deleteProductById(record.id));
+    };
+
+
+    //prepopulate for Product moudle 
 
 
     const navigate = useNavigate()
-        const handleEdit = (record) => {
+    const handleEdit = (record) => {
         navigate(`/dashboard/edit-product/${record.id}`);
-      };
+    };
+
     const columns = [
         { title: "id", dataIndex: "id" },
         { title: "name", dataIndex: "name" },
@@ -50,11 +67,24 @@ const Product = () => {
                         icon={<EditOutlined />}
                         onClick={() => handleEdit(record)}
                     ></Button>
-                    <Button
+                    {/* <Button
                         type="danger"
                         icon={<DeleteOutlined />}
                         onClick={() => console.log("Delete", record)}
-                    ></Button>
+                    ></Button> */}
+                    <Popconfirm
+                        title="Delete the task"
+                        description="Are you sure to delete this task?"
+                        onConfirm={() => handleDelete(record)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button
+                            type="danger"
+                            icon={<DeleteOutlined />}
+                            onClick={() => console.log("Delete", record)}
+                        ></Button>
+                    </Popconfirm>
                 </Space>
             ),
         },
