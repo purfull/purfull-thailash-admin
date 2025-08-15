@@ -4,21 +4,27 @@ import { Button } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../../../store/slice/orderSlice";
+import { useNavigate } from "react-router-dom";
 
 const order = () => {
   const orderSelector = useSelector((state) => state.order);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProduct());
   }, []);
 
+  const handleView = (record) => {
+    navigate(`/dashboard/order/view/${record.id}`);
+  };
+
   const columns = [
     { title: "id", dataIndex: "id" },
     { title: "AWB", dataIndex: "waybill" },
     { title: "Customer Name", dataIndex: "buyerName" },
-    { title: "Payment Method", dataIndex: "payment_order_id" },
+    { title: "Payment Method", dataIndex: "payment" },
     {
       title: "createdAt",
       dataIndex: "createdAt",
@@ -40,7 +46,7 @@ const order = () => {
         <Button
           type="primary"
           icon={<EyeOutlined />}
-          onClick={() => handleEdit(record)}
+          onClick={() => handleView(record)}
         >
           view
         </Button>
@@ -55,6 +61,7 @@ const order = () => {
         ...row,
         key: row.id, // or row._id, must be unique
       }))}
+      showAddButton={false}
     />
   );
 };

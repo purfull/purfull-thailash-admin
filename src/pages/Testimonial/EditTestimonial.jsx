@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getTestimonialById,
   resetEditTestimonialData,
-  updateTestimonialById,
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
 import { message } from "antd";
