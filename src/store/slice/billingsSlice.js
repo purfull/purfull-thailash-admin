@@ -8,6 +8,12 @@ export const billingsGetAll = createAsyncThunk("billings/get-all", async (state,
   return data
 })
 
+export const ViewBillbyid = createAsyncThunk("", async (state, action) => {
+  const responce = await fetch(`https://api.thailash.com/order/get-bill/${id}`);
+  const data = responce.json();
+  return data
+})
+
 const billingsSlice = createSlice({
   // initialState: 1,
   initialState: {
@@ -22,7 +28,7 @@ const billingsSlice = createSlice({
     })
   },
 
-  //custoemr bulid functions
+  //bilings bulid functions
 
   extraReducers: (builder) => {
     builder.addCase(billingsGetAll.fulfilled, (state, action) => {
@@ -45,6 +51,19 @@ const billingsSlice = createSlice({
       state.message = "Your fetching billings deatils is Failed"
 
 
+    })
+    //view bil 
+
+    builder.addCase(ViewBillbyid.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.billingsTableData = action.payload;
+    })
+
+    builder.addCase(ViewBillbyid.pending, (state, action) => {
+      state.isLoading = true
+    })
+    builder.addCase(ViewBillbyid.rejected, (state, action) => {
+      state.isLoading = false
     })
   }
 })

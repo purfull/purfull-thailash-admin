@@ -2,8 +2,8 @@
 import CustomTable from "../../../components/table/Table";
 import { Button, Space } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-// import { useNavigate } from "react-router-dom";
-import { billingsGetAll } from "../../../store/slice/billingsSlice";
+import { useNavigate } from "react-router-dom";
+import { billingsGetAll, ViewBillbyid } from "../../../store/slice/billingsSlice";
 
 
 
@@ -16,14 +16,18 @@ const billings = () => {
 
     useEffect(() => {
         dispatch(billingsGetAll())
-    },[])
+    }, [])
+
+    const navigate = useNavigate();
 
 
 
-    // const navigate = useNavigate()
-    //     const handleEdit = (record) => {
-    //     navigate(`/dashboard/edit-product/${record.id}`);
-    //   };
+    const handleditbill = ((record) => {
+
+
+        navigate(`/dashboard/billings/view-bill/${record.id}`);
+
+    });
 
     const columns = [
         { title: "id", dataIndex: "id" },
@@ -55,7 +59,7 @@ const billings = () => {
 
                     <Button type="primary"
                         icon={<EyeOutlined />}
-                        onClick={() => handleEdit(record)}>view bill</Button>
+                        onClick={() => handleditbill(record)}>view bill</Button>
                 </Space>
             ),
         },

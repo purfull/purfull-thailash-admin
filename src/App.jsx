@@ -12,6 +12,7 @@ import Customer from "./pages/dashboard/customer/customer";
 import Billings from "./pages/dashboard/billings/billings";
 import Order from "./pages/dashboard/order/order";
 import ViewOrder from "./pages/dashboard/order/viewOrder";
+import ViewBillings from "./pages/dashboard/billings/viewbillings";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import EditTestimonial from "./pages/Testimonial/EditTestimonial";
@@ -47,6 +48,11 @@ function App() {
                 element={<ViewCustomer />}
               />
               <Route path="billings" element={<Billings />}></Route>
+                 <Route
+                path="billings/view-bill/:id"
+                element={<ViewBillings />}
+              />
+              
             </Route>
           </Routes>
         </Router>
