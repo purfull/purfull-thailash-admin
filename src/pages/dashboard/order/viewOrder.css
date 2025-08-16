@@ -18,6 +18,12 @@
   color: #555;
 }
 
+.view-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
 /* Adjust spacing between form items */
 .view-order-container .ant-form-item {
   margin-bottom: 16px;

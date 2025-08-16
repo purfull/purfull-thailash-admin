@@ -25,6 +25,7 @@ const order = () => {
     { title: "AWB", dataIndex: "waybill" },
     { title: "Customer Name", dataIndex: "buyerName" },
     { title: "Payment Method", dataIndex: "payment" },
+    { title: "Refunded", dataIndex: "status" },
     {
       title: "createdAt",
       dataIndex: "createdAt",
