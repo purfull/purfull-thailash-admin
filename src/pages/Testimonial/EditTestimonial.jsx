@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getTestimonialById,
   resetEditTestimonialData,
+  updateTestimonialById,
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
 import { message } from "antd";
@@ -14,9 +15,9 @@ const EditTestimonial = () => {
   const { editTestimonialData } = useSelector((state) => state.testimonial);
 
   const { id } = useParams();
-  
+
   const [editData, setEditData] = useState({
-    id:"",
+    id: "",
     name: "",
     retting: "",
     message: "",

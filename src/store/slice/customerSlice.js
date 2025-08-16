@@ -25,6 +25,7 @@ const customerSlice = createSlice({
     isLoading: false,
     customerTableData: [],
     selectedCustomer: null,
+    customerDetails: null,
     message: null,
   },
   name: "customer",
