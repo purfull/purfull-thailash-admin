@@ -3,12 +3,31 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { retry } from "@reduxjs/toolkit/query";
 
 
-export const createProduct = createAsyncThunk("create/product", async () => {
-    const responce = await fetch("");
-    const data = responce.json();
-    return data
+export const createProduct = createAsyncThunk(
+    "product/create",
+    async (payload) => {
+        const response = await fetch("https://api.thailash.com/admin/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+        const data = await response.json();
+        return data;
+    }
+);
 
-})
+
+export const getProductById = createAsyncThunk("product/create/get-byid",
+    async (payload) => {
+        const response = await fetch(`https://api.thailash.com/admin/products-detial/${payload}`);
+        const data = await response.json();
+        return data;
+    }
+);
+
+
 
 export const productGetAll = createAsyncThunk("product/get-all", async () => {
     const responce = await fetch("https://api.thailash.com/admin/products");
@@ -16,8 +35,14 @@ export const productGetAll = createAsyncThunk("product/get-all", async () => {
     return data
 })
 
-export const productEditById = createAsyncThunk("product/udpate-product", async (payload) => {
-    const responce = await fetch(`https://api.thailash.com/admin/products-detial/${payload}`)
+export const updateProduct = createAsyncThunk("product/udpate-product", async (payload) => {
+    const responce = await fetch(`https://api.thailash.com/admin/products`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    })
     const data = responce.json();
     return data
 
@@ -25,7 +50,7 @@ export const productEditById = createAsyncThunk("product/udpate-product", async 
 
 export const deleteProductById = createAsyncThunk("product/delete-product", async (id) => {
     const responce = await fetch(
-        `https://api.thailash.com/admin/products/${rowToDelete.row.id}}`,
+        `https://api.thailash.com/admin/products/${id}`,
         { method: "DELETE" }
     );
     const data = responce.json();
@@ -53,18 +78,18 @@ const productSlice = createSlice({
     },
     extraReducers: (builder) => {
 
-               //add product 
+        //add product 
 
         builder.addCase(createProduct.fulfilled, (state, action) => {
             state.isLoading = false
             state.message = "product added successfuly"
 
         })
-        builder.addCase(createProduct.pending ,(state,action) =>{
+        builder.addCase(createProduct.pending, (state, action) => {
             state.isLoading = true
             state.message = " Your poduct addding is still pending state"
         })
-        builder.addCase(createProduct.rejected , (state ,action) =>{
+        builder.addCase(createProduct.rejected, (state, action) => {
             state.isLoading = false
             state.message = " Your product adding is failed"
         })
@@ -89,20 +114,33 @@ const productSlice = createSlice({
                 state.message = "product fetching is failed"
 
         })
+        //getProductById
+        builder.addCase(getProductById.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.editproductData = action.payload.data;
+        })
+
+        builder.addCase(getProductById.pending, (state,action) => {
+            state.isLoading = true;
+        })
+
+        builder.addCase(getProductById.rejected, (state, action) => {
+            state.isLoading = false;
+        });
 
         //edit products (update)
 
-        builder.addCase(productEditById.fulfilled, (state, action) => {
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
             state.isLoading = false,
                 state.editproductData = action.payload.data;
             state.message = "product fetched successfully"
         })
-        builder.addCase(productEditById.pending, (state, action) => {
+        builder.addCase(updateProduct.pending, (state, action) => {
             state.isLoading = true;
 
 
         })
-        builder.addCase(productEditById.rejected, (state, action) => {
+        builder.addCase(updateProduct.rejected, (state, action) => {
             state.isLoading = false;
 
         })
@@ -122,7 +160,7 @@ const productSlice = createSlice({
             state.isLoading = false
         })
 
- 
+
     },
 
 
