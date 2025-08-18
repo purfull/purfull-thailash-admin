@@ -86,6 +86,7 @@ const billings = () => {
   return (
     <CustomTable
       columns={columns}
+      addBillingsurl="create-bill"
       data={
         Array.isArray(billingsselector.billingsTableData)
           ? billingsselector.billingsTableData.map((item) => ({
