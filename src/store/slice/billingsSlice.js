@@ -14,13 +14,31 @@ export const ViewBillbyid = createAsyncThunk(
     const responce = await fetch(
       `https://api.thailash.com/order/get-bill/${id}`
     );
-    const data = responce.json();
+    const data = await responce.json();
     return data;
   }
 );
 
-export const SaveBill = createAsyncThunk(
-  "billings/save-bill",
+export const updateBill = createAsyncThunk(
+  "billings/update-bill",
+  async (billingsdata) => {
+    const responce = await fetch(
+      `https://api.thailash.com/order/update-offline-bill/${billingsdata.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(billingsdata),
+      }
+    );
+    const data = await responce.json();
+    return data;
+  }
+);
+
+export const CreateBill = createAsyncThunk(
+  "billings/create-bill",
   async (billingsdata) => {
     const responce = await fetch(
       `https://api.thailash.com/order/create-offline-bill`,
@@ -72,7 +90,7 @@ const billingsSlice = createSlice({
 
     builder.addCase(ViewBillbyid.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.selectedBill = action.payload.data;
+      state.selectedBill = action.payload;
       state.message = "You can view Bill successfully";
     });
 
@@ -85,21 +103,38 @@ const billingsSlice = createSlice({
       state.message = "View Bill is failed";
     });
 
-    //save bill
+    //create bill
 
-    builder.addCase(SaveBill.fulfilled, (state, action) => {
+    builder.addCase(CreateBill.fulfilled, (state, action) => {
       state.isLoading = false;
       state.selectedBill = action.payload;
       state.message = "Your bills are saved";
     });
 
-    builder.addCase(SaveBill.pending, (state, action) => {
+    builder.addCase(CreateBill.pending, (state, action) => {
       state.isLoading = true;
       state.message = "Bills loading";
     });
-    builder.addCase(SaveBill.rejected, (state, action) => {
+    builder.addCase(CreateBill.rejected, (state, action) => {
       state.isLoading = false;
       state.message = "Your billings details is Failed";
+    });
+
+    //update bill
+
+    builder.addCase(updateBill.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.selectedBill = action.payload;
+      state.message = "Your changes are updated in bills";
+    });
+
+    builder.addCase(updateBill.pending, (state, action) => {
+      state.isLoading = true;
+      state.message = "Bills loading";
+    });
+    builder.addCase(updateBill.rejected, (state, action) => {
+      state.isLoading = false;
+      state.message = "changes made in bills is Failed";
     });
   },
 });

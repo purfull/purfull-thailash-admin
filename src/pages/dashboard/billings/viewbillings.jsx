@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Form, Input, Spin } from "antd";
-import { ViewBillbyid, SaveBill } from "../../../store/slice/billingsSlice";
+import {
+  ViewBillbyid,
+  CreateBill,
+  updateBill,
+} from "../../../store/slice/billingsSlice";
 // import "./viewOrder.css";
 import { Button } from "antd/es/radio";
 
@@ -19,16 +23,25 @@ const ViewBillings = () => {
     dispatch(ViewBillbyid(id));
   }, [id]);
 
-  const handleSave = () => {
-    dispatch(SaveBill(billingsdata)).then(() => {
-      navigate("/dashboard/billings");
-    });
-  };
   useEffect(() => {
     if (selectedBill) {
       setBillingsData(selectedBill);
     }
   }, [selectedBill]);
+
+  const handleSave = () => {
+    if (billingsdata.id) {
+      // Update existing bill
+      dispatch(updateBill(billingsdata)).then(() => {
+        navigate("/dashboard/billings");
+      });
+    } else {
+      // Create new bill
+      dispatch(CreateBill(billingsdata)).then(() => {
+        navigate("/dashboard/billings");
+      });
+    }
+  };
 
   const handleCancel = () => {
     navigate("/dashboard/billings");
@@ -51,8 +64,8 @@ const ViewBillings = () => {
             name="id"
             className="formOrder-input"
             value={billingsdata.id || ""}
-            onChange={handleChange}
-            // disabled
+            // onChange={handleChange}
+            disabled
           />
         </Form.Item>
 
