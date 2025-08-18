@@ -8,8 +8,8 @@ const CustomTable = ({
   columns,
   data,
   addButtonClick,
-  addProducturl,
-  addBillingsurl,
+  createUrl,
+
   showAddButton = true,
 }) => {
   const [pageSize, setPageSize] = useState(10);
@@ -22,11 +22,11 @@ const CustomTable = ({
   // const handleChange = (value) => {
   //   setPageSize(value);
   // };
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleAdd = () => {
-        navigate(`/dashboard/${addProducturl}/0`);
-        // navigate(`/dashboard/${addBillingsurl}/0`)
+    navigate(`/dashboard/${createUrl}/0`);
+    // navigate(`/dashboard/${addBillingsurl}/0`);
   };
 
   return (
