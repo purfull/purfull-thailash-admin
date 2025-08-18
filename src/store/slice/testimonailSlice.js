@@ -1,6 +1,57 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
+
+// export const createTestimonial = createAsyncThunk("create/testimonial", async (state, action) => {
+
+//   const responce = await fetch("https://api.thailash.com/testimonial/create-testimonial", {
+//     method: "POST",
+    
+
+//   });
+//   const data = await responce.json();
+//   return data
+
+
+// })
+// export const createTestimonial = createAsyncThunk(
+//   "testimonial/create-testimonial",
+//   async (payload) => {
+//     const response = await fetch(
+//       "https://api.thailash.com/testimonial/create-testimonial",
+//       {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(payload), // ✅ sending payload as body
+//       }
+//     );
+//     const data = await response.json(); // ✅ added await
+//     return data;
+//   }
+// );
+export const createTestimonial = createAsyncThunk(
+  "testimonial/create-testimonial",
+  async (payload) => {
+    const response = await fetch(
+      "https://api.thailash.com/testimonial/create-testimonial",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to create testimonial");
+    }
+
+    const data = await response.json();
+    return data;
+  }
+);
+
+
 export const testimonialGetAll = createAsyncThunk(
   "testimonial/get-all",
   async () => {
@@ -27,6 +78,7 @@ export const deleteTestimonialById = createAsyncThunk(
     const responce = await fetch(
       `https://api.thailash.com/testimonial/delete-testimonial/${id}`,
       { method: "DELETE" }
+      
     );
     const data = responce.json();
     return { id, ...data };
@@ -44,7 +96,7 @@ export const updateTestimonialById = createAsyncThunk(
         body: JSON.stringify(payload.updatedData),
       }
     );
-    const data = response.json();
+    const data = await response.json();
     return data;
   }
 );
@@ -81,6 +133,20 @@ const testimonialSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    //create 
+    builder.addCase(createTestimonial.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.message = "craeted testimonial successfully "
+
+    })
+    builder.addCase(createTestimonial.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createTestimonial.rejected, (state, action) => {
+      state.isLoading = false;
+      state.message= " your create api is failed "
+    });
+
     builder.addCase(testimonialGetAll.fulfilled, (state, action) => {
       state.isLoading = false;
       state.testimonialTableData = action.payload.data;
@@ -91,6 +157,7 @@ const testimonialSlice = createSlice({
     builder.addCase(testimonialGetAll.rejected, (state, action) => {
       state.isLoading = false;
     });
+
     //get by id 
     builder.addCase(getTestimonialById.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -102,6 +169,8 @@ const testimonialSlice = createSlice({
     builder.addCase(getTestimonialById.rejected, (state, action) => {
       state.isLoading = false;
     });
+
+
     builder.addCase(deleteTestimonialById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.testimonialTableData = state.testimonialTableData.filter(

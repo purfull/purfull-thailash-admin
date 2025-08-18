@@ -5,6 +5,7 @@ import {
   getTestimonialById,
   resetEditTestimonialData,
   updateTestimonialById,
+  createTestimonial
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
 import { message } from "antd";
@@ -12,7 +13,7 @@ import { message } from "antd";
 const EditTestimonial = () => {
   const navigate = useNavigate();
   const testimonialSelector = useSelector((state) => state.testimonial);
-  const { editTestimonialData } = useSelector((state) => state.testimonial);
+  const { editTestimonialData, testimonialTableData } = useSelector((state) => state.testimonial);
 
   const { id } = useParams();
 
@@ -30,6 +31,7 @@ const EditTestimonial = () => {
   //   setEditData(id);
   //   console.log("success");
   // };
+
   const handleCancel = (id) => {
     dispatch(resetEditTestimonialData());
     navigate(`/dashboard/testimonial`);
@@ -43,18 +45,51 @@ const EditTestimonial = () => {
     }));
   };
 
+  // const handleSave = (e) => {
+  //   e.preventDefault();
+  //   dispatch(updateTestimonialById({ id, updatedData: editData }))
+  //     .unwrap()
+  //     .then(() => {
+  //       message.success("Data updated successfully!");
+  //       navigate("/dashboard/testimonial");
+  //     })
+  //     .catch((err) => {
+  //       message.error("Failed to update data!");
+  //       console.error("Update failed", err);
+  //     });
+  // };
+
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(updateTestimonialById({ id, updatedData: editData }))
+     if (id == 0) {
+    // use editData instead of editTestimonialData
+    dispatch(createTestimonial(editData))
       .unwrap()
       .then(() => {
-        message.success("Data updated successfully!");
+        message.success("Data created successfully!");
         navigate("/dashboard/testimonial");
       })
       .catch((err) => {
-        message.error("Failed to update data!");
-        console.error("Update failed", err);
+        message.error("Failed to create testimonial!");
+        console.error("Create failed", err);
       });
+
+  }
+  else {
+
+      e.preventDefault();
+      dispatch(updateTestimonialById({ id, updatedData: editData }))
+        .unwrap()
+        .then(() => {
+          message.success("Data updated successfully!");
+          navigate("/dashboard/testimonial");
+        })
+        .catch((err) => {
+          message.error("Failed to update data!");
+          console.error("Update failed", err);
+        });
+
+    }
   };
 
   useEffect(() => {
