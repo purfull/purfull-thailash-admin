@@ -78,8 +78,7 @@ const Testimonial = () => {
   return (
     <CustomTable
       columns={columns}
-      // addButtonClick={() => setNewPage(true)}
-      // addButtonClick={() => navigate("/dashboard/testimonial/add")}
+      createUrl = "edit-testimonial"
       data={testimonialSelector.testimonialTableData.map((row) => ({
         ...row,
         key: row.id, // or row._id, must be unique
