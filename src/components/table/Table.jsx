@@ -1,4 +1,5 @@
 import { Input, Select, Table } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./Table.css";
 import { useState } from "react";
 const { Option } = Select;
@@ -7,6 +8,8 @@ const CustomTable = ({
   columns,
   data,
   addButtonClick,
+  addProducturl,
+  addBillingsurl,
   showAddButton = true,
 }) => {
   const [pageSize, setPageSize] = useState(10);
@@ -19,10 +22,13 @@ const CustomTable = ({
   // const handleChange = (value) => {
   //   setPageSize(value);
   // };
+const navigate = useNavigate()
 
   const handleAdd = () => {
-    addButtonClick({ newPage: true });
+        navigate(`/dashboard/${addProducturl}/0`);
+        // navigate(`/dashboard/${addBillingsurl}/0`)
   };
+
   return (
     <div className="bg-white w-full my-shadow ">
       <div className="table-toolbar">

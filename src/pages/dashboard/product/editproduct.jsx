@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { productEditById, resetEditproductData } from "../../../store/slice/productSlice";
+import { updateProduct, resetEditproductData, createProduct, getProductById} from "../../../store/slice/productSlice";
 import "../product/product.css";
 
 const EditProduct = () => {
 
     const navigate = useNavigate();
     const productselector = useSelector((state) => state.product);
-    // const { productEditById } = useSelector((state) => state.testimonial);
-    //   const { editTestimonialData } = useSelector((state) => state.testimonial);
 
-
-    const { id } = useParams();
+    const { id = 0 } = useParams();
 
     const [editProductData, setEditProductData] = useState({
         id: "",
@@ -24,9 +21,20 @@ const EditProduct = () => {
 
     const dispatch = useDispatch();
 
-    const handleSave = (id) => {
-        setEditProductData(id);
-        console.log("success");
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        if (id == 0) {
+                 dispatch(createProduct(editProductData))
+                .then(() => navigate("/dashboard/product"));
+            // 
+        
+        } else {
+            // create new
+                dispatch(updateProduct({ ...editProductData, id }))
+                .then(() => navigate("/dashboard/product"));
+       
+        }
     };
 
     const handleCancel = (id) => {
@@ -40,7 +48,7 @@ const EditProduct = () => {
                 name: productselector.editproductData.name || "",
                 title: productselector.editproductData.title || "",
                 description: productselector.editproductData.description || "",
-                bottlesize: productselector.editproductData.bottle_size || "",
+                bottle_size: productselector.editproductData.bottle_size || "",
                 offer_price: productselector.editproductData.offer_price || "",
                 actual_price: productselector.editproductData.actual_price || "",
                 sku: productselector.editproductData.sku || "",
@@ -48,11 +56,13 @@ const EditProduct = () => {
                 is_active: productselector.editproductData.is_active || false,
             });
         }
+        
+        
     }, [productselector]);
 
 
     useEffect(() => {
-        dispatch(productEditById(id))
+        dispatch(getProductById(id))
     }, [])
 
     const handleChange = (e) => {
@@ -91,7 +101,7 @@ const EditProduct = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="offer_price"
                                 required
                                 value={editProductData?.offer_price || ""}
                                 onChange={handleChange}
@@ -99,14 +109,14 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="name-container">
-                        <label htmlFor="retting" className="name-labels">
+                        <label htmlFor="bottle_size" className="name-labels">
                             bottle size
                         </label>
                         <div className="input-1">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="bottle_size"
                                 required
                                 value={editProductData?.bottle_size || ""}
                                 onChange={handleChange}
@@ -116,14 +126,14 @@ const EditProduct = () => {
 
 
                     <div className="name-container">
-                        <label htmlFor="retting" className="name-labels">
+                        <label htmlFor="title" className="name-labels">
                             Tittle
                         </label>
                         <div className="input-1">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="title"
                                 required
                                 value={editProductData?.title || ""}
                                 onChange={handleChange}
@@ -131,14 +141,14 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="name-container">
-                        <label htmlFor="retting" className="name-labels">
+                        <label htmlFor="actual_price" className="name-labels">
                             Actual price
                         </label>
                         <div className="input-1">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="actual_price"
                                 required
                                 value={editProductData?.actual_price || ""}
                                 onChange={handleChange}
@@ -146,14 +156,14 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="name-container">
-                        <label htmlFor="retting" className="name-labels">
+                        <label htmlFor="sku" className="name-labels">
                             Sku
                         </label>
                         <div className="input-1">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="sku"
                                 required
                                 value={editProductData?.sku || ""}
                                 onChange={handleChange}
@@ -161,14 +171,14 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="name-container">
-                        <label htmlFor="retting" className="name-labels">
+                        <label htmlFor="stock_quantity" className="name-labels">
                             Stock quantity
                         </label>
                         <div className="input-1">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="retting"
+                                id="stock_quantity"
                                 required
                                 value={editProductData?.stock_quantity || ""}
                                 onChange={handleChange}
@@ -178,13 +188,13 @@ const EditProduct = () => {
 
 
                     <div className="name-container">
-                        <label htmlFor="message" className="name-labels">
+                        <label htmlFor="description" className="name-labels">
                             description
                         </label>
                         <div className="input-1">
                             <textarea
                                 className="form-control"
-                                id="message"
+                                id="description"
                                 rows="4"
                                 required
                                 value={editProductData?.description || ""}
@@ -193,16 +203,16 @@ const EditProduct = () => {
                         </div>
                     </div>
 
-               
+
                     <div className="name-container">
-                        <label htmlFor="name">Product Image</label>
+                        <label htmlFor="image">Product Image</label>
                         <div>
                             <img
                                 // src={logo || noImage}
                                 className="form-control cursor-pointer"
                                 name="image"
                                 alt="logo"
-                                // onClick={handleImageClick}
+                            // onClick={handleImageClick}
                             />
                             <input
                                 type="file"
@@ -212,7 +222,7 @@ const EditProduct = () => {
                     </div>
 
 
-                       <div className="name-container">
+                    <div className="name-container">
                         <label htmlFor="is_active" className="name-labels">
                             Is Featured
                         </label>
@@ -222,18 +232,14 @@ const EditProduct = () => {
                                 id="is_active"
                                 // checked={editProductData?.is_active || false}
                                 onChange={(e) =>
-                                    ({ ...editProductData, is_active: e.target.checked })
+                                    setEditProductData((prev) => ({ ...prev, is_active: e.target.checked }))
                                 }
+
                             />
                             <span className="slider round"></span>
                         </label>
                     </div>
                 </div>
-
-
-
-
-
 
 
                 {/* </div> */}

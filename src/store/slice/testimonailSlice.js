@@ -91,6 +91,7 @@ const testimonialSlice = createSlice({
     builder.addCase(testimonialGetAll.rejected, (state, action) => {
       state.isLoading = false;
     });
+    //get by id 
     builder.addCase(getTestimonialById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.editTestimonialData = action.payload.data;

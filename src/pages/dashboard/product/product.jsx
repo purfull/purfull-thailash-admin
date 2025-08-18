@@ -4,7 +4,7 @@ import { Button, Space, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { show, productGetAll, deleteProductById, productEditById } from "../../../store/slice/productSlice";
+import { show, productGetAll, deleteProductById, updateProduct } from "../../../store/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Product = () => {
@@ -15,9 +15,9 @@ const Product = () => {
 
 
     //product edit data useeffect 
-    // useEffect(() => {
-    //     dispatch(productEditById(id))
-    // }, [])
+    useEffect(() => {
+        dispatch(updateProduct(id))
+    }, [])
 
 
     useEffect(() => {
@@ -29,11 +29,18 @@ const Product = () => {
         dispatch(deleteProductById(record.id));
     };
 
+    // use effect for add products 
+
+    // useEffect(()=>{
+    //     dispatch(createProduct())
+
+    // })
 
     //prepopulate for Product moudle 
 
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const handleEdit = (record) => {
         navigate(`/dashboard/edit-product/${record.id}`);
     };
@@ -93,9 +100,11 @@ const Product = () => {
     return (
         <CustomTable
             columns={columns}
+            addProducturl = "edit-product"
             data={productselector.productTableData.map((row) => ({
                 ...row,
                 key: row.id,
+
             }))}
         />
     );
