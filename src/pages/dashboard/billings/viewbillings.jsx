@@ -5,7 +5,7 @@ import { Switch, Form, Input, Spin } from "antd";
 import {
   ViewBillbyid,
   CreateBill,
-  updateBill,
+  // updateBill,
 } from "../../../store/slice/billingsSlice";
 // import "./viewOrder.css";
 import { Button } from "antd/es/radio";
@@ -20,22 +20,19 @@ const ViewBillings = () => {
   const [billingsdata, setBillingsData] = useState({});
 
   useEffect(() => {
-    dispatch(ViewBillbyid(id));
+    if (id) {
+      dispatch(ViewBillbyid(id));
+    }
   }, [id]);
 
   useEffect(() => {
     if (selectedBill) {
-      setBillingsData(selectedBill);
+      setBillingsData(selectedBill.data);
     }
   }, [selectedBill]);
 
   const handleSave = () => {
     if (billingsdata.id) {
-      // Update existing bill
-      dispatch(updateBill(billingsdata)).then(() => {
-        navigate("/dashboard/billings");
-      });
-    } else {
       // Create new bill
       dispatch(CreateBill(billingsdata)).then(() => {
         navigate("/dashboard/billings");
@@ -63,9 +60,9 @@ const ViewBillings = () => {
           <Input
             name="id"
             className="formOrder-input"
-            value={billingsdata.id || ""}
-            // onChange={handleChange}
-            disabled
+            value={billingsdata?.id || ""}
+            onChange={handleChange}
+            //disabled
           />
         </Form.Item>
 
@@ -73,7 +70,7 @@ const ViewBillings = () => {
           <Input
             name="name"
             className="formOrder-input"
-            value={billingsdata.name || ""}
+            value={billingsdata?.name || ""}
             onChange={handleChange}
             // disabled
           />
@@ -82,7 +79,7 @@ const ViewBillings = () => {
           <Input
             name="address"
             className="formOrder-input"
-            value={billingsdata.address || ""}
+            value={billingsdata?.address || ""}
             onChange={handleChange}
             // disabled
           />
@@ -91,7 +88,7 @@ const ViewBillings = () => {
           <Input
             name="city"
             className="formOrder-input"
-            value={billingsdata.city || ""}
+            value={billingsdata?.city || ""}
             onChange={handleChange}
             // disabled
           />
@@ -100,7 +97,7 @@ const ViewBillings = () => {
           <Input
             name="state"
             className="formOrder-input"
-            value={billingsdata.state || ""}
+            value={billingsdata?.state || ""}
             onChange={handleChange}
             // disabled
           />
@@ -109,7 +106,7 @@ const ViewBillings = () => {
           <Input
             name="pin"
             className="formOrder-input"
-            value={billingsdata.pin || ""}
+            value={billingsdata?.pin || ""}
             onChange={handleChange}
             // disabled
           />
@@ -118,7 +115,7 @@ const ViewBillings = () => {
           <Input
             name="country"
             className="formOrder-input"
-            value={billingsdata.country || ""}
+            value={billingsdata?.country || ""}
             onChange={handleChange}
             // disabled
           />
@@ -127,25 +124,26 @@ const ViewBillings = () => {
           <Input
             name="invoiceAmount"
             className="formOrder-input"
-            value={billingsdata.invoiceAmount || ""}
+            value={billingsdata?.invoiceAmount || ""}
             onChange={handleChange}
             // disabled
           />
         </Form.Item>
-        <Form.Item label="Payment Method" className="formOrder-heading">
+        {/* <Form.Item label="Payment Method" className="formOrder-heading">
           <Input
             name="payment"
             className="formOrder-input"
-            value={billingsdata.payment || ""}
+            value={billingsdata?.payment || ""}
             onChange={handleChange}
             // disabled
           />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="Created At" className="formOrder-heading">
           <Input
             className="formOrder-input"
+            type="date"
             value={
-              billingsdata.createdAt
+              billingsdata?.createdAt
                 ? new Date(billingsdata.createdAt).toLocaleDateString()
                 : ""
             }

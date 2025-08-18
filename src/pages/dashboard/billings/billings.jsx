@@ -22,8 +22,8 @@ const billings = () => {
   const navigate = useNavigate();
 
   const handleditbill = (record) => {
+    dispatch(ViewBillbyid(record.id));
     navigate(`/dashboard/billings/view-bill/${record.id}`);
-    // dispatch(ViewBillbyid(id));
   };
 
   const columns = [
@@ -86,7 +86,7 @@ const billings = () => {
   return (
     <CustomTable
       columns={columns}
-      addBillingsurl="create-bill"
+      createUrl="billings/view-bill"
       data={
         Array.isArray(billingsselector.billingsTableData)
           ? billingsselector.billingsTableData.map((item) => ({
