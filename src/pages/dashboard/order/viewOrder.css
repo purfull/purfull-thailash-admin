@@ -2,27 +2,41 @@
 .view-order-container {
   max-width: 600px;
   margin: 20px auto;
+  background-color: red;
 }
 
-/* Title styling */
-.view-order-title {
-  font-size: 20px;
+.view-order-tag{
+  display: grid;
+  gap: 20px;
+}
+  
+
+ .order-form .ant-form-item-label > label::after {
+  margin-left: 15px;  /* add little space after colon */
+
+ }
+ /* apply only to this label */
+.view-order-tag .ant-form-item-label > label {
+
+  margin-right: 20px;
+  display: flex;
+
+}
+
+.view-name{
+ width: 100%;
+ text-align: center;
+   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
-  text-align: center;
+  padding: 5px 0px;
+  
 }
 
-/* Make disabled inputs a bit lighter */
 .view-order-container .ant-input[disabled] {
   background-color: #f5f5f5;
   color: #555;
 }
 
-.view-name {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
 
 /* Adjust spacing between form items */
 .view-order-container .ant-form-item {
@@ -52,6 +66,7 @@
 .order-form {
   width: 100%;
 }
+
 /* .formOrder-heading {
   width: 25%;
 }
@@ -62,5 +77,57 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
+  width: 95%;
+  padding: 20px;
   justify-content: flex-end;
+}
+
+/* The switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Hide default checkbox */
+.switch-box {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (background of toggle) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* The circle inside */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Checked state */
+.switch-box:checked + .slider {
+  background-color: #1890ff; /* Ant Design blue */
+}
+
+.switch-box:checked + .slider:before {
+  transform: translateX(22px);
 }
