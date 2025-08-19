@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Form, Input, Spin } from "antd";
+import { useReactToPrint } from "react-to-print";
 import {
   ViewBillbyid,
   CreateBill,
   // updateBill,
 } from "../../../store/slice/billingsSlice";
-// import "./viewOrder.css";
+import "./billings.css";
 import { Button } from "antd/es/radio";
 
 const ViewBillings = () => {
@@ -49,6 +50,28 @@ const ViewBillings = () => {
       ...billingsdata,
       [name]: value, // dynamic key update
     });
+  };
+
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({
+    contentRef: () => componentRef.current,
+    // pageStyle: `
+    //   @page {
+    //     size: auto;
+    //     margin: 20mm;
+    //   }
+    //   body {
+    //     font-family: sans-serif;
+    //     -webkit-print-color-adjust: exact;
+    //     print-color-adjust: exact;
+    //   }
+    // `,
+  });
+
+  //print
+  const onPrintClick = () => {
+    console.log("Print clicked");
+    handlePrint(); // Skip image loading check for test
   };
 
   return (
@@ -165,6 +188,77 @@ const ViewBillings = () => {
           />
         </Form.Item> */}
       </Form>
+
+      <div ref={componentRef} className="invoice-container">
+        <div className="invoice-header">
+          <p className="invoice-contact">
+            Cell: 9597266083 <br /> 9003857938
+          </p>
+          <img alt="Thailash Logo" />
+          <p className="company-name">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
+          <p className="company-address">
+            3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
+            Nagapattinam - 611 104
+          </p>
+        </div>
+
+        {/* Invoice Details Table */}
+        <table className="invoice-table">
+          <tbody>
+            <tr>
+              <td colSpan="6">
+                <strong>Invoice Number:</strong>{" "}
+                {String(billingsdata?.invoiceNumber ?? "").padStart(4, "0")}
+              </td>
+              <td colSpan="6">
+                <strong>Invoice Date:</strong> {billingsdata?.invoiceDate}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="6">
+                <strong>Customer Name:</strong> {billingsdata.customerName}
+              </td>
+              <td colSpan="6">
+                <strong>Contact Number:</strong> {billingsdata.contactnum}
+              </td>
+            </tr>
+            {/* ...repeat for other rows */}
+          </tbody>
+        </table>
+
+        {/* GST Table */}
+        <table className="invoice-table" style={{ marginTop: "1rem" }}>
+          <tbody>
+            <tr>
+              <td colSpan="6" className="td-right">
+                SGST:
+              </td>
+              <td colSpan="2">sgstTax</td>
+            </tr>
+            <tr>
+              <td colSpan="6" className="td-right">
+                CGST:
+              </td>
+              <td colSpan="2">cgstTax</td>
+            </tr>
+            <tr>
+              <td colSpan="6" className="td-right td-bold">
+                Total Invoice Amount
+              </td>
+              {/* <td colSpan="2" className="td-bold">
+                {finalInvoiceAmount.toFixed(2)}
+              </td> */}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button
+        disabled={billingsdata?.invoiceNumber ? false : true}
+        onClick={onPrintClick}
+      >
+        Download Invoice
+      </button>
 
       <div className="view-order-buttons">
         <Button className="vieworder-cancelbutton" onClick={handleCancel}>
