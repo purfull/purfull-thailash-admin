@@ -22,6 +22,12 @@ const ViewBillings = () => {
 
   const [viewLoad, setViewLoad] = useState(false);
   const [selectedTaxTypes, setSelectedTaxTypes] = useState([]);
+  const [taxValues, setTaxValues] = useState({
+    cgst: 0,
+    sgst: 0,
+    igst: 0,
+    utgst: 0,
+  });
 
   const [billingsdata, setBillingsData] = useState({
     invoiceNumber: "",
@@ -67,6 +73,21 @@ const ViewBillings = () => {
   useEffect(() => {
     if (selectedBill) {
       setBillingsData(selectedBill.data);
+
+      if (
+        selectedBill.data?.orderItems &&
+        Array.isArray(selectedBill.data.orderItems)
+      ) {
+        setItems(
+          selectedBill.data.orderItems.map((item) => ({
+            id: item.id,
+            product: item.product || "",
+            quantity: item.quantity || "",
+            rate: item.rate || "",
+            discount: item.discount || "",
+          }))
+        );
+      }
     }
   }, [selectedBill]);
 
@@ -134,104 +155,142 @@ const ViewBillings = () => {
     setItems(updatedItems);
   };
 
+  // Handle checkbox change for tax types
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+
+    setSelectedTaxTypes((prev) => {
+      if (checked) {
+        // Add tax type if checked
+        return [...prev, value];
+      } else {
+        // Remove tax type if unchecked
+        return prev.filter((type) => type !== value);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (!items || items.length === 0) return;
+
+    // 1. Calculate subtotal
+    const subtotal = items.reduce((sum, item) => {
+      const qty = Number(item.quantity) || 0;
+      const rate = Number(item.rate) || 0;
+      const discount = Number(item.discount) || 0;
+      return sum + (qty * rate - discount);
+    }, 0);
+
+    // 2. Initialize tax values
+    let sgstTax = 0,
+      cgstTax = 0,
+      igstTax = 0,
+      utgstTax = 0;
+
+    // 3. Apply taxes based on checkbox selection
+    if (selectedTaxTypes.includes("sgst")) sgstTax = subtotal * 0.06;
+    if (selectedTaxTypes.includes("cgst")) cgstTax = subtotal * 0.06;
+    if (selectedTaxTypes.includes("igst")) igstTax = subtotal * 0.12;
+    if (selectedTaxTypes.includes("utgst")) utgstTax = subtotal * 0.12;
+
+    const totalTaxAmount =
+      taxValues.cgst + taxValues.sgst + taxValues.igst + taxValues.utgst;
+    const invoiceAmount = subtotal + totalTaxAmount;
+
+    // 4. Update billingsData with tax values
+    setBillingsData((prev) => ({
+      ...prev,
+      taxExclusiveGross: subtotal.toFixed(2),
+      sgstTax: sgstTax.toFixed(2),
+      cgstTax: cgstTax.toFixed(2),
+      igstTax: igstTax.toFixed(2),
+      utgstTax: utgstTax.toFixed(2),
+      totalTaxAmount: totalTaxAmount.toFixed(2),
+      invoiceAmount: invoiceAmount.toFixed(2),
+    }));
+  }, [items, selectedTaxTypes]);
+
   return (
     <div className="view-order-title">
       <div className="view-name">View Bills</div>
 
       <Form layout="horizontal" className="order-form">
-        <Form.Item label="Order ID" className="formOrder-heading">
-          <Input
-            name="id"
-            className="formOrder-input"
-            value={billingsdata?.id || ""}
-            onChange={handleChange}
-            //disabled
-          />
-        </Form.Item>
+        <div className="view-billings-input-styles">
+          <Form.Item label="Order ID" className="formOrder-heading">
+            <Input
+              name="id"
+              className="formOrder-input"
+              value={billingsdata?.id || ""}
+              onChange={handleChange}
+              //disabled
+            />
+          </Form.Item>
 
-        <Form.Item label="Customer Name" className="formOrder-heading">
-          <Input
-            name="name"
-            className="formOrder-input"
-            value={billingsdata?.name || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="Address" className="formOrder-heading">
-          <Input
-            name="address"
-            className="formOrder-input"
-            value={billingsdata?.address || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="City" className="formOrder-heading">
-          <Input
-            name="city"
-            className="formOrder-input"
-            value={billingsdata?.city || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="State" className="formOrder-heading">
-          <Input
-            name="state"
-            className="formOrder-input"
-            value={billingsdata?.state || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="Pin" className="formOrder-heading">
-          <Input
-            name="pin"
-            className="formOrder-input"
-            value={billingsdata?.pin || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="Country" className="formOrder-heading">
-          <Input
-            name="country"
-            className="formOrder-input"
-            value={billingsdata?.country || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
+          <Form.Item label="Customer Name" className="formOrder-heading">
+            <Input
+              name="name"
+              className="formOrder-input"
+              value={billingsdata?.name || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="Address" className="formOrder-heading">
+            <Input
+              name="address"
+              className="formOrder-input"
+              value={billingsdata?.address || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="City" className="formOrder-heading">
+            <Input
+              name="city"
+              className="formOrder-input"
+              value={billingsdata?.city || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="State" className="formOrder-heading">
+            <Input
+              name="state"
+              className="formOrder-input"
+              value={billingsdata?.state || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="Pin" className="formOrder-heading">
+            <Input
+              name="pin"
+              className="formOrder-input"
+              value={billingsdata?.pin || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="Country" className="formOrder-heading">
+            <Input
+              name="country"
+              className="formOrder-input"
+              value={billingsdata?.country || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
 
-        {/* <Form.Item label="Particulars" className="formOrder-heading">
-          <Input
-            name="particulars"
-            className="formOrder-input"
-            value={billingsdata?.particulars || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
-        <Form.Item label="Rate" className="formOrder-heading">
-          <Input
-            name="rate"
-            className="formOrder-input"
-            value={billingsdata?.rate || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item> */}
-
-        <Form.Item label="Invoice Amount" className="formOrder-heading">
-          <Input
-            name="invoiceAmount"
-            className="formOrder-input"
-            value={billingsdata?.invoiceAmount || ""}
-            onChange={handleChange}
-            // disabled
-          />
-        </Form.Item>
+          <Form.Item label="Invoice Amount" className="formOrder-heading">
+            <Input
+              name="invoiceAmount"
+              className="formOrder-input"
+              value={billingsdata?.invoiceAmount || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+        </div>
         {/* <Form.Item label="Payment Method" className="formOrder-heading">
           <Input
             name="payment"
@@ -316,91 +375,37 @@ const ViewBillings = () => {
         <div className="tax-container">
           <div className="tax-inner">
             <legend className="tax-legend">Select Tax Types</legend>
-            <div className="tax-options">
-              <div className="tax-option">
-                <input
-                  disabled={viewLoad}
-                  type="checkbox"
-                  id="sgst"
-                  value="sgst"
-                  checked={selectedTaxTypes.includes("sgst")}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (e.target.checked) {
-                      setSelectedTaxTypes([...selectedTaxTypes, value]);
-                    } else {
-                      setSelectedTaxTypes(
-                        selectedTaxTypes.filter((type) => type !== value)
-                      );
-                    }
-                  }}
-                />
-                <label htmlFor="sgst">SGST</label>
-              </div>
+            <input
+              type="checkbox"
+              value="sgst"
+              checked={selectedTaxTypes.includes("sgst")}
+              onChange={handleCheckboxChange}
+            />
+            <label>SGST</label>
 
-              <div className="tax-option">
-                <input
-                  disabled={viewLoad}
-                  type="checkbox"
-                  id="cgst"
-                  value="cgst"
-                  checked={selectedTaxTypes.includes("cgst")}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (e.target.checked) {
-                      setSelectedTaxTypes([...selectedTaxTypes, value]);
-                    } else {
-                      setSelectedTaxTypes(
-                        selectedTaxTypes.filter((type) => type !== value)
-                      );
-                    }
-                  }}
-                />
-                <label htmlFor="cgst">CGST</label>
-              </div>
+            <input
+              type="checkbox"
+              value="cgst"
+              checked={selectedTaxTypes.includes("cgst")}
+              onChange={handleCheckboxChange}
+            />
+            <label>CGST</label>
 
-              <div className="tax-option">
-                <input
-                  disabled={viewLoad}
-                  type="checkbox"
-                  id="igst"
-                  value="igst"
-                  checked={selectedTaxTypes.includes("igst")}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (e.target.checked) {
-                      setSelectedTaxTypes([...selectedTaxTypes, value]);
-                    } else {
-                      setSelectedTaxTypes(
-                        selectedTaxTypes.filter((type) => type !== value)
-                      );
-                    }
-                  }}
-                />
-                <label htmlFor="igst">IGST</label>
-              </div>
+            <input
+              type="checkbox"
+              value="igst"
+              checked={selectedTaxTypes.includes("igst")}
+              onChange={handleCheckboxChange}
+            />
+            <label>IGST</label>
 
-              <div className="tax-option">
-                <input
-                  disabled={viewLoad}
-                  type="checkbox"
-                  id="utgst"
-                  value="utgst"
-                  checked={selectedTaxTypes.includes("utgst")}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (e.target.checked) {
-                      setSelectedTaxTypes([...selectedTaxTypes, value]);
-                    } else {
-                      setSelectedTaxTypes(
-                        selectedTaxTypes.filter((type) => type !== value)
-                      );
-                    }
-                  }}
-                />
-                <label htmlFor="utgst">UTGST</label>
-              </div>
-            </div>
+            <input
+              type="checkbox"
+              value="utgst"
+              checked={selectedTaxTypes.includes("utgst")}
+              onChange={handleCheckboxChange}
+            />
+            <label>UTGST</label>
           </div>
         </div>
       </Form>
@@ -505,45 +510,69 @@ const ViewBillings = () => {
               <td colSpan="6" className="td-right">
                 SGST:
               </td>
-              <td colSpan="2">{billingsdata?.sgstTax || 0}</td>
+              <td colSpan="2">{Number(taxValues?.sgst || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 CGST:
               </td>
-              <td colSpan="2">{billingsdata?.cgstTax || 0}</td>
+              <td colSpan="2"> {Number(taxValues?.cgst || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 IGST:
               </td>
-              <td colSpan="2">{billingsdata?.igstTax || 0}</td>
+              <td colSpan="2">{Number(taxValues?.igst || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 UTGST:
               </td>
-              <td colSpan="2">{billingsdata?.utgstTax || 0}</td>
+              <td colSpan="2">{Number(taxValues?.utgst || 0).toFixed(2)}</td>
+            </tr>
+
+            <tr>
+              <td colSpan="6" className="td-right">
+                {" "}
+                Total GST Amount:
+              </td>
+              {/* <td colSpan="2">{totalTaxAmount.toFixed(2)}</td> */}
+              {/* <td colSpan="2">
+                {(
+                  Number(taxValues?.cgst || 0) +
+                  Number(taxValues?.sgst || 0) +
+                  Number(taxValues?.igst || 0) +
+                  Number(taxValues?.utgst || 0)
+                ).toFixed(2)}
+              </td> */}
+            </tr>
+            <tr>
+              <td colSpan="6" className="td-right">
+                Roundoff:
+              </td>
+              <td colSpan="2">{Number(taxValues?.roundOff || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 <strong>Total Invoice Amount:</strong>
               </td>
               <td colSpan="2">
-                <strong>{billingsdata?.invoiceAmount || 0}</strong>
+                {/* <strong>{invoiceAmount.toFixed(2)}</strong> */}
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <button
-        className="download-invoice"
-        disabled={billingsdata?.invoiceNumber ? false : true}
-        onClick={onPrintClick}
-      >
-        Download Invoice
-      </button>
+      <div className="download-button">
+        <button
+          className="download-invoice"
+          disabled={billingsdata?.invoiceNumber ? false : true}
+          onClick={onPrintClick}
+        >
+          Download Invoice
+        </button>
+      </div>
 
       <div className="view-order-buttons">
         <Button className="vieworder-cancelbutton" onClick={handleCancel}>
