@@ -193,7 +193,7 @@ const Dashboard = () => {
         <div className="card">
           <div className="heading">Sales This Month</div>
           <div className="subtext">Total Sales This Month</div>
-          <div className="amount">₹28,450</div>
+          <div className="amount">₹28,450 {}</div>
           <ReactApexChart
             options={state.options}
             series={state.series}

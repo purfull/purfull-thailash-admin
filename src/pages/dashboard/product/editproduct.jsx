@@ -214,10 +214,10 @@ const EditProduct = () => {
                                 alt="logo"
                             // onClick={handleImageClick}
                             />
-                            <input
+                            {/* <input
                                 type="file"
                                 accept="image/*"
-                            />
+                            /> */}
                         </div>
                     </div>
 
@@ -228,6 +228,7 @@ const EditProduct = () => {
                         </label>
                         <label className="switch">
                             <input
+                            className="switch-box"
                                 type="checkbox"
                                 id="is_active"
                                 // checked={editProductData?.is_active || false}

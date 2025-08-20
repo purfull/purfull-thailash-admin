@@ -66,7 +66,8 @@ const ViewOrder = () => {
           <Col span={12}>
             <Form.Item
               label="ID"
-              labelCol={{ span: 8 }}
+              className="view-order-tag"
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.id} disabled />
@@ -74,8 +75,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Order ID"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.order} disabled />
@@ -84,8 +86,9 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Name"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.name} disabled />
@@ -93,8 +96,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Phone"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.phone} disabled />
@@ -103,8 +107,9 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Country"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.country} disabled />
@@ -112,8 +117,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Pin"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.pin} disabled />
@@ -122,8 +128,9 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="City"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.city} disabled />
@@ -131,8 +138,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="State"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.state} disabled />
@@ -141,8 +149,9 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Quantity"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.quantity} disabled />
@@ -150,8 +159,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Invoice Amount"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.invoiceAmount} disabled />
@@ -160,8 +170,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="TaxGross"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.taxExclusiveGross} disabled />
@@ -169,8 +181,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="SKU"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.sku} disabled />
@@ -179,8 +192,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="CGST"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.cgstTax} disabled />
@@ -188,8 +203,10 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="SGST"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.sgstTax} disabled />
@@ -198,8 +215,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="UTGST"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.utgstTax} disabled />
@@ -207,8 +226,10 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="IGST"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.igstTax} disabled />
@@ -217,8 +238,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Address"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.address} disabled />
@@ -226,8 +249,10 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Address Type"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.address_type} disabled />
@@ -236,8 +261,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="AWB"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.waybill} disabled />
@@ -245,8 +272,9 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Customer Name"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.buyerName} disabled />
@@ -255,8 +283,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Payment Method"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.payment} disabled />
@@ -264,8 +294,10 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Delivery Response"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.delhivery_response} disabled />
@@ -274,8 +306,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Shipping Mode"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.shipping_mode} disabled />
@@ -283,8 +317,10 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Remarks"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input value={orderData.remarks} disabled />
@@ -293,8 +329,10 @@ const ViewOrder = () => {
 
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
+
               label="Created At"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Input
@@ -309,11 +347,14 @@ const ViewOrder = () => {
           </Col>
           <Col span={12}>
             <Form.Item
+              className="view-order-tag"
               label="Refund"
-              labelCol={{ span: 8 }}
+              labelCol={{ span: 6 }}
               wrapperCol={{ span: 16 }}
             >
               <Switch
+                          className="view-order-tag"
+
                 checkedChildren="Refunded"
                 unCheckedChildren="Not Refunded"
                 checked={orderData.status === "refunded"}
