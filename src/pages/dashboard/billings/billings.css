@@ -60,3 +60,170 @@
 .td-bold {
   font-weight: bold;
 }
+
+/* ✅ Reset table defaults properly */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ✅ Keep tbody properly inside table */
+thead {
+  display: table-header-group;
+}
+
+table-body {
+  display: table-row-group; /* default */
+}
+
+tr {
+  display: table-row;
+}
+
+td,
+th {
+  display: table-cell;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Button container */
+.item-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* replaces space-x-4 */
+  margin-top: 1rem; /* replaces mt-4 */
+}
+.download-invoice {
+  font-size: 1.5rem; /* text-2xl */
+  color: #fff;
+  background-color: #046e3d;
+}
+
+/* Add button */
+.add-btn {
+  font-size: 1.5rem; /* text-2xl */
+  color: #fff;
+  background-color: #046e3d;
+  padding: 0.25rem 0.75rem; /* px-3 */
+  border-radius: 4px; /* rounded-sm */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.add-btn:hover {
+  background-color: #03532e;
+}
+.add-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Remove button */
+.remove-btn {
+  font-size: 1.5rem; /* text-2xl */
+  padding: 0.25rem 0.75rem; /* px-3 */
+  border: 1px solid #046e3d; /* !border !border-[#046E3D] */
+  color: #046e3d; /* text-[#046E3D] */
+  border-radius: 4px; /* rounded-sm */
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.remove-btn:hover {
+  background-color: #f0fdf4;
+}
+.remove-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Container for all items */
+.items-container {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  grid-column: span 12;
+}
+
+/* Each product card */
+.item-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/* Each field row (label + input) */
+.item-field {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Label styling */
+.item-label {
+  width: 30%;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Input box */
+.item-input {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.95rem;
+}
+.tax-container {
+  grid-column: span 12;
+  position: relative;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.tax-inner {
+  grid-column: span 12;
+}
+
+.tax-legend {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 0.5rem;
+  color: #374151; /* gray-700 */
+}
+
+.tax-options {
+  display: flex;
+  gap: 1.5rem; /* space-x-6 */
+}
+
+.tax-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space-x-2 */
+}
+
+.tax-option input[type="checkbox"] {
+  accent-color: #2563eb; /* blue-600 */
+  width: 1rem;
+  height: 1rem;
+}
+
+.tax-option label {
+  color: #4b5563; /* gray-600 */
+  font-size: 0.95rem;
+  cursor: pointer;
+}
