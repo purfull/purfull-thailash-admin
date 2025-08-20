@@ -14,6 +14,7 @@ const billings = () => {
   const billingsselector = useSelector((state) => state.billings);
   const dispatch = useDispatch();
   const { id } = useParams();
+ 
 
   useEffect(() => {
     dispatch(billingsGetAll());
