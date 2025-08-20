@@ -241,7 +241,7 @@ const ViewBillings = () => {
             // disabled
           />
         </Form.Item> */}
-        <Form.Item label="Created At" className="formOrder-heading">
+        {/* <Form.Item label="Created At" className="formOrder-heading">
           <Input
             className="formOrder-input"
             type="date"
@@ -253,7 +253,7 @@ const ViewBillings = () => {
             onChange={handleChange}
             // disabled
           />
-        </Form.Item>
+        </Form.Item> */}
 
         <div className="item-buttons">
           <button onClick={addNewItem} disabled={viewLoad} className="add-btn">
