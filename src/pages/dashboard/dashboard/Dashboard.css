@@ -2,7 +2,8 @@
   display: grid;
   gap: 24px;
   /* padding: 16px; */
-  width: 90%;
+  width: 95%;
+  padding-bottom: 25px;
   position: absolute;
   /* top: 10vh; */
   /* right: 0; */
@@ -12,6 +13,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
+  width: 60vw;
 }
 
 .card {
@@ -46,4 +48,122 @@
   font-weight: 500;
   color: #3b4056;
   margin-bottom: 16px;
+}
+
+/* //original code  */
+
+.card-1 {
+  height: 60vh;
+  width: 1/2;
+}
+
+.card-2 {
+  height: 60vh;
+  width: 1/2;
+}
+
+
+.card-container-main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
+}
+
+
+
+
+
+/* Container */
+.report-container {
+  grid-column: span 12;
+}
+
+/* Box */
+.report-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+/* Body & Layout */
+.report-body {
+  padding: 16px;
+}
+
+.report-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-content {
+  flex: 1;
+}
+
+/* Title */
+.report-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Fields */
+.report-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: column;
+  margin: 12px 0;
+}
+
+.report-label {
+  padding: 10px 0px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.report-input {
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Radio Buttons */
+.report-radio-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  padding: 20px 0px;
+}
+
+.report-radio {
+  margin-right: 20px;
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  gap: 5px;
+}
+
+/* Button */
+.report-btn {
+  background: #046E3D;
+  color: #fff;
+  padding: 6px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.report-btn:hover {
+  background: #035c31;
 }
