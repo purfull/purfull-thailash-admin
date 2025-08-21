@@ -17,6 +17,8 @@ const ViewBillings = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
+  const componentRef = useRef(null);
 
   const { selectedBill } = useSelector((state) => state.billings);
 
@@ -117,10 +119,10 @@ const ViewBillings = () => {
     setItems(updatedItems);
   };
 
-  const componentRef = useRef(null);
+
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: `Invoice-${billingsdata?.invoiceNumber || "Draft"}`,
+    contentRef: componentRef,
+    // documentTitle: `Invoice-${billingsdata?.invoiceNumber || "Draft"}`,
   });
   //print
   const onPrintClick = () => {
@@ -501,25 +503,25 @@ const ViewBillings = () => {
               <td colSpan="6" className="td-right">
                 SGST:
               </td>
-              <td colSpan="2">{Number(taxValues?.sgst || 0).toFixed(2)}</td>
+              <td colSpan="2">{Number(billingsdata?.sgstTax || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 CGST:
               </td>
-              <td colSpan="2"> {Number(taxValues?.cgst || 0).toFixed(2)}</td>
+              <td colSpan="2"> {Number(billingsdata?.cgstTax || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 IGST:
               </td>
-              <td colSpan="2">{Number(taxValues?.igst || 0).toFixed(2)}</td>
+              <td colSpan="2">{Number(billingsdata?.igstTax || 0).toFixed(2)}</td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 UTGST:
               </td>
-              <td colSpan="2">{Number(taxValues?.utgst || 0).toFixed(2)}</td>
+              <td colSpan="2">{Number(billingsdata?.utgstTax || 0).toFixed(2)}</td>
             </tr>
 
             <tr>
@@ -559,8 +561,8 @@ const ViewBillings = () => {
         <button
           type="button"
           className="download-invoice"
-          disabled={billingsdata?.invoiceNumber ? false : true}
-          onClick={() => onPrintClick()}
+          disabled={billingsdata?.id ? false : true}
+          onClick={onPrintClick}
         >
           Download Invoice
         </button>
