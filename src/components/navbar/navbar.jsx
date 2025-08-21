@@ -129,7 +129,7 @@
 
 import React, { useState } from "react";
 import "./navbar.css";
-import { BellOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
+import {SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Dropdown, Input } from "antd";
 
 const NavBar = () => {
@@ -216,8 +216,8 @@ const NavBar = () => {
             className="search-bar-container"
             onClick={() => setIsSearch(true)}
           >
-            <SearchOutlined style={{ fontSize: "20px" }} />
-            <span className="search-text">Search (Ctrl+/)</span>
+            {/* <SearchOutlined style={{ fontSize: "20px" }} />
+            <span className="search-text">Search (Ctrl+/)</span> */}
           </div>
           <div className="avatar-container">
             <Dropdown
@@ -225,12 +225,12 @@ const NavBar = () => {
               trigger={["hover"]}
               placement="bottomRight"
             >
-              <Badge dot color="red">
+              {/* <Badge dot color="red">
                 <BellOutlined
                   className="bell-icon"
                   style={{ fontSize: "20px" }}
                 />
-              </Badge>
+              </Badge> */}
             </Dropdown>
             <Dropdown
               menu={{ items }}

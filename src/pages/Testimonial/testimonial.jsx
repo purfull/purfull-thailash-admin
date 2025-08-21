@@ -9,6 +9,8 @@ import CustomTable from "../../components/table/Table";
 import { Button, Popconfirm, Space } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Testimonial = () => {
   //   const useselector = useSelector((state) => state.com);
@@ -26,8 +28,19 @@ const Testimonial = () => {
   };
 
   const handleDelete = (record) => {
-    dispatch(deleteTestimonialById(record.id));
+    dispatch(deleteTestimonialById(record.id))
+      .unwrap()
+      .then(() => {
+        toast.success("Testimonial row deleted successfully!");
+        // refresh table
+        dispatch(testimonialGetAll());
+      })
+      .catch((err) => {
+        toast.error("Failed to delete testimonial row!");
+        console.error("Delete failed:", err);
+      });
   };
+
   // const data = [{name: "aaa", age:"bbb"}]
   const columns = [
     { title: "Name", dataIndex: "name" },
@@ -78,7 +91,7 @@ const Testimonial = () => {
   return (
     <CustomTable
       columns={columns}
-      createUrl = "edit-testimonial"
+      createUrl="edit-testimonial"
       data={testimonialSelector.testimonialTableData.map((row) => ({
         ...row,
         key: row.id, // or row._id, must be unique

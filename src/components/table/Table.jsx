@@ -47,7 +47,7 @@ const CustomTable = ({
         </div>
 
         <div className="toolbar-right">
-          <Input placeholder="Search" className="toolbar-search" />
+          {/* <Input placeholder="Search" className="toolbar-search" /> */}
           {showAddButton && (
             <button className="primary-button font-medium" onClick={handleAdd}>
               + Add New
