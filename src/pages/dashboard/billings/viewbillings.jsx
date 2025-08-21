@@ -17,7 +17,7 @@ const ViewBillings = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const componentRef = useRef(null);
 
   const { selectedBill } = useSelector((state) => state.billings);
@@ -59,6 +59,7 @@ const ViewBillings = () => {
     igstTax: "",
     utgstTax: "",
     customerBillToGST: "",
+    roundOff: "",
   });
 
   const [items, setItems] = useState([
@@ -119,7 +120,6 @@ const ViewBillings = () => {
     setItems(updatedItems);
   };
 
-
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
     // documentTitle: `Invoice-${billingsdata?.invoiceNumber || "Draft"}`,
@@ -146,20 +146,29 @@ const ViewBillings = () => {
     setItems(updatedItems);
   };
 
-  // Handle checkbox change for tax types
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-
-    setSelectedTaxTypes((prev) => {
-      if (checked) {
-        // Add tax type if checked
-        return [...prev, value];
-      } else {
-        // Remove tax type if unchecked
-        return prev.filter((type) => type !== value);
-      }
-    });
+  // Handle Inputchange for tax types
+  // Handle tax input change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setTaxValues((prev) => ({
+      ...prev,
+      [name]: Number(value) || 0, // store as number
+    }));
   };
+
+  // const handleInputChange = (e) => {
+  //   const { value, checked } = e.target;
+
+  //   setSelectedTaxTypes((prev) => {
+  //     if (checked) {
+  //       // Add tax type if checked
+  //       return [...prev, value];
+  //     } else {
+  //       // Remove tax type if unchecked
+  //       return prev.filter((type) => type !== value);
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     if (!items || items.length === 0) return;
@@ -172,23 +181,20 @@ const ViewBillings = () => {
       return sum + (qty * rate - discount);
     }, 0);
 
-    // 2. Initialize tax values
-    let sgstTax = 0,
-      cgstTax = 0,
-      igstTax = 0,
-      utgstTax = 0;
+    const sgstTax = subtotal * (Number(taxValues.sgst) / 100);
+    const cgstTax = subtotal * (Number(taxValues.cgst) / 100);
+    const igstTax = subtotal * (Number(taxValues.igst) / 100);
+    const utgstTax = subtotal * (Number(taxValues.utgst) / 100);
 
-    // 3. Apply taxes based on checkbox selection
-    if (selectedTaxTypes.includes("sgst")) sgstTax = subtotal * 0.06;
-    if (selectedTaxTypes.includes("cgst")) cgstTax = subtotal * 0.06;
-    if (selectedTaxTypes.includes("igst")) igstTax = subtotal * 0.12;
-    if (selectedTaxTypes.includes("utgst")) utgstTax = subtotal * 0.12;
-
-    const totalTaxAmount =
-      taxValues.cgst + taxValues.sgst + taxValues.igst + taxValues.utgst;
+    // 3. Totals before round-off
+    const totalTaxAmount = sgstTax + cgstTax + igstTax + utgstTax;
     const invoiceAmount = subtotal + totalTaxAmount;
 
-    // 4. Update billingsData with tax values
+    // 4. Round-off calculation
+    const roundedInvoiceAmount = Math.round(invoiceAmount);
+    const roundOff = (roundedInvoiceAmount - invoiceAmount).toFixed(2);
+
+    // 5. Update billingsData with tax values
     setBillingsData((prev) => ({
       ...prev,
       taxExclusiveGross: subtotal.toFixed(2),
@@ -198,8 +204,10 @@ const ViewBillings = () => {
       utgstTax: utgstTax.toFixed(2),
       totalTaxAmount: totalTaxAmount.toFixed(2),
       invoiceAmount: invoiceAmount.toFixed(2),
+      roundOff: roundOff,
+      finalInvoiceAmount: roundedInvoiceAmount.toFixed(2),
     }));
-  }, [items, selectedTaxTypes]);
+  }, [items, taxValues]);
 
   return (
     <div className="view-order-title">
@@ -365,39 +373,52 @@ const ViewBillings = () => {
         </Form.Item> */}
         <div className="tax-container">
           <div className="tax-inner">
-            <legend className="tax-legend">Select Tax Types</legend>
-            <div className="tax-checkbox">
-              <input
-                type="checkbox"
-                value="sgst"
-                checked={selectedTaxTypes.includes("sgst")}
-                onChange={handleCheckboxChange}
-              />
-              <label>SGST</label>
+            <legend className="tax-legend">Enter Tax Values</legend>
+            <div className="tax-inputs">
+              <label className="tax-label">
+                SGST:
+                <input
+                  type="number"
+                  name="sgst"
+                  // value={taxValues.sgst || ""}
+                  value={billingsdata.sgstTax || ""}
+                  onChange={handleInputChange}
+                  placeholder="Enter SGST %"
+                />
+              </label>
 
-              <input
-                type="checkbox"
-                value="cgst"
-                checked={selectedTaxTypes.includes("cgst")}
-                onChange={handleCheckboxChange}
-              />
-              <label>CGST</label>
+              <label className="tax-label">
+                CGST:
+                <input
+                  type="number"
+                  name="cgst"
+                  value={billingsdata.cgstTax || ""}
+                  onChange={handleInputChange}
+                  placeholder="Enter CGST %"
+                />
+              </label>
 
-              <input
-                type="checkbox"
-                value="igst"
-                checked={selectedTaxTypes.includes("igst")}
-                onChange={handleCheckboxChange}
-              />
-              <label>IGST</label>
+              <label className="tax-label">
+                IGST:
+                <input
+                  type="number"
+                  name="igst"
+                  value={billingsdata.igstTax || ""}
+                  onChange={handleInputChange}
+                  placeholder="Enter IGST %"
+                />
+              </label>
 
-              <input
-                type="checkbox"
-                value="utgst"
-                checked={selectedTaxTypes.includes("utgst")}
-                onChange={handleCheckboxChange}
-              />
-              <label>UTGST</label>
+              <label className="tax-label">
+                UTGST:
+                <input
+                  type="number"
+                  name="utgst"
+                  value={billingsdata.utgstTax || ""}
+                  onChange={handleInputChange}
+                  placeholder="Enter UTGST %"
+                />
+              </label>
             </div>
           </div>
         </div>
@@ -503,25 +524,34 @@ const ViewBillings = () => {
               <td colSpan="6" className="td-right">
                 SGST:
               </td>
-              <td colSpan="2">{Number(billingsdata?.sgstTax || 0).toFixed(2)}</td>
+              <td colSpan="2">
+                {Number(billingsdata?.sgstTax || 0).toFixed(2)}
+              </td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 CGST:
               </td>
-              <td colSpan="2"> {Number(billingsdata?.cgstTax || 0).toFixed(2)}</td>
+              <td colSpan="2">
+                {" "}
+                {Number(billingsdata?.cgstTax || 0).toFixed(2)}
+              </td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 IGST:
               </td>
-              <td colSpan="2">{Number(billingsdata?.igstTax || 0).toFixed(2)}</td>
+              <td colSpan="2">
+                {Number(billingsdata?.igstTax || 0).toFixed(2)}
+              </td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 UTGST:
               </td>
-              <td colSpan="2">{Number(billingsdata?.utgstTax || 0).toFixed(2)}</td>
+              <td colSpan="2">
+                {Number(billingsdata?.utgstTax || 0).toFixed(2)}
+              </td>
             </tr>
 
             <tr>
@@ -529,7 +559,9 @@ const ViewBillings = () => {
                 {" "}
                 Total GST Amount:
               </td>
-              {/* <td colSpan="2">{totalTaxAmount.toFixed(2)}</td> */}
+              <td colSpan="2">
+                {Number(billingsdata?.taxExclusiveGross || 0).toFixed(2)}
+              </td>
               {/* <td colSpan="2">
                 {(
                   Number(taxValues?.cgst || 0) +
@@ -543,14 +575,16 @@ const ViewBillings = () => {
               <td colSpan="6" className="td-right">
                 Roundoff:
               </td>
-              <td colSpan="2">{Number(taxValues?.roundOff || 0).toFixed(2)}</td>
+              <td colSpan="2">
+                {Number(billingsdata?.roundOff || 0).toFixed(2)}
+              </td>
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
                 <strong>Total Invoice Amount:</strong>
               </td>
               <td colSpan="2">
-                {/* <strong>{invoiceAmount.toFixed(2)}</strong> */}
+                {Number(billingsdata?.invoiceAmount || 0).toFixed(2)}
               </td>
             </tr>
           </tbody>
