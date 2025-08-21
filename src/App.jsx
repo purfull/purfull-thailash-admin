@@ -19,6 +19,8 @@ import EditTestimonial from "./pages/Testimonial/EditTestimonial";
 import EditProduct from "./pages/dashboard/product/editproduct";
 import ViewCustomer from "./pages/dashboard/customer/viewCustomer";
 // import Blogs from "./pages/dashboard/blogs/Blogs";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -48,13 +50,10 @@ function App() {
                 element={<ViewCustomer />}
               />
               <Route path="billings" element={<Billings />}></Route>
-                 <Route
-                path="billings/view-bill/:id"
-                element={<ViewBillings />}
-              />
-              
+              <Route path="billings/view-bill/:id" element={<ViewBillings />} />
             </Route>
           </Routes>
+          <ToastContainer position="top-right" autoClose={3000} />
         </Router>
       </Provider>
     </>

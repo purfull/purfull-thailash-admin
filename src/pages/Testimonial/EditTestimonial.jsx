@@ -5,15 +5,19 @@ import {
   getTestimonialById,
   resetEditTestimonialData,
   updateTestimonialById,
-  createTestimonial
+  createTestimonial,
 } from "../../store/slice/testimonailSlice";
 import "../Testimonial/EditTestimonial.css";
 import { message } from "antd";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditTestimonial = () => {
   const navigate = useNavigate();
   const testimonialSelector = useSelector((state) => state.testimonial);
-  const { editTestimonialData, testimonialTableData } = useSelector((state) => state.testimonial);
+  const { editTestimonialData, testimonialTableData } = useSelector(
+    (state) => state.testimonial
+  );
 
   const { id } = useParams();
 
@@ -45,50 +49,32 @@ const EditTestimonial = () => {
     }));
   };
 
-  // const handleSave = (e) => {
-  //   e.preventDefault();
-  //   dispatch(updateTestimonialById({ id, updatedData: editData }))
-  //     .unwrap()
-  //     .then(() => {
-  //       message.success("Data updated successfully!");
-  //       navigate("/dashboard/testimonial");
-  //     })
-  //     .catch((err) => {
-  //       message.error("Failed to update data!");
-  //       console.error("Update failed", err);
-  //     });
-  // };
-
   const handleSave = (e) => {
     e.preventDefault();
-     if (id == 0) {
-    // use editData instead of editTestimonialData
-    dispatch(createTestimonial(editData))
-      .unwrap()
-      .then(() => {
-        message.success("Data created successfully!");
-        navigate("/dashboard/testimonial");
-      })
-      .catch((err) => {
-        message.error("Failed to create testimonial!");
-        console.error("Create failed", err);
-      });
-
-  }
-  else {
-
+    if (id == 0) {
+      // use editData instead of editTestimonialData
+      dispatch(createTestimonial(editData))
+        .unwrap()
+        .then(() => {
+          navigate("/dashboard/testimonial");
+          toast.success("Data created successfully!");
+        })
+        .catch((err) => {
+          toast.error("Failed to create testimonial!");
+          console.error("Create failed", err);
+        });
+    } else {
       e.preventDefault();
       dispatch(updateTestimonialById({ id, updatedData: editData }))
         .unwrap()
         .then(() => {
-          message.success("Data updated successfully!");
+          toast.success("Data updated successfully!");
           navigate("/dashboard/testimonial");
         })
         .catch((err) => {
-          message.error("Failed to update data!");
+          toast.error("Failed to update data!");
           console.error("Update failed", err);
         });
-
     }
   };
 
