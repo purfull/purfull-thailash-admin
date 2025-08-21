@@ -371,3 +371,9 @@ table {
   font-size: 16px;
   font-weight: 600;
 }
+/* tax checkboxes */
+.tax-checkbox {
+  display: flex;
+  gap: 20px; /* Adjust spacing between each checkbox group */
+  align-items: center;
+}

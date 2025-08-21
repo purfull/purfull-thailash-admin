@@ -119,24 +119,13 @@ const ViewBillings = () => {
 
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
-    contentRef: () => componentRef.current,
+    content: () => componentRef.current,
     documentTitle: `Invoice-${billingsdata?.invoiceNumber || "Draft"}`,
-    // pageStyle: `
-    //   @page {
-    //     size: auto;
-    //     margin: 20mm;
-    //   }
-    //   body {
-    //     font-family: sans-serif;
-    //     -webkit-print-color-adjust: exact;
-    //     print-color-adjust: exact;
-    //   }
-    // `,
   });
   //print
   const onPrintClick = () => {
     console.log("Print clicked");
-    handlePrint(); // Skip image loading check for test
+    handlePrint();
   };
 
   //for adding or removing items
@@ -375,37 +364,39 @@ const ViewBillings = () => {
         <div className="tax-container">
           <div className="tax-inner">
             <legend className="tax-legend">Select Tax Types</legend>
-            <input
-              type="checkbox"
-              value="sgst"
-              checked={selectedTaxTypes.includes("sgst")}
-              onChange={handleCheckboxChange}
-            />
-            <label>SGST</label>
+            <div className="tax-checkbox">
+              <input
+                type="checkbox"
+                value="sgst"
+                checked={selectedTaxTypes.includes("sgst")}
+                onChange={handleCheckboxChange}
+              />
+              <label>SGST</label>
 
-            <input
-              type="checkbox"
-              value="cgst"
-              checked={selectedTaxTypes.includes("cgst")}
-              onChange={handleCheckboxChange}
-            />
-            <label>CGST</label>
+              <input
+                type="checkbox"
+                value="cgst"
+                checked={selectedTaxTypes.includes("cgst")}
+                onChange={handleCheckboxChange}
+              />
+              <label>CGST</label>
 
-            <input
-              type="checkbox"
-              value="igst"
-              checked={selectedTaxTypes.includes("igst")}
-              onChange={handleCheckboxChange}
-            />
-            <label>IGST</label>
+              <input
+                type="checkbox"
+                value="igst"
+                checked={selectedTaxTypes.includes("igst")}
+                onChange={handleCheckboxChange}
+              />
+              <label>IGST</label>
 
-            <input
-              type="checkbox"
-              value="utgst"
-              checked={selectedTaxTypes.includes("utgst")}
-              onChange={handleCheckboxChange}
-            />
-            <label>UTGST</label>
+              <input
+                type="checkbox"
+                value="utgst"
+                checked={selectedTaxTypes.includes("utgst")}
+                onChange={handleCheckboxChange}
+              />
+              <label>UTGST</label>
+            </div>
           </div>
         </div>
       </Form>
@@ -566,9 +557,10 @@ const ViewBillings = () => {
 
       <div className="download-button">
         <button
+          type="button"
           className="download-invoice"
           disabled={billingsdata?.invoiceNumber ? false : true}
-          onClick={onPrintClick}
+          onClick={() => onPrintClick()}
         >
           Download Invoice
         </button>
