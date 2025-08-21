@@ -43,15 +43,15 @@
     display: none;
   }
 
-  .logo-title,
+  .logo-image,
   .ant-menu-title-content {
     display: inline-flex !important;
   }
 
-  .logo-title {
-    color: white;
-    font-size: 1.32rem;
-    font-weight: 600;
+  .logo-image img {
+    padding: 10px;
+    width: 100px;
+    height: auto;
   }
 
   .side-nav-bar-container .ant-menu {
@@ -86,7 +86,7 @@
     margin: auto;
   }
 
-  .side-nav-bar-container .ant-menu-submenu>ul {
+  .side-nav-bar-container .ant-menu-submenu > ul {
     background-color: inherit !important;
     list-style: disc !important;
   }
@@ -137,18 +137,20 @@
     color: #fff !important;
     background-color: rgba(246, 255, 250, 0.2) !important;
   } */
-   
-   .side-nav-bar-container .menu-bar .ant-menu-item-selected {
-  color: #fff !important;
-  background-color: rgba(246, 255, 250, 0.1) !important;
-}
 
-/* Remove background from text content */
-.side-nav-bar-container .menu-bar .ant-menu-item-selected .ant-menu-title-content {
-  background-color: transparent !important;
-  color: #fff !important;
-}
+  .side-nav-bar-container .menu-bar .ant-menu-item-selected {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.1) !important;
+  }
 
+  /* Remove background from text content */
+  .side-nav-bar-container
+    .menu-bar
+    .ant-menu-item-selected
+    .ant-menu-title-content {
+    background-color: transparent !important;
+    color: #fff !important;
+  }
 
   .ant-menu-title-content {
     color: white;
