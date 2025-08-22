@@ -42,6 +42,12 @@
     margin-right: 10px;
     display: none;
   }
+  /* .logo-image img {
+  width: 70%;   /* increase width */
+  /* height: auto;    */
+
+} 
+
 
   .logo-image,
   .ant-menu-title-content {
@@ -49,8 +55,8 @@
   }
 
   .logo-image img {
-    padding: 10px;
-    width: 100px;
+    padding: 5px 10px;
+    width: 160px;
     height: auto;
   }
 
@@ -174,4 +180,3 @@
   .side-nav-bar-container.expand {
     width: 20% !important;
   } */
-}

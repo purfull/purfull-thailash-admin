@@ -1,199 +1,46 @@
-// import { useState } from "react";
-// import ReactApexChart from "react-apexcharts";
 
-// const Dashboard = () => {
-
-//     const monthDataSeries1 = {
-//         prices: [8100, 8200, 8300, 8500, 8700, 9000, 9100],
-//         dates: [
-//           "2023-09-01",
-//           "2023-09-02",
-//           "2023-09-03",
-//           "2023-09-04",
-//           "2023-09-05",
-//           "2023-09-06",
-//           "2023-09-07",
-//         ],
-//       };
-
-//     const [state, setState] = useState({
-//         series: [
-//             {
-//             name: 'Sales',
-//             data: [
-//                 { x: new Date('2023-11-01').getTime(), y: 1 },
-//                 { x: new Date('2023-11-02').getTime(), y: 5 },
-//                 { x: new Date('2023-11-03').getTime(), y: 3 },
-//                 { x: new Date('2023-11-04').getTime(), y: 5 },
-//                 { x: new Date('2023-11-05').getTime(), y: 6},
-//                 { x: new Date('2023-11-06').getTime(), y: 10 },
-//                 { x: new Date('2023-11-07').getTime(), y: 6 },
-//             ],
-//             },
-//         ],
-//         options: {
-//             chart: {
-//             height: 100,
-//             type: 'line',
-//             toolbar: { show: false },
-//             },
-//             grid: {
-//               show: false,
-//             },
-//             stroke: {
-//             width: 4,
-//             curve: 'smooth', 
-//             },
-//             xaxis: {
-//                 type: 'datetime',
-//                 tickAmount: 4, 
-//                 labels: {
-//                     show: false,
-//                     formatter: function (value, timestamp) {
-//                     return new Date(timestamp).toLocaleDateString('en-GB', {
-//                         day: '2-digit',
-//                         month: 'short',
-//                     });
-//                     },
-//                 },
-//                 axisBorder: { show: false },
-//                 axisTicks: { show: false } 
-//             },
-//             yaxis: {
-//                 labels: { show: false }, 
-//                 axisBorder: { show: false }, 
-//                 axisTicks: { show: false }   
-//             },
-
-//             title: {
-//             text: '',
-//             align: 'left',
-//             },
-//             fill: {
-//                 type: 'gradient',
-//                 gradient: {
-//                   shade: 'dark',
-//                   gradientToColors: [ '#FDD835'],
-//                   shadeIntensity: 1,
-//                   type: 'horizontal',
-//                   opacityFrom: 1,
-//                   opacityTo: 1,
-//                   stops: [0, 100, 100, 100]
-//                 },
-//               }
-
-//         },
-//     });
-
-
-
-//     return ( 
-//         <div className="grid gap-6">
-//             <div className="grid grid-cols-12 gap-6">
-//                 <div className="bg-white h-[40vh] col-span-4 my-shadow p-4">
-//                     <div className="heading-2 mb-3">Sales This Month</div>
-//                     <div className="text-gray-500 text-sm font-medium">Total Sales This Month</div>
-//                     <div className="text-[#3b4056d8] text-lg font-medium">₹28,450</div>
-//                         <ReactApexChart options={state.options} series={state.series} height="65%" type="line"  />
-
-//                 </div>
-//                 <div className="bg-white h-[40vh] col-span-4 my-shadow"></div>
-//                 <div className="bg-white h-[40vh] col-span-4 my-shadow"></div>
-
-//             </div>
-//             <div className="grid grid-cols-12 gap-6">
-//                 <div className="bg-white h-[60vh] col-span-6 my-shadow"></div>
-//                 {/* <div className="bg-white h-[30vh] col-span-3 my-shadow"></div> */}
-//                 <div className="bg-white h-[60vh] col-span-6 my-shadow"></div>
-
-//             </div>
-
-//         </div>
-//      );
-// }
-
-// export default Dashboard;
 
 import { useState } from "react";
 // import ReactApexChart from "react-apexcharts";
-import './Dashboard.css'; // Import the CSS
-// import {
-//   // Countries,
-//   // Earning,
-//   ProductsOverview,
-//   // Recentorders,
-// } from "./dashboardData";
-// import Pageheader from "../../components/common/pageheader/pageheader";
+import './Dashboard.css'; 
+import { dashboardReport } from "../../../store/slice/dashboardReportSlice";
+import { useDispatch } from "react-redux";
+
 
 const Dashboard = () => {
-    // const [Data, setData] = useState(ProductsOverview);
-    const [editData, setEditData] = useState();
-    const [online, setOnline] = useState()
-  
-    const userdata = [];
-  
-    // const myfunction = (idx) => {
-    //   let Data;
-    //   for (Data of ProductsOverview) {
-    //     if (Data.name[0] == " ") {
-    //       Data.name = Data.name.trim();
-    //     }
-    //     if (Data.name.toLowerCase().includes(idx.toLowerCase())) {
-    //       if (Data.name.toLowerCase().startsWith(idx.toLowerCase())) {
-    //         userdata.push(Data);
-    //       }
-    //     }
-    //   }
-    //   setData(userdata);
-    // };
-    const handleChange = (event) => {
-      const { id, value } = event.target;
-      setEditData((prevData) => ({
-        ...prevData,
-        [id]: value,
-      }));
-    };
-  
- const handleDownload = async (type) => {
-    try {
-      const response = await fetch(
-        `${AppEnv.baseUrl}/order/reports?startDate=${
-          editData.startDate
-        }&endDate=${editData.endDate}&type=${type ? "B2B" : "B2C"}&isOnline=${online}`
-      );
-      const result = await response.json();
-      console.log(result, "Filtered Data");
+  const [editData, setEditData] = useState();
+  const [online, setOnline] = useState()
 
-      if (result) {
-        const worksheet = XLSX.utils.json_to_sheet(result.data);
+  const userdata = [];
+  const dispatch = useDispatch()
 
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-        const excelBuffer = XLSX.write(workbook, {
-          bookType: "xlsx",
-          type: "array",
-        });
-        const blob = new Blob([excelBuffer], {
-          type: "application/octet-stream",
-        });
-
-        saveAs(blob, type ? "B2B-report.xlsx" : "B2C-report.xlsx");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  
-  }
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setEditData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
 
 
-    const handleTypeChange = (e) => {
-    console.log("eeeeeeee",e.target.value);
+  const handleDownload = (type) => {
+    dispatch(
+      dashboardReport({
+        startDate: editData.startDate,
+        endDate: editData.endDate,
+        type,       
+        isOnline: online,
+      })
+    );
+  };
+
+  const handleTypeChange = (e) => {
+    console.log("eeeeeeee", e.target.value);
     const isOnline = e.target.value === 'online' ? true : false
     setOnline(isOnline)
-    
+
   }
-  
+
 
   const [state, setState] = useState({
     series: [
@@ -306,7 +153,7 @@ const Dashboard = () => {
                           type="radio"
                           name="billingType"
                           value="online"
-                        onChange={handleTypeChange}
+                          onChange={handleTypeChange}
                         />
                         Online Bill
                       </label>
@@ -316,7 +163,7 @@ const Dashboard = () => {
                           type="radio"
                           name="billingType"
                           value="offline"
-                        onChange={handleTypeChange}
+                          onChange={handleTypeChange}
                         />
                         Offline Bill
                       </label>
@@ -325,7 +172,7 @@ const Dashboard = () => {
                     <div>
                       <button
                         className="report-btn"
-                      onClick={() => handleDownload(false)}
+                        onClick={() => handleDownload(false)}
                       >
                         Download
                       </button>
@@ -406,6 +253,13 @@ const Dashboard = () => {
 
         </div>
       </div>
+
+
+
+
+
+
+
 
 
 

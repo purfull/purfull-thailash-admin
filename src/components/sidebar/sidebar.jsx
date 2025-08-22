@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
-import Logo from "../sidebar/assets/logo.svg";
+import Logo from "../sidebar/assets/logoWhite.png";
 
 const SideNavBar = ({ expand, toggleexpanded }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -113,9 +113,10 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
       <div className="side-nav-logo-container">
         <div className="logo-row">
           <span className="logo-icon">{/* icon */} </span>
+          
           {!collapsed && (
             <div className="logo-image">
-              <img src={Logo} alt="Thailash Admin Logo" />
+              <img src={Logo} alt="" />
             </div>
           )}
           {(isMobile || isTablet) && (
