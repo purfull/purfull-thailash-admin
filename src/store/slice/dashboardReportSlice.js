@@ -1,19 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 import { retry } from "@reduxjs/toolkit/query";
 import { act } from "react";
 
 
-export const dashboardReport = createAsyncThunk("dashboard-Report", async ({ startDate, endDate, type, online }) => {
 
-    const responce = await fetch(`https://api.thailash.com/order/reports?startDate=${editData.startDate
+
+export const dashboardReport = createAsyncThunk(
+    "report/download",
+    async ({ startDate, endDate, type, isOnline }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(
+                `https://api.thailash.com/order/reports?startDate=${startDate}&endDate=${endDate}&type=${type ? "B2B" : "B2C"}&isOnline=${isOnline}`
+            );
+
+            const result = await response.json();
+
+            if (!result?.data) {
+                return rejectWithValue("No data found");
+            }
+
+            // Convert JSON → Excel Sheet
+            const worksheet = XLSX.utils.json_to_sheet(result.data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+            const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+            const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+            // Trigger download
+            saveAs(blob, type ? "B2B-report.xlsx" : "B2C-report.xlsx");
+
+            return result; // also return data for state if needed
+        } catch (error) {
+            return rejectWithValue(error.message || "Error downloading report");
         }
-        &endDate=${editData.endDate}&type=${type ? "B2B" : "B2C"}&isOnline=${online}`, {
-        method: "GET"
-    });
-    const data = responce.json();
-    return data
-})
-
+    }
+);
 
 
 const DashboardReportSlice = createSlice({
@@ -53,3 +77,5 @@ const DashboardReportSlice = createSlice({
 
 export default DashboardReportSlice.reducer
 export const { add } = DashboardReportSlice.actions
+
+
