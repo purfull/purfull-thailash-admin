@@ -188,28 +188,24 @@ table {
   font-size: 1.125rem; /* text-lg */
   font-weight: 600; /* font-semibold */
   margin-bottom: 0.5rem;
-  color: #374151; /* gray-700 */
+  color: #374151;
 }
 
-.tax-options {
-  display: flex;
-  gap: 1.5rem; /* space-x-6 */
-}
-
-.tax-option {
+.tax-inputs {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* space-x-2 */
+  gap: 4rem; /* space-x-2 */
 }
 
-.tax-option input[type="checkbox"] {
-  accent-color: #2563eb; /* blue-600 */
-  width: 1rem;
+.tax-inputs input[type="number"] {
+  accent-color: #2563eb;
+  width: 5rem;
   height: 1rem;
+  margin-left: 10px;
 }
 
-.tax-option label {
-  color: #4b5563; /* gray-600 */
+.tax-inputs label {
+  color: #4b5563;
   font-size: 0.95rem;
   cursor: pointer;
 }
