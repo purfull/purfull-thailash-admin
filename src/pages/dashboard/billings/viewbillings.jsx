@@ -384,6 +384,7 @@ const ViewBillings = () => {
                   value={billingsdata.sgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter SGST %"
+                  className="item-input-tax"
                 />
               </label>
 
@@ -489,7 +490,7 @@ const ViewBillings = () => {
         <table className="product-table">
           <thead>
             <tr>
-              <th>S.No</th>
+              <th className="th-main">S.No</th>
               <th>Particulars</th>
               <th>Quantity</th>
               <th>Rate</th>
@@ -521,7 +522,7 @@ const ViewBillings = () => {
         <table className="invoice-table" style={{ marginTop: "1rem" }}>
           <tbody className="table-body">
             <tr>
-              <td colSpan="6" className="td-right">
+              <td colSpan="6"  className="td-right">
                 SGST:
               </td>
               <td colSpan="2">
