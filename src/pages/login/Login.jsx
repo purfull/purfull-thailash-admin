@@ -92,7 +92,7 @@ import { Button, Form, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import google from "./assets/google-icon.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"; // Make sure this is correctly linked
 import { useDispatch, useSelector } from "react-redux";
@@ -124,9 +124,13 @@ const Login = () => {
       password: editData.password,
     };
     dispatch(loginCheck(payload));
-    navigate("/dashboard");
   };
 
+  useEffect(() => {
+  if (loginSelector.user?.success) {
+    navigate("/dashboard");
+  }
+}, [loginSelector.user, navigate]);
   return (
     <div className="login-wrapper">
       <div className="login-card">

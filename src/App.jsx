@@ -21,6 +21,7 @@ import ViewCustomer from "./pages/dashboard/customer/viewCustomer";
 // import Blogs from "./pages/dashboard/blogs/Blogs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const isLogin = localStorage.getItem("user")
@@ -32,7 +33,10 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Console />}>
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Console />
+              </ProtectedRoute>}>
               <Route path="reports" element={<Dashboard />} />
               <Route path="new-template" element={<NewTemplate />} />
               <Route path="my-template" element={<TemplateMainPage />} />
