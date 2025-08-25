@@ -26,7 +26,7 @@ const EditTestimonial = () => {
     name: "",
     retting: "",
     message: "",
-    is_active: false,
+    isActive: false,
   });
 
   const dispatch = useDispatch();
@@ -85,7 +85,7 @@ const EditTestimonial = () => {
         name: testimonialSelector.editTestimonialData.name || "",
         retting: testimonialSelector.editTestimonialData.retting || "",
         message: testimonialSelector.editTestimonialData.message || "",
-        is_active: testimonialSelector.editTestimonialData.is_active || false,
+        isActive: testimonialSelector.editTestimonialData.isActive || false,
       });
     }
   }, [testimonialSelector]);
@@ -148,16 +148,17 @@ const EditTestimonial = () => {
 
           {/* <div className="w-full sm:w-[70%] flex justify-between my-[4vh]"> */}
           <div className="name-container">
-            <label htmlFor="is_active" className="name-labels">
+            <label htmlFor="isActive" className="name-labels">
               Is Active
             </label>
             <label className="switch">
               <input
+                className="switch-box"
                 type="checkbox"
-                id="is_active"
-                checked={editData?.is_active || false}
+                id="isActive"
+                checked={editData?.isActive || false}
                 onChange={(e) =>
-                  setEditData({ ...editData, is_active: e.target.checked })
+                  setEditData({ ...editData, isActive: e.target.checked })
                 }
               />
               <span className="slider round"></span>

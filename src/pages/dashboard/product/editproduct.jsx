@@ -22,7 +22,8 @@ const EditProduct = () => {
     name: "",
     retting: "",
     message: "",
-    is_active: false,
+    isActive: false,
+    isFeatured: false,
   });
 
   const dispatch = useDispatch();
@@ -67,9 +68,11 @@ const EditProduct = () => {
         bottle_size: productselector.editproductData.bottle_size || "",
         offer_price: productselector.editproductData.offer_price || "",
         actual_price: productselector.editproductData.actual_price || "",
+        delivery_charge: productselector.editproductData.delivery_charge || "",
         sku: productselector.editproductData.sku || "",
         stock_quantity: productselector.editproductData.stock_quantity || "",
-        is_active: productselector.editproductData.is_active || false,
+        isFeatured: productselector.editproductData.isFeatured || false,
+        isActive: productselector.editproductData.isActive || false,
       });
     }
   }, [productselector]);
@@ -138,7 +141,7 @@ const EditProduct = () => {
 
           <div className="name-container">
             <label htmlFor="title" className="name-labels">
-              Tittle
+              Title
             </label>
             <div className="input-1">
               <input
@@ -172,11 +175,26 @@ const EditProduct = () => {
             </label>
             <div className="input-1">
               <input
-                type="text"
+                // type="text"
                 className="form-control"
                 id="sku"
                 required
                 value={editProductData?.sku || ""}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="name-container">
+            <label htmlFor="delivery_charge" className="name-labels">
+              Delivery Charge
+            </label>
+            <div className="input-1">
+              <input
+                type="text"
+                className="form-control"
+                id="delivery_charge"
+                required
+                value={editProductData?.delivery_charge || ""}
                 onChange={handleChange}
               />
             </div>
@@ -199,7 +217,7 @@ const EditProduct = () => {
 
           <div className="name-container">
             <label htmlFor="description" className="name-labels">
-              description
+              Description
             </label>
             <div className="input-1">
               <textarea
@@ -231,19 +249,40 @@ const EditProduct = () => {
           </div>
 
           <div className="name-container">
-            <label htmlFor="is_active" className="name-labels">
+            <label htmlFor="isFeatured" className="name-labels">
               Is Featured
             </label>
             <label className="switch">
               <input
                 className="switch-box"
                 type="checkbox"
-                id="is_active"
-                // checked={editProductData?.is_active || false}
+                id="isFeatured"
+                checked={!!editProductData?.isFeatured || false}
                 onChange={(e) =>
                   setEditProductData((prev) => ({
                     ...prev,
-                    is_active: e.target.checked,
+                    isFeatured: e.target.checked,
+                  }))
+                }
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+
+          <div className="name-container">
+            <label htmlFor="isActive" className="name-labels">
+              Is Active
+            </label>
+            <label className="switch">
+              <input
+                className="switch-box"
+                type="checkbox"
+                id="isActive"
+                checked={!!editProductData?.isActive || false}
+                onChange={(e) =>
+                  setEditProductData((prev) => ({
+                    ...prev,
+                    isActive: e.target.checked,
                   }))
                 }
               />

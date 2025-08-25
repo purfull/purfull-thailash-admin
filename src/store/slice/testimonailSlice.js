@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
-
 // export const createTestimonial = createAsyncThunk("create/testimonial", async (state, action) => {
 
 //   const responce = await fetch("https://api.thailash.com/testimonial/create-testimonial", {
 //     method: "POST",
-    
 
 //   });
 //   const data = await responce.json();
 //   return data
-
 
 // })
 // export const createTestimonial = createAsyncThunk(
@@ -51,7 +47,6 @@ export const createTestimonial = createAsyncThunk(
   }
 );
 
-
 export const testimonialGetAll = createAsyncThunk(
   "testimonial/get-all",
   async () => {
@@ -78,7 +73,6 @@ export const deleteTestimonialById = createAsyncThunk(
     const responce = await fetch(
       `https://api.thailash.com/testimonial/delete-testimonial/${id}`,
       { method: "DELETE" }
-      
     );
     const data = responce.json();
     return { id, ...data };
@@ -133,18 +127,17 @@ const testimonialSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    //create 
+    //create
     builder.addCase(createTestimonial.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.message = "craeted testimonial successfully "
-
-    })
+      state.message = "craeted testimonial successfully ";
+    });
     builder.addCase(createTestimonial.pending, (state, action) => {
       state.isLoading = true;
     });
     builder.addCase(createTestimonial.rejected, (state, action) => {
       state.isLoading = false;
-      state.message= " your create api is failed "
+      state.message = " your create api is failed ";
     });
 
     builder.addCase(testimonialGetAll.fulfilled, (state, action) => {
@@ -158,7 +151,7 @@ const testimonialSlice = createSlice({
       state.isLoading = false;
     });
 
-    //get by id 
+    //get by id
     builder.addCase(getTestimonialById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.editTestimonialData = action.payload.data;
@@ -169,7 +162,6 @@ const testimonialSlice = createSlice({
     builder.addCase(getTestimonialById.rejected, (state, action) => {
       state.isLoading = false;
     });
-
 
     builder.addCase(deleteTestimonialById.fulfilled, (state, action) => {
       state.isLoading = false;

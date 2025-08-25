@@ -10,6 +10,8 @@ import {
   updateProduct,
 } from "../../../store/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const productselector = useSelector((state) => state.product);
@@ -28,7 +30,14 @@ const Product = () => {
 
   //delete product
   const handleDelete = (record) => {
-    dispatch(deleteProductById(record.id));
+    dispatch(deleteProductById(record.id))
+      .unwrap()
+      .then(() => {
+        toast.success("Product deleted successfully!.");
+      })
+      .catch(() => {
+        toast.error("Failed to delete product");
+      });
   };
 
   // use effect for add products
