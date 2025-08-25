@@ -83,7 +83,8 @@ const loginSlice = createSlice({
     builder.addCase(loginCheck.fulfilled, (state, action) => {
       state.isLoading = false;
       state.user = action.payload; // ✅ store response data
-      state.message = "You have logged in successfully!";
+      state.message = "You have logged in successfully!";      
+      localStorage.setItem("user", JSON.stringify({userName: action.payload.data.userName}))
     });
     builder.addCase(loginCheck.rejected, (state, action) => {
       state.isLoading = false;
