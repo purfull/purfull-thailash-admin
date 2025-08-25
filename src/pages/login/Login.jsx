@@ -34,7 +34,7 @@
 //                         }
 //                     />
 //                     <div className="">
-                        
+
 //                     {
 //                      !login &&   
 //                     <Input.Password
@@ -66,7 +66,7 @@
 //                         <span className="text-[#3b4056] font-medium ml-2">{login ? "Sign in with Google" : "Sign up with Google"}</span>
 //                     </button>
 //                     <div className="text-center mb-[20px]">
-                    
+
 //                         <span className="text-[#3b4056] font-medium">{login ? "Don't have an account? " : "Already have an account? " }</span>
 //                         <a href="#" className="forgot-password font-medium" onClick={() => setLogin(!login)}>
 //                         {login ? "Sign Up" : "sign in"}
@@ -86,26 +86,40 @@
 //         </div>
 //      );
 // }
- 
+
 // export default Login;
 
 import { Button, Form, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
- import google from "./assets/google-icon.svg";
-
+import google from "./assets/google-icon.svg";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {loginCheck} from ""
 import "./Login.css"; // Make sure this is correctly linked
 
 const Login = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [login, setLogin] = useState(true);
+  const dispatch = useDispatch();  // (hook that gives you the dispatch function)
 
-  const handleSubmit = () => {
-    // navigate("/dashboard/reports");
-    navigate("/dashboard")
-  };
+  const handleSubmit = (values) => {
+  if (login) {
+    // login mode
+    const payload = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(loginCheck(payload));
+  }
+};
+  // const handleSubmit = () => {
+  //   // navigate("/dashboard/reports");
+  //   // navigate("/dashboard");
+  //   dispatch(loginCheck(values));  // (actual dispatch call inside handleSubmit)
+
+  // };
 
   return (
     <div className="login-wrapper">
@@ -192,4 +206,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

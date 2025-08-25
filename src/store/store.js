@@ -10,13 +10,12 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import orderSlice from "./slice/orderSlice";
-
 import testimonialSlice from "./slice/testimonailSlice"
 import productSlice from "./slice/productSlice"
 import customerSlice from "./slice/customerSlice"
 import billingsSlice from "./slice/billingsSlice"
 import DashboardReportSlice from "./slice/dashboardReportSlice"
-
+import loginSlice from "./slice/loginSlice"
 
 
 const store = configureStore({
@@ -26,7 +25,9 @@ const store = configureStore({
         customer: customerSlice,
         billings: billingsSlice,
         order: orderSlice,
-        dashboard : DashboardReportSlice
+        dashboard : DashboardReportSlice,
+        login :loginSlice
+
     }
 })
 
