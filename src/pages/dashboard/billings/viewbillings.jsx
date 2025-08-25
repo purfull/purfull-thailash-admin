@@ -381,7 +381,7 @@ const ViewBillings = () => {
                   type="number"
                   name="sgst"
                   // value={taxValues.sgst || ""}
-                  value={billingsdata.sgstTax || ""}
+                  value={billingsdata?.sgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter SGST %"
                   className="item-input-tax"
@@ -393,7 +393,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="cgst"
-                  value={billingsdata.cgstTax || ""}
+                  value={billingsdata?.cgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter CGST %"
                 />
@@ -404,7 +404,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="igst"
-                  value={billingsdata.igstTax || ""}
+                  value={billingsdata?.igstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter IGST %"
                 />
@@ -415,7 +415,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="utgst"
-                  value={billingsdata.utgstTax || ""}
+                  value={billingsdata?.utgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter UTGST %"
                 />
@@ -522,7 +522,7 @@ const ViewBillings = () => {
         <table className="invoice-table" style={{ marginTop: "1rem" }}>
           <tbody className="table-body">
             <tr>
-              <td colSpan="6"  className="td-right">
+              <td colSpan="6" className="td-right">
                 SGST:
               </td>
               <td colSpan="2">
