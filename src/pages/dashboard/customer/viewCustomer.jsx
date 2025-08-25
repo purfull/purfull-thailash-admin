@@ -4,6 +4,7 @@ import { Form, Input, Row, Col, Button, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCustomerById } from "../../../store/slice/customerSlice";
+import  "../customer/customer.css"
 
 const ViewCustomer = () => {
   const { id } = useParams();
@@ -30,11 +31,12 @@ const ViewCustomer = () => {
     );
   }
   return (
-    <div title="View Customer">
-      <Form form={form} layout="vertical" disabled>
+    <div title="View-customer" className="view-customer">
+      <h1 className="helo">hello</h1>
+      <Form form={form} layout="vertical" className="flex" disabled>
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="First Name" name="first_name">
+            <Form.Item label="First Name" name="first_name" className="flex-one">
               <Input />
             </Form.Item>
           </Col>
