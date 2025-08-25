@@ -55,6 +55,7 @@
 
 /* Totals */
 .td-right {
+  width: 78.5%;
   text-align: right;
 }
 
@@ -73,35 +74,46 @@ table {
 .item-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem; /* replaces space-x-4 */
-  margin-top: 1rem; /* replaces mt-4 */
+  gap: 1rem;
+  /* replaces space-x-4 */
+  margin-top: 1rem;
+  /* replaces mt-4 */
 }
+
 .download-button {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .download-invoice {
-  font-size: 1.5rem; /* text-2xl */
+  font-size: 1.5rem;
+  /* text-2xl */
   color: #fff;
   background-color: #046e3d;
+  margin-top: 30px;
 }
 
 /* Add button */
 .add-btn {
-  font-size: 1.5rem; /* text-2xl */
+  font-size: 1.5rem;
+  /* text-2xl */
   color: #fff;
   background-color: #046e3d;
-  padding: 0.25rem 0.75rem; /* px-3 */
-  border-radius: 4px; /* rounded-sm */
+  padding: 0.25rem 0.75rem;
+  /* px-3 */
+  border-radius: 4px;
+  /* rounded-sm */
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin-bottom: 15px;
 }
+
 .add-btn:hover {
   background-color: #03532e;
 }
+
 .add-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -109,19 +121,26 @@ table {
 
 /* Remove button */
 .remove-btn {
-  font-size: 1.5rem; /* text-2xl */
-  padding: 0.25rem 0.75rem; /* px-3 */
-  border: 1px solid #046e3d; /* !border !border-[#046E3D] */
-  color: #046e3d; /* text-[#046E3D] */
-  border-radius: 4px; /* rounded-sm */
+  font-size: 1.5rem;
+  /* text-2xl */
+  padding: 0.25rem 0.75rem;
+  /* px-3 */
+  border: 1px solid #046e3d;
+  /* !border !border-[#046E3D] */
+  color: #046e3d;
+  /* text-[#046E3D] */
+  border-radius: 4px;
+  /* rounded-sm */
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 15px;
 }
+
 .remove-btn:hover {
   background-color: #f0fdf4;
 }
+
 .remove-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -142,7 +161,8 @@ table {
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   padding: 1rem;
-  border: 1px solid #d1d5db; /* gray-300 */
+  border: 1px solid #d1d5db;
+  /* gray-300 */
   border-radius: 6px;
   background-color: #fff;
 }
@@ -169,11 +189,12 @@ table {
   padding: 0.4rem 0.5rem;
   font-size: 0.95rem;
 }
+
 .tax-container {
   grid-column: span 12;
   position: relative;
   margin-top: 1.5rem;
-  padding: 1rem;
+  padding: 1.2rem;
   border: 1px solid #ddd;
   border-radius: 0.75rem;
   background: #fff;
@@ -185,8 +206,10 @@ table {
 }
 
 .tax-legend {
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 600; /* font-semibold */
+  font-size: 1.125rem;
+  /* text-lg */
+  font-weight: 600;
+  /* font-semibold */
   margin-bottom: 0.5rem;
   color: #374151;
 }
@@ -194,18 +217,25 @@ table {
 .tax-inputs {
   display: flex;
   align-items: center;
-  gap: 4rem; /* space-x-2 */
+  gap: 4rem;
+  /* space-x-2 */
+
 }
 
 .tax-inputs input[type="number"] {
   accent-color: #2563eb;
   width: 5rem;
-  height: 1rem;
+  height: 1.5rem;
   margin-left: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.95rem;
 }
 
 .tax-inputs label {
-  color: #4b5563;
+  font-weight: 500;
+  color: #333;
   font-size: 0.95rem;
   cursor: pointer;
 }
@@ -221,13 +251,13 @@ table {
   gap: 20px;
 }
 
-.order-form .ant-form-item-label > label::after {
+.order-form .ant-form-item-label>label::after {
   margin-left: 15px;
   /* add little space after colon */
 }
 
 /* apply only to this label */
-.view-order-tag .ant-form-item-label > label {
+.view-order-tag .ant-form-item-label>label {
   margin-right: 20px;
   display: flex;
 }
@@ -331,12 +361,12 @@ table {
 }
 
 /* Checked state */
-.switch-box:checked + .slider {
+.switch-box:checked+.slider {
   background-color: #1890ff;
   /* Ant Design blue */
 }
 
-.switch-box:checked + .slider:before {
+.switch-box:checked+.slider:before {
   transform: translateX(22px);
 }
 
@@ -357,19 +387,47 @@ table {
   padding: 0.4rem 0.5rem;
   font-size: 0.95rem;
 }
+
 .ant-col {
   width: 25%;
   display: flex;
 }
-.formOrder-heading .ant-form-item-label > label {
+
+.formOrder-heading .ant-form-item-label>label {
   width: 26%;
   display: flex;
   font-size: 16px;
   font-weight: 600;
 }
+
 /* tax checkboxes */
 .tax-checkbox {
   display: flex;
-  gap: 20px; /* Adjust spacing between each checkbox group */
+  gap: 20px;
+  /* Adjust spacing between each checkbox group */
   align-items: center;
+}
+
+.product-table{
+  border: 1px soild pink;
+  
+}
+.product-table th {
+  text-align: start;
+  padding: 15px 0px;
+}
+.ant-form legend{
+  padding: 8px 0px;
+}
+.product-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse; /* removes double borders */
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ccc; 
+  padding: 8px 12px;    
+  text-align: start;       
 }
