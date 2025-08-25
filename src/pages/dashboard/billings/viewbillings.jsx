@@ -279,6 +279,25 @@ const ViewBillings = () => {
               // disabled
             />
           </Form.Item>
+          <Form.Item label="Contact Number" className="formOrder-heading">
+            <Input
+              name="phone"
+              type="number"
+              className="formOrder-input"
+              value={billingsdata?.phone || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          {/* <Form.Item label="Place Of Supply" className="formOrder-heading">
+            <Input
+              name="address"
+              className="formOrder-input"
+              value={billingsdata?.address || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item> */}
 
           <Form.Item label="Invoice Amount" className="formOrder-heading">
             <Input
