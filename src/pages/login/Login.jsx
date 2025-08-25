@@ -5,7 +5,6 @@
 // import { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 
-
 // const Login = () => {
 //     const navigate = useNavigate();
 //     const [form] = Form.useForm();
@@ -15,7 +14,7 @@
 //         navigate('/dashboard/reports')
 
 //     }
-//     return ( 
+//     return (
 //         <div className="flex justify-center items-center py-[14vh]">
 //             <div className=" max-w-[90%] bg-white my-shadow p-4">
 //                 <div className="login-form-container w-full sm:w-[85%]">
@@ -36,7 +35,7 @@
 //                     <div className="">
 
 //                     {
-//                      !login &&   
+//                      !login &&
 //                     <Input.Password
 //                         className="inputBox"
 //                         placeholder="Re-Enter Password"
@@ -92,34 +91,41 @@
 import { Button, Form, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import google from "./assets/google-icon.svg";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {loginCheck} from ""
 import "./Login.css"; // Make sure this is correctly linked
+import { useDispatch, useSelector } from "react-redux";
+import { loginCheck } from "../../store/slice/loginSlice";
 
 const Login = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [login, setLogin] = useState(true);
-  const dispatch = useDispatch();  // (hook that gives you the dispatch function)
+  const [editData, setEditData] = useState({
+    userName: "",
+    password: "",
+  });
 
-  const handleSubmit = (values) => {
-  if (login) {
-    // login mode
+  const loginSelector = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setEditData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+  const handleSubmit = () => {
+    // navigate("/dashboard/reports");
     const payload = {
-      email: values.email,
-      password: values.password,
+      userName: editData.userName,
+      password: editData.password,
     };
     dispatch(loginCheck(payload));
-  }
-};
-  // const handleSubmit = () => {
-  //   // navigate("/dashboard/reports");
-  //   // navigate("/dashboard");
-  //   dispatch(loginCheck(values));  // (actual dispatch call inside handleSubmit)
-
-  // };
+    navigate("/dashboard");
+  };
 
   return (
     <div className="login-wrapper">
@@ -128,9 +134,16 @@ const Login = () => {
           <div className="welcome-message">{login ? "Log in" : "Register"}</div>
 
           <Form form={form}>
-            <Input placeholder="Email" className="inputBox" />
-            <Input.Password
+            <Input
+              placeholder="Email"
               className="inputBox"
+              id="userName"
+              onChange={handleChange}
+            />
+            <Input.Password
+              onChange={handleChange}
+              className="inputBox"
+              id="password"
               placeholder="Password"
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -140,6 +153,7 @@ const Login = () => {
             {!login && (
               <Input.Password
                 className="inputBox"
+                onChange={handleChange}
                 placeholder="Re-Enter Password"
                 iconRender={(visible) =>
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -147,20 +161,20 @@ const Login = () => {
               />
             )}
 
-            <div className="options-row">
+            {/* <div className="options-row">
               {login && (
                 <a href="#" className="forgot-password">
                   Forgot Password?
                 </a>
               )}
-            </div>
+            </div> */}
 
             <Button className="sign-in-button" onClick={handleSubmit}>
               {login ? "Sign In" : "Sign Up"}
             </Button>
           </Form>
 
-          <div className="or-section">
+          {/* <div className="or-section">
             <hr className="or-line" />
             <span className="or-text">or</span>
             <hr className="or-line" />
@@ -171,13 +185,11 @@ const Login = () => {
             <span className="google-button-text">
               {login ? "Sign in with Google" : "Sign up with Google"}
             </span>
-          </button>
+          </button> */}
 
-          <div className="account-switch">
+          {/* <div className="account-switch">
             <span>
-              {login
-                ? "Don't have an account?"
-                : "Already have an account?"}
+              {login ? "Don't have an account?" : "Already have an account?"}
             </span>
             <a
               href="#"
@@ -186,9 +198,9 @@ const Login = () => {
             >
               {login ? "Sign Up" : "Sign In"}
             </a>
-          </div>
+          </div> */}
 
-          {!login && (
+          {/* {!login && (
             <p className="terms-text">
               By continuing you agree with our{" "}
               <a href="#" className="underline-link">
@@ -199,7 +211,7 @@ const Login = () => {
                 Privacy Policy
               </a>
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
