@@ -7,6 +7,9 @@
   height: 100vh;
   top: 0;
   left: 0;
+  background: #046e3d; /* so it's visible */
+  transition: width 0.3s ease;
+  z-index: 1000; /* stay on top */
 }
 
 /* .outlet-containerr {
@@ -20,7 +23,7 @@
     /* padding: 6px !important; */
     right: 0 !important;
     top: 10vh !important;
-    width: 90% !important;
+    width: 75% !important;
   }
 }
 

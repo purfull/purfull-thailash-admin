@@ -116,7 +116,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
           
           {!collapsed && (
             <div className="logo-image">
-              <img src={Logo} alt="" />
+              <img src={Logo} alt="Logo" />
             </div>
           )}
           {(isMobile || isTablet) && (

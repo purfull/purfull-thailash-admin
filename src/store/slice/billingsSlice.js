@@ -105,10 +105,19 @@ const billingsSlice = createSlice({
 
     //create bill
 
+    // builder.addCase(CreateBill.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.billingsTableData = action.payload;
+    //   state.message = "Your bills are saved";
+    // });
     builder.addCase(CreateBill.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.billingsTableData = action.payload;
-      state.message = "Your bills are saved";
+      // append instead of replace
+      state.billingsTableData = [
+        ...state.billingsTableData,
+        action.payload.data,
+      ];
+      state.message = "Your bill was saved successfully";
     });
 
     builder.addCase(CreateBill.pending, (state, action) => {
@@ -121,7 +130,6 @@ const billingsSlice = createSlice({
     });
 
     //update bill
-    
 
     // builder.addCase(updateBill.fulfilled, (state, action) => {
     //   state.isLoading = false;
