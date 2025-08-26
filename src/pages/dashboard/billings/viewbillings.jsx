@@ -156,20 +156,6 @@ const ViewBillings = () => {
     }));
   };
 
-  // const handleInputChange = (e) => {
-  //   const { value, checked } = e.target;
-
-  //   setSelectedTaxTypes((prev) => {
-  //     if (checked) {
-  //       // Add tax type if checked
-  //       return [...prev, value];
-  //     } else {
-  //       // Remove tax type if unchecked
-  //       return prev.filter((type) => type !== value);
-  //     }
-  //   });
-  // };
-
   useEffect(() => {
     if (!items || items.length === 0) return;
 
@@ -400,7 +386,7 @@ const ViewBillings = () => {
                   type="number"
                   name="sgst"
                   // value={taxValues.sgst || ""}
-                  value={billingsdata?.sgstTax || ""}
+                  // value={billingsdata?.sgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter SGST %"
                   className="item-input-tax"
@@ -412,7 +398,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="cgst"
-                  value={billingsdata?.cgstTax || ""}
+                  // value={billingsdata?.cgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter CGST %"
                 />
@@ -423,7 +409,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="igst"
-                  value={billingsdata?.igstTax || ""}
+                  // value={billingsdata?.igstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter IGST %"
                 />
@@ -434,7 +420,7 @@ const ViewBillings = () => {
                 <input
                   type="number"
                   name="utgst"
-                  value={billingsdata?.utgstTax || ""}
+                  // value={billingsdata?.utgstTax || ""}
                   onChange={handleInputChange}
                   placeholder="Enter UTGST %"
                 />
@@ -580,7 +566,7 @@ const ViewBillings = () => {
                 Total GST Amount:
               </td>
               <td colSpan="2">
-                {Number(billingsdata?.taxExclusiveGross || 0).toFixed(2)}
+                {Number(billingsdata?.taxExclusiveGross * 0.18 || 0).toFixed(2)}
               </td>
               {/* <td colSpan="2">
                 {(
