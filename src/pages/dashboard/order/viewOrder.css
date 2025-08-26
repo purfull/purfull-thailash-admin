@@ -2,35 +2,41 @@
 .view-order-container {
   max-width: 600px;
   margin: 20px auto;
-  background-color: red;
 }
 
-.view-order-tag {
+.view-order-tag{
   display: grid;
   gap: 20px;
+  width: 90%;
 }
+  
 
-.order-form .ant-form-item-label > label::after {
-  margin-left: 15px; /* add little space after colon */
-}
-/* apply only to this label */
+ .order-form .ant-form-item-label > label::after {
+  margin-left: 15px;  /* add little space after colon */
+
+ }
+ /* apply only to this label */
 .view-order-tag .ant-form-item-label > label {
+
   margin-right: 20px;
   display: flex;
+
 }
 
-.view-name {
-  width: 100%;
-  text-align: center;
-  font-size: 20px;
+.view-name{
+ width: 100%;
+ text-align: center;
+   font-size: 20px;
   font-weight: 600;
   padding: 5px 0px;
+  
 }
 
 .view-order-container .ant-input[disabled] {
   background-color: #f5f5f5;
   color: #555;
 }
+
 
 /* Adjust spacing between form items */
 .view-order-container .ant-form-item {
@@ -58,7 +64,7 @@
 }
 
 .order-form {
-  width: 100%;
+  /* width: 100%; */
 }
 
 /* .formOrder-heading {
@@ -107,7 +113,7 @@
 /* The circle inside */
 .slider:before {
   position: absolute;
-  /* content: ""; */
+  content: "";
   height: 20px;
   width: 20px;
   left: 4px;
@@ -119,90 +125,9 @@
 
 /* Checked state */
 .switch-box:checked + .slider {
-  background-color: #1890ff;
+  background-color: #1890ff; /* Ant Design blue */
 }
 
 .switch-box:checked + .slider:before {
   transform: translateX(22px);
-}
-
-.invoice-container {
-  width: 100%;
-}
-
-.invoice-container .header {
-  position: relative;
-  text-align: center;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-}
-
-.invoice-container .contact {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  text-align: right;
-  font-size: 0.875rem;
-  color: #111;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.invoice-container .logo {
-  max-width: 150px;
-  height: auto;
-  margin: 0 auto 0.75rem;
-  display: block;
-  object-fit: contain;
-}
-
-.invoice-container .title {
-  font-size: 1.125rem;
-}
-
-.invoice-container .address {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.invoice-container .invoice-table {
-  border-collapse: collapse;
-  border: 1px solid #d1d5db;
-  width: 100%;
-  text-align: left;
-}
-
-.invoice-container .invoice-table th,
-.invoice-container .invoice-table td {
-  border: 1px solid #d1d5db;
-  padding: 0.5rem;
-}
-
-.invoice-container .invoice-table thead {
-  background-color: #e5e7eb;
-}
-
-.invoice-container .label {
-  text-align: right;
-  font-weight: bold;
-}
-
-.invoice-container .center {
-  text-align: center;
-}
-
-.invoice-container .bold {
-  font-weight: bold;
-}
-
-.invoice-container .medium {
-  font-weight: 500;
-}
-.order-download-button {
-  background-color: #046e3d;
-  color: #ffffff;
-}
-.order-invoice-container {
-  display: flex;
-  justify-content: center;
 }

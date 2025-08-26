@@ -34,6 +34,8 @@ const ViewOrder = () => {
         (order) => order.id === parseInt(id)
       );
       setOrderData(foundOrder || null);
+      console.log("foundOrder?.taxExclusiveGross",foundOrder?.taxExclusiveGross);
+      
     }
   }, [orderTableData, id]);
 
@@ -363,7 +365,7 @@ const ViewOrder = () => {
               wrapperCol={{ span: 16 }}
             >
               <Switch
-                className="view-order-tag"
+                className="view-order"
                 checkedChildren="Refunded"
                 unCheckedChildren="Not Refunded"
                 checked={orderData.status === "refunded"}
@@ -442,7 +444,7 @@ const ViewOrder = () => {
                   <td>1</td>
                   <td>{orderData?.productInfo?.name}</td>
                   <td>{orderData?.quantity}</td>
-                  <td>{parseInt(orderData?.offer_price || 0)}</td>
+                  <td>{parseInt(orderData?.productInfo?.offer_price || 0)}</td>
 
                   <td>
                     {orderData?.transactionType === "Pre-paid" ? "10%" : "-"}
@@ -489,10 +491,8 @@ const ViewOrder = () => {
                   </td>
                   <td colSpan="2">
                     {(
-                      parseFloat(orderData?.invoiceAmount) -
-                      ((Number(orderData?.totalTaxAmount) || 0) +
-                        (Number(editingData?.taxExclusiveGross) || 0))
-                    ).toFixed(2)}
+                      parseFloat((orderData?.invoiceAmount) - ((Number(orderData?.totalTaxAmount) || 0) + (Number(orderData?.taxExclusiveGross) || 0))
+                    )).toFixed(2)}
                   </td>
                 </tr>
                 {/* <tr>
