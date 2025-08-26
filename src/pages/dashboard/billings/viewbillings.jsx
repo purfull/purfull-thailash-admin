@@ -507,7 +507,7 @@ const ViewBillings = () => {
           <tbody className="table-body">
             {items.map((item, index) => {
               const amount = item.quantity * item.rate - (item.discount || 0);
-              const taxable = amount; // adjust if tax is applied separately
+              const taxable = amount - (amount * 0.12); // adjust if tax is applied separately
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
@@ -566,7 +566,7 @@ const ViewBillings = () => {
                 Total GST Amount:
               </td>
               <td colSpan="2">
-                {Number(billingsdata?.taxExclusiveGross * 0.18 || 0).toFixed(2)}
+                {Number(billingsdata?.taxExclusiveGross * 0.12 || 0).toFixed(2)}
               </td>
               {/* <td colSpan="2">
                 {(
@@ -590,7 +590,7 @@ const ViewBillings = () => {
                 <strong>Total Invoice Amount:</strong>
               </td>
               <td colSpan="2">
-                {Number(billingsdata?.invoiceAmount || 0).toFixed(2)}
+                {Math.round(billingsdata?.invoiceAmount || 0)}
               </td>
             </tr>
           </tbody>

@@ -32,7 +32,7 @@ const ViewCustomer = () => {
   }
   return (
     <div title="View-customer" className="view-customer">
-      <h1 className="helo">hello</h1>
+      {/* <h1 className="helo">hello</h1> */}
       <Form form={form} layout="vertical" className="flex" disabled>
         <Row gutter={16}>
           <Col span={12}>
