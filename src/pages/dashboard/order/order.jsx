@@ -22,7 +22,7 @@ const order = () => {
 
   const columns = [
     { title: "id", dataIndex: "id" },
-    { title: "AWB", dataIndex: "waybill" },
+    { title: "Invoice Number", dataIndex: "invoiceNumber" },
     { title: "Customer Name", dataIndex: "buyerName" },
     { title: "Payment Method", dataIndex: "payment" },
     { title: "Refunded", dataIndex: "status" },
