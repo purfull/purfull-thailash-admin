@@ -23,7 +23,7 @@ const ViewBillings = () => {
   const { selectedBill } = useSelector((state) => state.billings);
 
   const [viewLoad, setViewLoad] = useState(false);
-  const [selectedTaxTypes, setSelectedTaxTypes] = useState([]);
+  // const [selectedTaxTypes, setSelectedTaxTypes] = useState([]);
   const [taxValues, setTaxValues] = useState({
     cgst: 0,
     sgst: 0,
@@ -79,7 +79,7 @@ const ViewBillings = () => {
 
       if (
         selectedBill.data?.orderItems &&
-        Array.isArray(selectedBill.data.orderItems)
+        Array.isArray(selectedBill.data?.orderItems)
       ) {
         setItems(
           selectedBill.data.orderItems.map((item) => ({
@@ -94,13 +94,28 @@ const ViewBillings = () => {
     }
   }, [selectedBill]);
 
+  // const handleSave = () => {
+  //   if (billingsdata.id) {
+  //     // Create new bill
+  //     dispatch(
+  //       CreateBill({
+  //         ...billingsdata,
+  //         orderItems: items,
+  //       })
+  //     ).then(() => {
+  //       navigate("/dashboard/billings");
+  //     });
+  //   }
+  // };
   const handleSave = () => {
-    if (billingsdata.id) {
-      // Create new bill
-      dispatch(CreateBill(billingsdata)).then(() => {
-        navigate("/dashboard/billings");
-      });
-    }
+    const payload = {
+      ...billingsdata,
+      orderItems: items,
+    };
+
+    dispatch(CreateBill(payload)).then(() => {
+      navigate("/dashboard/billings");
+    });
   };
 
   const handleCancel = () => {
@@ -122,7 +137,6 @@ const ViewBillings = () => {
 
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
-    // documentTitle: `Invoice-${billingsdata?.invoiceNumber || "Draft"}`,
   });
   //print
   const onPrintClick = () => {
@@ -507,7 +521,7 @@ const ViewBillings = () => {
           <tbody className="table-body">
             {items.map((item, index) => {
               const amount = item.quantity * item.rate - (item.discount || 0);
-              const taxable = amount - (amount * 0.12); // adjust if tax is applied separately
+              const taxable = amount - amount * 0.12; // adjust if tax is applied separately
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
@@ -531,7 +545,7 @@ const ViewBillings = () => {
                 SGST:
               </td>
               <td colSpan="2">
-                {Number(billingsdata?.sgstTax || 0).toFixed(2)}
+                {Number(billingsdata?.data?.sgstTax || 0).toFixed(2)}
               </td>
             </tr>
             <tr>
