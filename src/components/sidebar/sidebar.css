@@ -6,7 +6,7 @@
     justify-content: space-between;
     padding: 12px;
   }
-
+ 
   .hamburger-menu {
     font-size: 20px;
     cursor: pointer;
@@ -16,6 +16,10 @@
   }
   .side-nav-menu-wrapper .menu-bar {
     background-color: #046e3d;
+  }
+
+  .menu-class-bar{
+    margin-left: 0 !important;
   }
 }
 @media screen and (min-width: 1200px) {
