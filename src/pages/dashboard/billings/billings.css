@@ -420,7 +420,7 @@ table {
   padding: 8px 0px;
 }
 .product-table {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   width: 100%;
   border-collapse: collapse; /* removes double borders */
 }
