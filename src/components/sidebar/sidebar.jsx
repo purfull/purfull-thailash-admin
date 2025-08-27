@@ -55,6 +55,7 @@ const SideNavBar = ({ expand, toggleexpanded }) => {
     // },
     {
       label: "Menu",
+      className:"menu-class-bar"
     },
     {
       key: "3",

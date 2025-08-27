@@ -128,7 +128,7 @@ const Login = () => {
 
   useEffect(() => {
   if (loginSelector.user?.success) {
-    navigate("/dashboard");
+    navigate("/dashboard/reports");
   }
 }, [loginSelector.user, navigate]);
   return (
