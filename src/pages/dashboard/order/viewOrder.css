@@ -131,3 +131,15 @@
 .switch-box:checked + .slider:before {
   transform: translateX(22px);
 }
+
+.order-download-button {
+  font-size: 1.5rem;
+  /* text-2xl */
+  color: #fff;
+  background-color: #046e3d;
+  margin-top: 30px;
+
+}
+.order-invoice-container {
+  text-align: center;
+}

@@ -538,14 +538,14 @@ const ViewBillings = () => {
         </table>
 
         {/* GST & Totals */}
-        <table className="invoice-table" style={{ marginTop: "1rem" }}>
+        <table className="invoice-table">
           <tbody className="table-body">
             <tr>
               <td colSpan="6" className="td-right">
                 SGST:
               </td>
               <td colSpan="2">
-                {Number(billingsdata?.data?.sgstTax || 0).toFixed(2)}
+                {Number(billingsdata?.sgstTax || 0).toFixed(2)}
               </td>
             </tr>
             <tr>

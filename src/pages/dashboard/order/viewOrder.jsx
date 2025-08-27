@@ -34,8 +34,10 @@ const ViewOrder = () => {
         (order) => order.id === parseInt(id)
       );
       setOrderData(foundOrder || null);
-      console.log("foundOrder?.taxExclusiveGross",foundOrder?.taxExclusiveGross);
-      
+      console.log(
+        "foundOrder?.taxExclusiveGross",
+        foundOrder?.taxExclusiveGross
+      );
     }
   }, [orderTableData, id]);
 
@@ -383,138 +385,173 @@ const ViewOrder = () => {
 
       {editingData && (
         <div ref={componentRef} className="invoice-container">
-          <div className="header">
-            <p className="contact">
+          <div className="invoice-header">
+            <p className="invoice-contact">
               Cell: 9597266083 <br /> 9003857938
             </p>
-
-            <img src={thailashlogo} alt="thailash-logo" className="logo" />
-
-            <p className="title">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
-            <p className="address">
+            <img alt="Thailash Logo" src={thailashlogo} />
+            <p className="company-name">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
+            <p className="company-address">
               3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
               Nagapattinam - 611 104
             </p>
           </div>
 
+          {/* Customer & Invoice Details */}
           <table className="invoice-table">
-            <tbody>
-              <tr>
-                <td colSpan="6">Invoice Number: {orderData?.invoiceNumber}</td>
-                <td colSpan="6">Invoice Date: {orderData?.invoiceDate}</td>
-              </tr>
+            <tbody className="table-body">
               <tr>
                 <td colSpan="6">
-                  <span className="bold">Billing Address:</span> <br />
-                  <p className="medium">
-                    {orderData?.address} <br /> {orderData?.city},{" "}
-                    {orderData?.state}, {orderData?.country}
-                  </p>
+                  <strong>Invoice Number:</strong>{" "}
+                  {String(orderData?.invoiceNumber ?? "").padStart(4, "0")}
                 </td>
                 <td colSpan="6">
-                  <span className="bold">Place Of Supply:</span> <br />
-                  <p className="medium">
-                    {orderData?.address} <br /> {orderData?.city},{" "}
-                    {orderData?.state}, {orderData?.country}
-                  </p>
+                  <strong>Invoice Date:</strong> {orderData?.invoiceDate}
                 </td>
               </tr>
               <tr>
-                <td colSpan="12">GSTIN: {orderData?.customerBillToGST}</td>
+                <td colSpan="6">
+                  <strong>Customer Name:</strong> {orderData?.name}
+                </td>
+                <td colSpan="6">
+                  <strong>Contact Number:</strong> {orderData?.phone}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <strong>Billing Address:</strong> {orderData?.address}
+                </td>
+                <td colSpan="6">
+                  <strong>Place Of Supply:</strong> {orderData?.place}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <strong>City:</strong> {orderData?.city}
+                </td>
+                <td colSpan="6">
+                  <strong>State:</strong> {orderData?.state}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <strong>GSTIN:</strong> {orderData?.customerBillToGST}
+                </td>
+                <td colSpan="6">
+                  <strong>Date:</strong>{" "}
+                  {new Date(orderData?.invoiceDate).toLocaleDateString()}
+                </td>
               </tr>
             </tbody>
           </table>
 
-          <div className="body">
-            <table className="invoice-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Particulars</th>
-                  <th>Qty</th>
-                  <th>Rate</th>
-                  <th>Discount</th>
-                  <th>Delivery Charge</th>
-                  <th>Amount</th>
-                  <th>Taxable Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>{orderData?.productInfo?.name}</td>
-                  <td>{orderData?.quantity}</td>
-                  <td>{parseInt(orderData?.productInfo?.offer_price || 0)}</td>
+          {/* Product Details */}
+          <table className="product-table">
+            <thead>
+              <tr>
+                <th className="th-main">S.No</th>
+                <th>Particulars</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Discount</th>
+                <th>Amount</th>
+                <th>Taxable Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>{orderData?.productInfo?.name}</td>
+                <td>{orderData?.quantity}</td>
+                <td>{parseInt(orderData?.productInfo?.offer_price || 0)}</td>
 
-                  <td>
-                    {orderData?.transactionType === "Pre-paid" ? "10%" : "-"}
-                  </td>
-                  <td>{orderData?.productInfo?.delivery_charge}</td>
-                  <td>{orderData?.invoiceAmount}</td>
+                <td>
+                  {orderData?.transactionType === "Pre-paid" ? "10%" : "-"}
+                </td>
+                <td>{parseInt(orderData?.productInfo?.offer_price || 0) * orderData?.quantity}</td>
 
-                  <td>{orderData?.taxExclusiveGross}</td>
-                </tr>
+                <td>{orderData?.taxExclusiveGross}</td>
+              </tr>
+            </tbody>
+          </table>
 
-                <tr>
-                  <td colSpan="6" className="label">
-                    SGST :
-                  </td>
-                  <td colSpan="2">{orderData?.sgstTax}</td>
-                </tr>
-                <tr>
-                  <td colSpan="6" className="label">
-                    CGST :
-                  </td>
-                  <td colSpan="2">{orderData?.cgstTax}</td>
-                </tr>
-                <tr>
-                  <td colSpan="6" className="label">
-                    IGST :
-                  </td>
-                  <td colSpan="2">{orderData?.igstTax}</td>
-                </tr>
-                <tr>
-                  <td colSpan="6" className="label">
-                    UTGST :
-                  </td>
-                  <td colSpan="2">{orderData?.utgstTax}</td>
-                </tr>
-                <tr>
-                  <td colSpan="6" className="label">
-                    Total GST Amount:
-                  </td>
-                  <td colSpan="2">{orderData?.totalTaxAmount}</td>
-                </tr>
-                <tr>
-                  <td colSpan="6" className="label">
-                    Roundoff:
-                  </td>
-                  <td colSpan="2">
-                    {(
-                      parseFloat((orderData?.invoiceAmount) - ((Number(orderData?.totalTaxAmount) || 0) + (Number(orderData?.taxExclusiveGross) || 0))
-                    )).toFixed(2)}
-                  </td>
-                </tr>
-                {/* <tr>
-                  <td colSpan="6" className="label">
-                    Delivery Charges :
-                  </td>
-                  <td colSpan="2">{orderData?.productInfo?.delivery_charge}</td>
-                </tr> */}
-                <tr>
-                  <td colSpan="3" className="center bold">
-                    HSN Code: 30049011 GST: 12%
-                  </td>
-                  <td colSpan="3" className="label">
-                    Total Invoice Amount:
-                  </td>
-                  <td colSpan="3" className="bold">
-                    {orderData?.invoiceAmount}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {/* GST & Totals */}
+          <table className="invoice-table" >
+            <tbody className="table-body">
+              <tr>
+                <td colSpan="6" className="td-right">
+                  SGST:
+                </td>
+                <td colSpan="2">
+                  {Number(orderData?.sgstTax || 0).toFixed(2)}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  CGST:
+                </td>
+                <td colSpan="2">
+                  {" "}
+                  {Number(orderData?.cgstTax || 0).toFixed(2)}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  IGST:
+                </td>
+                <td colSpan="2">
+                  {Number(orderData?.igstTax || 0).toFixed(2)}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  UTGST:
+                </td>
+                <td colSpan="2">
+                  {Number(orderData?.utgstTax || 0).toFixed(2)}
+                </td>
+              </tr>
+
+              <tr>
+                <td colSpan="6" className="td-right">
+                  {" "}
+                  Total GST Amount:
+                </td>
+                <td colSpan="2">
+                  {Number(orderData?.totalTaxAmount || 0).toFixed(2)}
+                </td>
+                {/* <td colSpan="2">
+                       {(
+                         Number(taxValues?.cgst || 0) +
+                         Number(taxValues?.sgst || 0) +
+                         Number(taxValues?.igst || 0) +
+                         Number(taxValues?.utgst || 0)
+                       ).toFixed(2)}
+                     </td> */}
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  Delivery charge:
+                </td>
+
+                <td>{orderData?.productInfo?.delivery_charge}</td>
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  Roundoff:
+                </td>
+                <td colSpan="2">
+                  {Number(orderData?.roundOff || 0).toFixed(2)}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6" className="td-right">
+                  <strong>Total Invoice Amount:</strong>
+                </td>
+                <td colSpan="2">{Math.round(orderData?.invoiceAmount || 0)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
 
