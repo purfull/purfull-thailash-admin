@@ -8,7 +8,7 @@
   }
     .side-nav-bar-container.collapsed,
   .side-nav-bar-container.expand {
-    width: 20% ;
+    width: 22%;
     position: fixed;
   } 
   /* .side-nav-bar-container.expand {} */
@@ -211,9 +211,14 @@
   color: white !important;
   padding-right: 10px !important;
 }
+/* .ant-menu {
+  width: 22%;
+} */
 
 /* 
   .side-nav-bar-container.collapsed,
   .side-nav-bar-container.expand {
     width: 20% !important;
   } 
+
+
