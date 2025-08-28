@@ -219,7 +219,6 @@ table {
   align-items: center;
   gap: 4rem;
   /* space-x-2 */
-
 }
 
 .tax-inputs input[type="number"] {
@@ -251,13 +250,13 @@ table {
   gap: 20px;
 }
 
-.order-form .ant-form-item-label>label::after {
+.order-form .ant-form-item-label > label::after {
   margin-left: 15px;
   /* add little space after colon */
 }
 
 /* apply only to this label */
-.view-order-tag .ant-form-item-label>label {
+.view-order-tag .ant-form-item-label > label {
   margin-right: 20px;
   display: flex;
 }
@@ -361,12 +360,12 @@ table {
 }
 
 /* Checked state */
-.switch-box:checked+.slider {
+.switch-box:checked + .slider {
   background-color: #1890ff;
   /* Ant Design blue */
 }
 
-.switch-box:checked+.slider:before {
+.switch-box:checked + .slider:before {
   transform: translateX(22px);
 }
 
@@ -393,7 +392,7 @@ table {
   display: flex;
 }
 
-.formOrder-heading .ant-form-item-label>label {
+.formOrder-heading .ant-form-item-label > label {
   width: 26%;
   display: flex;
   font-size: 16px;
@@ -408,15 +407,14 @@ table {
   align-items: center;
 }
 
-.product-table{
+.product-table {
   border: 1px soild pink;
-  
 }
 .product-table th {
   text-align: start;
   padding: 15px 0px;
 }
-.ant-form legend{
+.ant-form legend {
   padding: 8px 0px;
 }
 .product-table {
@@ -427,7 +425,34 @@ table {
 
 .product-table th,
 .product-table td {
-  border: 1px solid #ccc; 
-  padding: 8px 12px;    
-  text-align: start;       
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: start;
+}
+
+@media screen and (max-width: 600px) {
+  /* Make grid single column */
+  .view-billings-input-styles {
+    display: grid;
+    grid-template-columns: 1fr; /* stack fields in one column */
+    gap: 15px;
+  }
+
+  /* Make each Form.Item take full width */
+  .formOrder-heading {
+    display: block !important;
+    width: 100%;
+  }
+
+  /* Label above input */
+  .formOrder-heading .ant-form-item-label {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px; /* space below label */
+  }
+
+  /* Input full width */
+  .formOrder-input {
+    width: 100%;
+  }
 }

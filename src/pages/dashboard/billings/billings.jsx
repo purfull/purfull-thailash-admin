@@ -14,7 +14,6 @@ const billings = () => {
   const billingsselector = useSelector((state) => state.billings);
   const dispatch = useDispatch();
   const { id } = useParams();
- 
 
   useEffect(() => {
     dispatch(billingsGetAll());
@@ -92,7 +91,7 @@ const billings = () => {
         Array.isArray(billingsselector.billingsTableData)
           ? billingsselector.billingsTableData.map((item) => ({
               ...item,
-              key: item.id, // 👈 unique key for AntD table
+              key: item.id,
             }))
           : []
       }
