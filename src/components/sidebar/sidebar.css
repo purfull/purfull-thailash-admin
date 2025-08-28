@@ -1,12 +1,16 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  .side-nav-bar-container {
+    height: 200vh;
+    background-color: #046e3d;
+  }
   .logo-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px;
   }
- 
+
   .hamburger-menu {
     font-size: 20px;
     cursor: pointer;
@@ -18,7 +22,7 @@
     background-color: #046e3d;
   }
 
-  .menu-class-bar{
+  .menu-class-bar {
     margin-left: 0 !important;
   }
 }
