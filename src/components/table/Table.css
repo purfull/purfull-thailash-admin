@@ -30,6 +30,9 @@
     display: flex;
     align-items: center;
     width: 30%;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-left: 20px;
     justify-content: flex-start;
   }
 
@@ -200,6 +203,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    /* margin-left: 20px; */
   }
 
   .toolbar-right {
@@ -217,5 +221,6 @@
   .toolbar-select {
     width: 60px;
   }
+  
 
 }

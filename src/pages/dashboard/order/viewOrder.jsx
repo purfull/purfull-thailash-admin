@@ -75,7 +75,7 @@ const ViewOrder = () => {
         View Order
       </div>
 
-      <Form layout="horizontal" className="order-form">
+      {/* <Form layout="horizontal" className="order-form">
         <Row gutter={16}>
           {/* <Col span={12}>
             <Form.Item
@@ -87,7 +87,7 @@ const ViewOrder = () => {
               <Input value={orderData.id} disabled />
             </Form.Item>
           </Col> */}
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Order ID"
@@ -96,7 +96,7 @@ const ViewOrder = () => {
             >
               <Input value={orderData.order} disabled />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           {/* <Col span={12}>
             <Form.Item
@@ -109,7 +109,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Customer Name"
@@ -118,8 +118,8 @@ const ViewOrder = () => {
             >
               <Input value={orderData.buyerName} disabled />
             </Form.Item>
-          </Col>
-
+          </Col> */}
+{/* 
           <Col span={12}>
             <Form.Item
               className="view-order-tag"
@@ -129,9 +129,9 @@ const ViewOrder = () => {
             >
               <Input value={orderData.phone} disabled />
             </Form.Item>
-          </Col>
+          </Col> */}
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Country"
@@ -140,8 +140,8 @@ const ViewOrder = () => {
             >
               <Input value={orderData.country} disabled />
             </Form.Item>
-          </Col>
-          <Col span={12}>
+          </Col> */}
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Pin"
@@ -150,9 +150,9 @@ const ViewOrder = () => {
             >
               <Input value={orderData.pin} disabled />
             </Form.Item>
-          </Col>
+          </Col> */}
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="City"
@@ -161,8 +161,8 @@ const ViewOrder = () => {
             >
               <Input value={orderData.city} disabled />
             </Form.Item>
-          </Col>
-          <Col span={12}>
+          </Col> */}
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="State"
@@ -171,9 +171,9 @@ const ViewOrder = () => {
             >
               <Input value={orderData.state} disabled />
             </Form.Item>
-          </Col>
+          </Col> */}
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Quantity"
@@ -381,7 +381,153 @@ const ViewOrder = () => {
             </Form.Item>
           </Col>
         </Row>
-      </Form>
+      </Form> */} 
+      <Form layout="horizontal" className="order-form">
+  <div className="grid-container">
+    <div className="grid-item">
+      <label>Order ID</label>
+      <Input value={orderData.order} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Customer Name</label>
+      <Input value={orderData.buyerName} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Phone</label>
+      <Input value={orderData.phone} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Country</label>
+      <Input value={orderData.country} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Pin</label>
+      <Input value={orderData.pin} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>City</label>
+      <Input value={orderData.city} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>State</label>
+      <Input value={orderData.state} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Quantity</label>
+      <Input value={orderData.quantity} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Invoice Amount</label>
+      <Input value={orderData.invoiceAmount} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>TaxGross</label>
+      <Input value={orderData.taxExclusiveGross} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>SKU</label>
+      <Input value={orderData.sku} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>CGST</label>
+      <Input value={orderData.cgstTax} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>SGST</label>
+      <Input value={orderData.sgstTax} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>UTGST</label>
+      <Input value={orderData.utgstTax} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>IGST</label>
+      <Input value={orderData.igstTax} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Address</label>
+      <Input value={orderData.address} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Address Type</label>
+      <Input value={orderData.address_type} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Invoice Number</label>
+      <Input value={orderData.waybill} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Payment Method</label>
+      <Input value={orderData.payment} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Delivery Response</label>
+      <Input value={orderData.delhivery_response} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Shipping Mode</label>
+      <Input value={orderData.shipping_mode} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Remarks</label>
+      <Input value={orderData.remarks} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label>Delivery Charges</label>
+      <Input value={orderData?.productInfo?.delivery_charge} disabled />
+    </div>
+
+    <div className="grid-item">
+      <label className="">Created At</label>
+      <Input
+        value={
+          orderData.createdAt
+            ? new Date(orderData.createdAt).toLocaleDateString()
+            : ""
+        }
+        disabled
+      />
+    </div>
+
+    <div className="grid-item-refund">
+      <label>Refund</label>
+      <Switch
+        checkedChildren="Refunded"
+        unCheckedChildren="Not Refunded"
+        checked={orderData.status === "refunded"}
+        onChange={(checked) =>
+          setOrderData({
+            ...orderData,
+            status: checked ? "refunded" : ".",
+          })
+        }
+      />
+    </div>
+  </div>
+</Form>
+
 
       {editingData && (
         <div ref={componentRef} className="invoice-container">

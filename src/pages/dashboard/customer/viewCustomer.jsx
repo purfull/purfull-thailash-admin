@@ -4,7 +4,7 @@ import { Form, Input, Row, Col, Button, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCustomerById } from "../../../store/slice/customerSlice";
-import  "../customer/customer.css"
+import "../customer/customer.css"
 
 const ViewCustomer = () => {
   const { id } = useParams();
@@ -33,9 +33,9 @@ const ViewCustomer = () => {
   return (
     <div title="View-customer" className="view-customer">
       {/* <h1 className="helo">hello</h1> */}
-   <div className="grid-for">
-       
-      <Form form={form} layout="vertical" className="flex" disabled>
+      <div className="grid-for">
+
+        {/* <Form form={form} layout="vertical" className="flex" disabled>
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item label="First Name" name="first_name" className="flex-one">
@@ -98,9 +98,59 @@ const ViewCustomer = () => {
             </Form.Item>
           </Col>
         </Row>
-      </Form>
+      </Form> */}
 
-   </div>
+        <Form form={form} layout="vertical" className="customer-form" disabled>
+          <div className="grid-container">
+            <Form.Item label="First Name" name="first_name" className="flex-one">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Last Name" name="last_name">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Email" name="email">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Phone" name="phone">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Address" name="address">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Postal Code" name="postal_code">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="City" name="city">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="State" name="state">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Country" name="country">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="GST" name="gst">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Created At" name="createdAt">
+              <Input />
+            </Form.Item>
+          </div>
+        </Form>
+
+
+
+      </div>
       <Button
         style={{ marginTop: 16 }}
         onClick={() => navigate("/dashboard/customer")}
