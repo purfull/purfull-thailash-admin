@@ -33,6 +33,8 @@ const ViewCustomer = () => {
   return (
     <div title="View-customer" className="view-customer">
       {/* <h1 className="helo">hello</h1> */}
+   <div className="grid-for">
+       
       <Form form={form} layout="vertical" className="flex" disabled>
         <Row gutter={16}>
           <Col span={12}>
@@ -98,6 +100,7 @@ const ViewCustomer = () => {
         </Row>
       </Form>
 
+   </div>
       <Button
         style={{ marginTop: 16 }}
         onClick={() => navigate("/dashboard/customer")}

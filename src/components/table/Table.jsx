@@ -30,7 +30,11 @@ const CustomTable = ({
   };
 
   return (
-    <div className="bg-white w-full my-shadow ">
+    <div className="bg-white w-full my-shadow main-colour ">
+
+
+
+
       <div className="table-toolbar">
         <div className="toolbar-left">
           <span className="heading-2">Show</span>
@@ -45,6 +49,7 @@ const CustomTable = ({
             <Option value={100}>100</Option>
           </Select>
         </div>
+
 
         <div className="toolbar-right">
           {/* <Input placeholder="Search" className="toolbar-search" /> */}
