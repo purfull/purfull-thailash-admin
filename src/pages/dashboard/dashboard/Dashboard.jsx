@@ -117,9 +117,6 @@ const Dashboard = () => {
       <div className="card-container-main">
         <div className="card-1">
 
-
-
-
           <div className="report-container">
             <div className="report-box">
               <div className="report-body">

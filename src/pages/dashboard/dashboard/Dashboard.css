@@ -1,30 +1,13 @@
-.card-container-main {
+/* .card-container-main {
   display: grid;
-  grid-template-columns: 1fr; /* stack vertically */
+  grid-template-columns: 1fr; 
   grid-row-gap: 20px;
+} */
+
+/* Container */
+.report-container {
+  grid-column: span 12;
 }
-
-@media screen and (max-width:600px) {
-.card-container-main {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 0px;
-}
-
-}
-
-
-/* Tablet & desktop (>=600px) */
-@media screen and (min-width: 600px) {
-  .card-container-main {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-  }
-}
-
 
 .dashboard-container {
   display: grid;
@@ -90,44 +73,12 @@
   width: 1/2;
 }
 
-
 .card-container-main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 0px;
-}
-
-
-
-
-
-/* Container */
-.report-container {
-  grid-column: span 12;
-}
-
-/* Box */
-.report-box {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-}
-
-/* Body & Layout */
-.report-body {
-  padding: 16px;
-}
-
-.report-grid {
-  display: flex;
-  flex-direction: column;
-}
-
-.report-content {
-  flex: 1;
 }
 
 /* Title */
@@ -179,10 +130,31 @@
   display: flex;
   gap: 5px;
 }
+/* Box */
+.report-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+/* Body & Layout */
+.report-body {
+  padding: 16px;
+}
+
+.report-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-content {
+  flex: 1;
+}
 
 /* Button */
 .report-btn {
-  background: #046E3D;
+  background: #046e3d;
   color: #fff;
   padding: 6px 20px;
   font-size: 1rem;
@@ -194,4 +166,32 @@
 
 .report-btn:hover {
   background: #035c31;
+}
+
+@media screen and (max-width: 600px) {
+  /* .card-container-main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+  } */
+  .card-container-main {
+    grid-template-columns: 1fr; /* one column */
+    gap: 30px;
+  }
+  .card-1,
+  .card-2 {
+    width: 100%;
+  }
+}
+
+/* Tablet & desktop (>=600px) */
+@media screen and (min-width: 600px) {
+  .card-container-main {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  /* } */
 }
