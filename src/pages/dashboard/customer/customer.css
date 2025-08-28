@@ -5,37 +5,56 @@
 
      }
 
-  
+     .grid-container {
+         padding: 20px 15px;
+         grid-template-columns: 2fr;
+         /* 1 column on mobile */
+     }
+
+
+
  }
 
  /* .flex {
 } */
 
- .flex-one {
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
-     grid-template-rows: 1fr;
-     grid-column-gap: 10px;
-     grid-row-gap: 0px;
-     display: flex !important;
-     align-items: center !important;
-     background-color: green;
 
- }
+ @media screen and (min-width :1200px) {
+     .grid-container {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         /* 2 columns by default */
+         gap: 25px;
+         /* space between fields */
+     }
+/* 
+     .flex-one {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         grid-template-rows: 1fr;
+         grid-column-gap: 10px;
+         grid-row-gap: 0px;
+         display: flex !important;
+         align-items: center !important;
 
- .grid-for-customer {
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     /* left and right columns */
-     /* gap: 30px;  */
-     row-gap: 30px;
-     column-gap: 100px;
-     width: 100%;
-     /* take full container width */
+     } */
 
- }
+     .grid-for-customer {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         /* left and right columns */
+         /* gap: 30px;  */
+         row-gap: 30px;
+         column-gap: 100px;
+         width: 100%;
+         /* take full container width */
 
- .column-height {
-     height: 60vh;
-     display: grid;
+     }
+
+     .column-height {
+         height: 60vh;
+         display: grid;
+     }
+
+
  }
