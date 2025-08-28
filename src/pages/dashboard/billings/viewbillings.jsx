@@ -94,19 +94,6 @@ const ViewBillings = () => {
     }
   }, [selectedBill]);
 
-  // const handleSave = () => {
-  //   if (billingsdata.id) {
-  //     // Create new bill
-  //     dispatch(
-  //       CreateBill({
-  //         ...billingsdata,
-  //         orderItems: items,
-  //       })
-  //     ).then(() => {
-  //       navigate("/dashboard/billings");
-  //     });
-  //   }
-  // };
   const handleSave = () => {
     const payload = {
       ...billingsdata,
