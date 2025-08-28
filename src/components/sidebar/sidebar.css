@@ -11,7 +11,7 @@
     width: 20% ;
     position: fixed;
   } 
-  .side-nav-bar-container.expand {}
+  /* .side-nav-bar-container.expand {} */
 
   .logo-row {
     display: flex;
