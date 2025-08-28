@@ -1,3 +1,5 @@
+
+
 /* .card-container-main {
   display: grid;
   grid-template-columns: 1fr; 
@@ -8,6 +10,9 @@
 .report-container {
   grid-column: span 12;
 }
+.card-container-main{
+  margin-left: 0 !important;
+}
 
 .dashboard-container {
   display: grid;
@@ -16,6 +21,7 @@
   width: 95%;
   padding-bottom: 25px;
   position: absolute;
+  margin-left: 0% !important;
   /* top: 10vh; */
   /* right: 0; */
 }
@@ -130,6 +136,7 @@
   display: flex;
   gap: 5px;
 }
+
 /* Box */
 .report-box {
   background: white;
@@ -169,6 +176,7 @@
 }
 
 @media screen and (max-width: 600px) {
+
   /* .card-container-main {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -177,21 +185,39 @@
     grid-row-gap: 0px;
   } */
   .card-container-main {
-    grid-template-columns: 1fr; /* one column */
-    gap: 30px;
+    grid-template-columns: 1fr;
+    /* one column */
+    /* margin-left: 50%; */
   }
+
   .card-1,
   .card-2 {
+    height: auto;
     width: 100%;
+    padding-bottom: 20px;
+
   }
+
+  .card-2 {
+    margin-top: 20px;
+  }
+  .dashboard-container {
+    margin-left: 0% !important ;
+  }
+
 }
 
 /* Tablet & desktop (>=600px) */
 @media screen and (min-width: 600px) {
   .card-container-main {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns */
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }
+  .dashboard-container {
+    margin-left: 0;
+  }
+
   /* } */
 }

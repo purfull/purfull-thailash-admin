@@ -3,7 +3,16 @@
   .side-nav-bar-container {
     height: 200vh;
     background-color: #046e3d;
+    /* position: fixed; */
+    /* width: 22%; */
   }
+    .side-nav-bar-container.collapsed,
+  .side-nav-bar-container.expand {
+    width: 20% ;
+    position: fixed;
+  } 
+  .side-nav-bar-container.expand {}
+
   .logo-row {
     display: flex;
     align-items: center;
@@ -24,6 +33,9 @@
 
   .menu-class-bar {
     margin-left: 0 !important;
+  }
+  .side-nav-menu-wrapper{
+    position: fixed;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -204,4 +216,4 @@
   .side-nav-bar-container.collapsed,
   .side-nav-bar-container.expand {
     width: 20% !important;
-  } */
+  } 

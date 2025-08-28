@@ -24,8 +24,14 @@
     right: 0 !important;
     top: 10vh !important;
     width: 75% !important;
+    background-color: red;
+    margin-left: 25%;
     left: 0 !important; /* take full width when sidebar hidden */
   }
+  /* .ant-pagination {
+    background-color: red;
+  margin-left: 20px !important; /* change value as needed */
+/* } */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
