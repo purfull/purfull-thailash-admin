@@ -62,6 +62,9 @@ textarea.form-control {
 @media (max-width: 600px) {
   .main-container {
     padding: 20px;
-    margin: 20px;
+    margin-top: 10px;
+  }
+  .name-labels {
+    width: 25%;
   }
 }
