@@ -250,13 +250,13 @@ table {
   gap: 20px;
 }
 
-.order-form .ant-form-item-label>label::after {
+.order-form .ant-form-item-label > label::after {
   margin-left: 15px;
   /* add little space after colon */
 }
 
 /* apply only to this label */
-.view-order-tag .ant-form-item-label>label {
+.view-order-tag .ant-form-item-label > label {
   margin-right: 20px;
   display: flex;
 }
@@ -360,12 +360,12 @@ table {
 }
 
 /* Checked state */
-.switch-box:checked+.slider {
+.switch-box:checked + .slider {
   background-color: #1890ff;
   /* Ant Design blue */
 }
 
-.switch-box:checked+.slider:before {
+.switch-box:checked + .slider:before {
   transform: translateX(22px);
 }
 
@@ -392,7 +392,7 @@ table {
   display: flex;
 }
 
-.formOrder-heading .ant-form-item-label>label {
+.formOrder-heading .ant-form-item-label > label {
   width: 26%;
   display: flex;
   font-size: 16px;
@@ -435,7 +435,6 @@ table {
 }
 
 @media screen and (max-width: 600px) {
-
   /* Make grid single column */
   .view-billings-input-styles {
     display: grid;
@@ -462,10 +461,27 @@ table {
   .formOrder-input {
     width: 100%;
   }
+
+  .tax-inputs {
+    flex-direction: column; /* stack vertically */
+    align-items: flex-start; /* align to left */
+    gap: 1rem; /* smaller gap for mobile */
+    width: 100%; /* take full width */
+  }
+
+  .tax-inputs label {
+    width: 100%; /* each label covers full width */
+    display: flex;
+    justify-content: space-between; /* label + input aligned */
+  }
+
+  .tax-inputs input[type="number"] {
+    width: 100%; /* make input stretch full width */
+    max-width: none;
+  }
 }
 
-
-@media screen and (min-width : 600px) {
+@media screen and (min-width: 600px) {
   .view-billings-input-styles {
     display: grid;
     grid-template-columns: 1fr;
@@ -473,11 +489,9 @@ table {
     gap: 15px;
     margin: 20px;
   }
-
 }
 
-@media screen and (min-width : 768px) {
-
+@media screen and (min-width: 768px) {
   .view-billings-input-styles {
     display: grid;
     grid-template-columns: 1fr;
@@ -487,13 +501,10 @@ table {
 
   .view-order-buttons {
     margin-top: 25px;
-
   }
-
-
 }
 
-@media screen and (min-width : 992px) {
+@media screen and (min-width: 992px) {
   .view-billings-input-styles {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -504,6 +515,4 @@ table {
     padding: 1rem;
     padding-top: 25px;
   }
-
-
 }
