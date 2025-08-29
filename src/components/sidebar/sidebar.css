@@ -38,6 +38,533 @@
     position: fixed;
   }
 }
+
+@media screen and (min-width : 600px) {
+     .hamburger-menu {
+    display: none;
+  }
+
+  * {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .side-nav-bar-container {
+    /* width: 100%; */
+    /* height: 100%; */
+    width: 22%;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    background-color: #046e3d;
+  }
+
+  .ant-menu-root.menu-bar {
+    background-color: #046e3d;
+  }
+
+  .side-nav-logo-container {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 16px; */
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .logo-icon {
+    color: #841d2e;
+    margin-right: 10px;
+    display: none;
+  }
+  /* .logo-image img {
+  width: 70%;   /* increase width */
+  /* height: auto;    */
+}
+
+.logo-image,
+.ant-menu-title-content {
+  display: inline-flex !important;
+}
+
+.logo-image img {
+  padding: 5px 10px;
+  width: 160px;
+  height: auto;
+}
+
+.side-nav-bar-container .ant-menu {
+  padding: 20px auto !important;
+}
+
+.side-nav-bar-container .ant-menu-inline {
+  width: 100% !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-title {
+  margin: 0;
+  width: 100%;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu span {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  min-height: 38px;
+  color: var(--primary-text-color);
+}
+
+.side-nav-bar-container .ant-menu-submenu-arrow {
+  color: var(--primary-text-color);
+  transform: rotate(-90deg);
+}
+
+.side-nav-bar-container .ant-menu-submenu,
+.side-nav-bar-container .ant-menu-item {
+  margin: auto;
+}
+
+.side-nav-bar-container .ant-menu-submenu > ul {
+  background-color: inherit !important;
+  list-style: disc !important;
+}
+
+.side-nav-bar-container .ant-menu-item-icon {
+  font-size: 12px;
+  font-weight: bolder !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-submenu-arrow {
+  transform: rotate(-180deg) !important;
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-item-icon {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .side-nav-logo-container {
+  width: 95%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  font-weight: 600;
+  height: 10vh !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-item-icon,
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-submenu-arrow {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-item-selected {
+  color: #fff !important;
+}
+
+/* .side-nav-bar-container .menu-bar .ant-menu-item-selected {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  }
+
+  .side-nav-bar-container .menu-bar .ant-menu-item-selected .ant-menu-title-content {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  } */
+
+.side-nav-bar-container .menu-bar .ant-menu-item-selected {
+  color: #fff !important;
+  background-color: rgba(246, 255, 250, 0.1) !important;
+}
+
+/* Remove background from text content */
+.side-nav-bar-container
+  .menu-bar
+  .ant-menu-item-selected
+  .ant-menu-title-content {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.ant-menu-title-content {
+  color: white;
+  opacity: 0.5;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu {
+  width: 90%;
+  margin: 8px auto;
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px !important;
+  color: white !important;
+  padding-right: 10px !important;
+}
+
+
+  
+
+
+@media screen and (min-width : 768px) {
+   .hamburger-menu {
+    display: none;
+  }
+
+  * {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .side-nav-bar-container {
+    /* width: 100%; */
+    /* height: 100%; */
+    width: 22%;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    background-color: #046e3d;
+  }
+
+  .ant-menu-root.menu-bar {
+    background-color: #046e3d;
+  }
+
+  .side-nav-logo-container {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 16px; */
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .logo-icon {
+    color: #841d2e;
+    margin-right: 10px;
+    display: none;
+  }
+  /* .logo-image img {
+  width: 70%;   /* increase width */
+  /* height: auto;    */
+}
+
+.logo-image,
+.ant-menu-title-content {
+  display: inline-flex !important;
+}
+
+.logo-image img {
+  padding: 5px 10px;
+  width: 160px;
+  height: auto;
+}
+
+.side-nav-bar-container .ant-menu {
+  padding: 20px auto !important;
+}
+
+.side-nav-bar-container .ant-menu-inline {
+  width: 100% !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-title {
+  margin: 0;
+  width: 100%;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu span {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  min-height: 38px;
+  color: var(--primary-text-color);
+}
+
+.side-nav-bar-container .ant-menu-submenu-arrow {
+  color: var(--primary-text-color);
+  transform: rotate(-90deg);
+}
+
+.side-nav-bar-container .ant-menu-submenu,
+.side-nav-bar-container .ant-menu-item {
+  margin: auto;
+}
+
+.side-nav-bar-container .ant-menu-submenu > ul {
+  background-color: inherit !important;
+  list-style: disc !important;
+}
+
+.side-nav-bar-container .ant-menu-item-icon {
+  font-size: 12px;
+  font-weight: bolder !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-submenu-arrow {
+  transform: rotate(-180deg) !important;
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-item-icon {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .side-nav-logo-container {
+  width: 95%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  font-weight: 600;
+  height: 10vh !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-item-icon,
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-submenu-arrow {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-item-selected {
+  color: #fff !important;
+}
+
+/* .side-nav-bar-container .menu-bar .ant-menu-item-selected {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  }
+
+  .side-nav-bar-container .menu-bar .ant-menu-item-selected .ant-menu-title-content {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  } */
+
+.side-nav-bar-container .menu-bar .ant-menu-item-selected {
+  color: #fff !important;
+  background-color: rgba(246, 255, 250, 0.1) !important;
+}
+
+/* Remove background from text content */
+.side-nav-bar-container
+  .menu-bar
+  .ant-menu-item-selected
+  .ant-menu-title-content {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.ant-menu-title-content {
+  color: white;
+  opacity: 0.5;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu {
+  width: 90%;
+  margin: 8px auto;
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px !important;
+  color: white !important;
+  padding-right: 10px !important;
+}
+
+@media screen and (min-width : 992px) {
+   .hamburger-menu {
+    display: none;
+  }
+
+  * {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .side-nav-bar-container {
+    /* width: 100%; */
+    /* height: 100%; */
+    position: fixed;
+    height: 100vh;
+    width: 20%;
+    z-index: 100;
+    background-color: #046e3d;
+  }
+
+  .ant-menu-root.menu-bar {
+    background-color: #046e3d;
+  }
+
+  .side-nav-logo-container {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 16px; */
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .logo-icon {
+    color: #841d2e;
+    margin-right: 10px;
+    display: none;
+  }
+  /* .logo-image img {
+  width: 70%;   /* increase width */
+  /* height: auto;    */
+}
+
+.logo-image,
+.ant-menu-title-content {
+  display: inline-flex !important;
+}
+
+.logo-image img {
+  padding: 5px 10px;
+  width: 160px;
+  height: auto;
+}
+
+.side-nav-bar-container .ant-menu {
+  padding: 20px auto !important;
+}
+
+.side-nav-bar-container .ant-menu-inline {
+  width: 100% !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-title {
+  margin: 0;
+  width: 100%;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu span {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  min-height: 38px;
+  color: var(--primary-text-color);
+}
+
+.side-nav-bar-container .ant-menu-submenu-arrow {
+  color: var(--primary-text-color);
+  transform: rotate(-90deg);
+}
+
+.side-nav-bar-container .ant-menu-submenu,
+.side-nav-bar-container .ant-menu-item {
+  margin: auto;
+}
+
+.side-nav-bar-container .ant-menu-submenu > ul {
+  background-color: inherit !important;
+  list-style: disc !important;
+}
+
+.side-nav-bar-container .ant-menu-item-icon {
+  font-size: 12px;
+  font-weight: bolder !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-submenu-arrow {
+  transform: rotate(-180deg) !important;
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-open .ant-menu-item-icon {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .side-nav-logo-container {
+  width: 95%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  font-weight: 600;
+  height: 10vh !important;
+}
+
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-item-icon,
+.side-nav-bar-container .ant-menu-submenu-selected .ant-menu-submenu-arrow {
+  color: #841d2e !important;
+}
+
+.side-nav-bar-container .ant-menu-item-selected {
+  color: #fff !important;
+}
+
+/* .side-nav-bar-container .menu-bar .ant-menu-item-selected {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  }
+
+  .side-nav-bar-container .menu-bar .ant-menu-item-selected .ant-menu-title-content {
+    color: #fff !important;
+    background-color: rgba(246, 255, 250, 0.2) !important;
+  } */
+
+.side-nav-bar-container .menu-bar .ant-menu-item-selected {
+  color: #fff !important;
+  background-color: rgba(246, 255, 250, 0.1) !important;
+}
+
+/* Remove background from text content */
+.side-nav-bar-container
+  .menu-bar
+  .ant-menu-item-selected
+  .ant-menu-title-content {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.ant-menu-title-content {
+  color: white;
+  opacity: 0.5;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu {
+  width: 90%;
+  margin: 8px auto;
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px !important;
+  color: white !important;
+  padding-right: 10px !important;
+}
+
 @media screen and (min-width: 1200px) {
   .hamburger-menu {
     display: none;
