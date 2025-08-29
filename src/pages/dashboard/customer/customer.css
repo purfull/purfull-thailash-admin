@@ -1,49 +1,98 @@
  @media screen and (max-width :600px) {
 
-     .flex {
-         background-color: red;
-
+     .grid-container {
+         padding: 20px 15px;
+         grid-template-columns: 2fr;
      }
+
+     .customer-cancel-button {
+
+         margin-left: 18px !important;
+     }
+
+
+ }
+
+ @media screena and (min-width : 600px) {
+     .grid-container {
+         padding: 20px 15px;
+         grid-template-columns: 2fr;
+         margin: 15px;
+         background-color: red;
+     }
+
+     .customer-cancel-button {
+
+         margin-left: 15px !important;
+     }
+
+ }
+
+ @media screen and (min-width : 768px) {
 
      .grid-container {
          padding: 20px 15px;
          grid-template-columns: 2fr;
-         /* 1 column on mobile */
+     }
+
+     .customer-cancel-button {
+
+         margin-left: 18px !important;
+     }
+
+ }
+
+ @media screen and (min-width : 992px) {
+     .grid-container {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 10px;
+     }
+
+     .customer-cancel-button {
+         padding: 15px;
+         margin-top: 16px;
+     }
+
+    .grid-for-customer {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         /* left and right columns */
+         /* gap: 30px;  */
+         row-gap: 30px;
+         column-gap: 100px;
+         width: 100%;
+         /* take full container width */
+
+     }
+
+     .column-height {
+         height: 60vh;
+         display: grid;
      }
 
 
 
  }
 
- /* .flex {
-} */
-
 
  @media screen and (min-width :1200px) {
      .grid-container {
          display: grid;
          grid-template-columns: repeat(2, 1fr);
-         /* 2 columns by default */
          gap: 25px;
-         /* space between fields */
      }
-/* 
-     .flex-one {
-         display: grid;
-         grid-template-columns: repeat(2, 1fr);
-         grid-template-rows: 1fr;
-         grid-column-gap: 10px;
-         grid-row-gap: 0px;
-         display: flex !important;
-         align-items: center !important;
 
-     } */
+     .customer-cancel-button {
+         padding: 15px;
+         margin-top: 16px;
+     }
+
+
 
      .grid-for-customer {
          display: grid;
          grid-template-columns: 1fr 1fr;
-         /* left and right columns */
-         /* gap: 30px;  */
          row-gap: 30px;
          column-gap: 100px;
          width: 100%;

@@ -152,8 +152,8 @@ const ViewCustomer = () => {
 
       </div>
       <Button
-        style={{ marginTop: 16 }}
         onClick={() => navigate("/dashboard/customer")}
+        className="customer-cancel-button"
       >
         Cancel
       </Button>

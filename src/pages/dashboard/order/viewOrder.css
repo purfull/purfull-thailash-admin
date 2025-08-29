@@ -1,4 +1,107 @@
-/* Center the card */
+
+@media screen and (max-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* stack into 1 column */
+    margin: 10px;
+  }
+  .grid-item {
+    flex-direction: column;
+    align-items: flex-start;
+    display: grid;
+    padding-bottom: 10px;
+  }
+  .grid-item label {
+    /* min-width: auto; */
+    padding: 10px 0px;
+  }
+  .grid-item-refund {
+    padding-top: 10px;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+  }
+  .invoice-container {
+    width: 300%;
+  }
+}
+
+
+@media screen and (min-width : 600px) {
+    .grid-container {
+    padding: 10px ;
+    margin: 15px;
+  }
+  .customer-cancel-button {
+    margin: 10px 20px;
+  }
+  
+}
+
+@media screen and (min-width : 768px) {
+  .grid-container {
+    padding: 10px  !important;
+    margin: 15px;
+    display: grid;
+    gap: 20px;
+  }
+  .customer-cancel-button {
+    margin: 10px 20px;
+  }
+  .grid-item{
+    display: grid;
+    gap: 15px;
+  }
+  .grid-item-refund{
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+
+  }
+  .order-download-button{
+    margin-top: 35px;
+    padding: 12px 20px;
+  }
+  .view-order-buttons{
+    margin-top: 20px;
+  }
+  
+}
+
+@media screen and (min-width : 992px) {
+
+  .grid-container {
+    padding: 10px  !important;
+    margin: 15px;
+    display: grid;
+    gap: 18px;
+  }
+  .customer-cancel-button {
+    margin: 10px 20px;
+  }
+    .grid-item{
+    display: grid;
+    gap: 15px;
+  }
+  .grid-item-refund{
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+
+  }
+  .order-download-button{
+    margin-top: 35px;
+    padding: 12px 20px;
+  }
+  .view-order-buttons{
+    margin-top: 20px;
+  }
+  
+}
+
+@media screen and (min-width : 1200px) {
+  
+    /* Center the card */
 .view-order-container {
   max-width: 600px;
   margin: 20px auto;
@@ -137,29 +240,5 @@
   text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr; /* stack into 1 column */
-    margin-left: 10px;
-  }
-  .grid-item {
-    flex-direction: column;
-    align-items: flex-start;
-    display: grid;
-    padding-bottom: 10px;
-  }
-  .grid-item label {
-    /* min-width: auto; */
-    padding: 10px 0px;
-  }
-  .grid-item-refund {
-    padding-top: 10px;
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-  }
-  .invoice-container {
-    width: 300%;
-  }
+
 }

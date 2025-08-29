@@ -112,7 +112,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
 
-      <h2>Dashboard Reports</h2>
+      <h2 className="dashboard-tittle-banner">Dashboard Reports</h2>
 
       <div className="card-container-main">
         <div className="card-1">

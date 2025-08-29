@@ -16,9 +16,7 @@ import Logo from "../sidebar/assets/logoWhite.png";
 const SideNavBar = ({ expand, toggleexpanded }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
-  const [isTablet, setIsTablet] = useState(
-    window.innerWidth > 600 && window.innerWidth < 992
-  );
+  const [isTablet, setIsTablet] = useState(window.innerWidth > 600 && window.innerWidth < 992);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
 
   useEffect(() => {

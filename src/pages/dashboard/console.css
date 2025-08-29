@@ -67,10 +67,10 @@
 @media only screen and (min-width: 600px) {
   .outlet-containerr {
     position: absolute !important;
-    padding: 6px !important;
+    /* padding: 6px !important; */
     right: 0 !important;
-    top: 5vh !important;
-    width: 90% !important;
+    top: 0.5vh !important;
+    width: 80% !important;
   }
 }
 
@@ -78,10 +78,11 @@
 @media only screen and (min-width: 768px) {
   .outlet-containerr {
     position: absolute !important;
-    padding: 6px !important;
+    padding: 5px 15px !important;
     right: 0 !important;
-    top: 10vh !important;
-    width: 90% !important;
+    top: 0vh !important;
+    width:78% !important;
+
   }
 }
 
@@ -91,7 +92,7 @@
     position: absolute !important;
     padding: 6px !important;
     right: 0 !important;
-    top: 10vh !important;
+    top: 0vh !important;
     width: 80% !important;
   }
 }
@@ -100,9 +101,57 @@
 @media only screen and (min-width: 1200px) {
   .outlet-containerr {
     position: absolute !important;
-    padding: 24px !important;
+    padding: 20px !important;
     right: 0 !important;
     top: 0vh !important;
     width: 80% !important;
   }
+  .console-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* full height */
+  overflow: hidden; /* prevent double scroll */
+}
+.console-sidebar {
+  /* position: absolute; */
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #046e3d; /* so it's visible */
+  transition: width 0.3s ease;
+  z-index: 1000; /* stay on top */
+}
+.console-container > nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10vh;
+  z-index: 1100;
+}
+
+/* Expand / collapsed sidebar */
+.console-sidebar.expand {
+  width: 220px;
+}
+.console-sidebar.collapsed {
+  width: 60px;
+}
+/* Content area scrolls */
+.outlet-containerr {
+  margin-top: 10vh; /* below navbar */
+  margin-left: 220px; /* next to sidebar */
+  padding: 16px;
+  height: calc(100vh - 10vh);
+  overflow-y: auto; /* allow table/content to scroll */
+  transition: margin-left 0.3s ease;
+}
+
+/* When sidebar collapsed */
+.console-sidebar.collapsed ~ .outlet-containerr {
+  margin-left: 60px;
+}
 }
