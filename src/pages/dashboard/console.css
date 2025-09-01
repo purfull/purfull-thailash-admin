@@ -67,10 +67,11 @@
 @media only screen and (min-width: 600px) {
   .outlet-containerr {
     position: absolute !important;
-    /* padding: 6px !important; */
+    padding: 25px  30px !important;
     right: 0 !important;
     top: 0.5vh !important;
-    width: 80% !important;
+    margin-left: 10% !important;
+    /* width: 80% !important; */
   }
 }
 
@@ -78,7 +79,7 @@
 @media only screen and (min-width: 768px) {
   .outlet-containerr {
     position: absolute !important;
-    padding: 5px 15px !important;
+    padding: 5px 25px !important;
     right: 0 !important;
     top: 0vh !important;
     width:78% !important;

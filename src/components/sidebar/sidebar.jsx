@@ -13,18 +13,34 @@ import { Link } from "react-router-dom";
 import "./sidebar.css";
 import Logo from "../sidebar/assets/logoWhite.png";
 
+// const SideNavBar = ({ expand, toggleexpanded }) => {
+//   const [collapsed, setCollapsed] = useState(false);
+//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+//   const [isTablet, setIsTablet] = useState(window.innerWidth > 600 && window.innerWidth < 767);
+//   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       const width = window.innerWidth;
+//       setIsMobile(width <= 600);
+//       setIsTablet(width > 600 && width < 767);
+//       setIsDesktop(width >= 768);
+//     };
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
 const SideNavBar = ({ expand, toggleexpanded }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
-  const [isTablet, setIsTablet] = useState(window.innerWidth > 600 && window.innerWidth < 992);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
+  const [isTablet, setIsTablet] = useState(window.innerWidth > 600 && window.innerWidth < 768);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       setIsMobile(width <= 600);
-      setIsTablet(width > 600 && width < 992);
-      setIsDesktop(width >= 992);
+      setIsTablet(width > 600 && width < 768);
+      setIsDesktop(width >= 768);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
