@@ -5,10 +5,7 @@
 }
 
 @media screen and (max-width: 600px) {
- 
-}
-
-.login-component {
+    .login-component {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -96,7 +93,7 @@
 
 .login-card {
     /* width: 30%; */
-    max-width: 80%;
+        max-width: 80%;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
@@ -216,4 +213,865 @@
 .underline-link {
     text-decoration: underline;
     color: #3b4056;
+}
+ 
+}
+
+@media screen and (min-width : 600px) {
+    
+.login-component {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0px;
+}
+.login-wrapper{
+    background-color: #006D3B ;
+}
+
+.login-component .login-image {
+    /* background-image: url('../Images/LoginImage.png'); */
+    background-size: contain;
+    background-position: center;
+    background-color: #F7F7F9;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-form-container {
+    
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.login-form-container .welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.login-form-container .signin-message {
+    color: #676b7b;
+    margin-bottom: 15px;
+}
+
+.login-form-container .inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.login-form-container .sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 20px 20px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.login-form-container .sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.login-form-container .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.login-form-container .forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.login-form-container .forgot-password:hover {
+    color: #823ce4;
+}
+
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    /* width: 30%; */
+        max-width: 50%;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.login-form-container {
+    /* width: 100%;
+    max-width: 85%; */
+    /* max-width: 85%; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #823ce4;
+}
+
+.sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 12px 16px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.or-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.or-line {
+    width: 45%;
+    border: 1px solid #d9d9d9;
+}
+
+.or-text {
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.google-button-text {
+    color: #3b4056;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.account-switch {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.switch-link {
+    color: #006D3B;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.terms-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: gray;
+    margin-top: 10px;
+}
+
+.underline-link {
+    text-decoration: underline;
+    color: #3b4056;
+}
+
+}
+
+@media screen and (min-width : 768px) {
+
+.login-component {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0px;
+}
+.login-wrapper{
+    background-color: #006D3B ;
+}
+
+.login-component .login-image {
+    /* background-image: url('../Images/LoginImage.png'); */
+    background-size: contain;
+    background-position: center;
+    background-color: #F7F7F9;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-form-container {
+    
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.login-form-container .welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.login-form-container .signin-message {
+    color: #676b7b;
+    margin-bottom: 15px;
+}
+
+.login-form-container .inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.login-form-container .sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 20px 20px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.login-form-container .sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.login-form-container .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.login-form-container .forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.login-form-container .forgot-password:hover {
+    color: #823ce4;
+}
+
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    /* width: 30%; */
+        max-width: 50%;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.login-form-container {
+    /* width: 100%;
+    max-width: 85%; */
+    /* max-width: 85%; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #823ce4;
+}
+
+.sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 12px 16px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.or-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.or-line {
+    width: 45%;
+    border: 1px solid #d9d9d9;
+}
+
+.or-text {
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.google-button-text {
+    color: #3b4056;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.account-switch {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.switch-link {
+    color: #006D3B;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.terms-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: gray;
+    margin-top: 10px;
+}
+
+.underline-link {
+    text-decoration: underline;
+    color: #3b4056;
+}
+
+    
+}
+
+@media screen and (min-width : 992px) {
+    
+.login-component {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0px;
+}
+.login-wrapper{
+    background-color: #006D3B ;
+}
+
+.login-component .login-image {
+    /* background-image: url('../Images/LoginImage.png'); */
+    background-size: contain;
+    background-position: center;
+    background-color: #F7F7F9;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-form-container {
+    
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.login-form-container .welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.login-form-container .signin-message {
+    color: #676b7b;
+    margin-bottom: 15px;
+}
+
+.login-form-container .inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.login-form-container .sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 20px 20px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.login-form-container .sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.login-form-container .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.login-form-container .forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.login-form-container .forgot-password:hover {
+    color: #823ce4;
+}
+
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    /* width: 30%; */
+        max-width: 50%;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.login-form-container {
+    /* width: 100%;
+    max-width: 85%; */
+    /* max-width: 85%; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #823ce4;
+}
+
+.sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 12px 16px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.or-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.or-line {
+    width: 45%;
+    border: 1px solid #d9d9d9;
+}
+
+.or-text {
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.google-button-text {
+    color: #3b4056;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.account-switch {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.switch-link {
+    color: #006D3B;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.terms-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: gray;
+    margin-top: 10px;
+}
+
+.underline-link {
+    text-decoration: underline;
+    color: #3b4056;
+}
+    
+}
+
+@media screen and (min-width : 1200px) {
+    
+.login-component {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0px;
+}
+.login-wrapper{
+    background-color: #006D3B ;
+}
+
+.login-component .login-image {
+    /* background-image: url('../Images/LoginImage.png'); */
+    background-size: contain;
+    background-position: center;
+    background-color: #F7F7F9;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-form-container {
+    
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    margin: auto;
+}
+
+.login-form-container .welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.login-form-container .signin-message {
+    color: #676b7b;
+    margin-bottom: 15px;
+}
+
+.login-form-container .inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.login-form-container .sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 20px 20px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.login-form-container .sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.login-form-container .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.login-form-container .forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.login-form-container .forgot-password:hover {
+    color: #823ce4;
+}
+
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    /* width: 30%; */
+    max-width: 30%;
+    background-color:white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.login-form-container {
+    /* width: 100%;
+    max-width: 85%; */
+    /* max-width: 85%; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3b4056;
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b4056;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.forgot-password {
+    color: #006D3B;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #823ce4;
+}
+
+.sign-in-button {
+    color: #fff !important;
+    background-color: #006D3B !important;
+    border-color: #006D3B !important;
+    transition: opacity 0.5s ease !important;
+    padding: 12px 16px !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.sign-in-button.clicked {
+    opacity: 0.3 !important;
+}
+
+.or-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.or-line {
+    width: 45%;
+    border: 1px solid #d9d9d9;
+}
+
+.or-text {
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.google-button-text {
+    color: #3b4056;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.account-switch {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3b4056;
+    font-weight: 500;
+}
+
+.switch-link {
+    color: #006D3B;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.terms-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: gray;
+    margin-top: 10px;
+}
+
+.underline-link {
+    text-decoration: underline;
+    color: #3b4056;
+}
+
+
+    
 }
