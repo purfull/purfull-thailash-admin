@@ -505,14 +505,25 @@ table {
 }
 
 @media screen and (min-width: 992px) {
-  .view-billings-input-styles {
+   .view-billings-input-styles {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* stack fields in one column */
+    gap: 15px;
+  }
+ 
+}
+
+@media screen and (min-width : 1200px) {
+   .view-billings-input-styles {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     /* grid-row-gap: 15px;  */
     /* grid-template-columns: 1fr 1fr; */
     gap: 1rem;
-    padding: 1rem;
+    padding: 0.1rem;
     padding-top: 25px;
   }
+  
 }

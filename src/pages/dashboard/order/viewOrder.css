@@ -146,7 +146,9 @@
     gap: 20px;
     width: 90%;
   }
-
+ .invoice-container {
+    width: 100%;
+  }
   .order-form .ant-form-item-label > label::after {
     margin-left: 15px; /* add little space after colon */
   }
