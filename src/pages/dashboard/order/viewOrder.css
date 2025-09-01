@@ -1,4 +1,3 @@
-
 @media screen and (max-width: 600px) {
   .grid-container {
     display: grid;
@@ -24,23 +23,64 @@
   .invoice-container {
     width: 300%;
   }
+  .order-download-button {
+    font-size: 1rem;
+    /* text-2xl */
+    color: #fff;
+    background-color: #046e3d;
+    margin-top: 30px;
+  }
+  .order-invoice-container {
+    text-align: center;
+    justify-content: center;
+  }
 }
 
-
-@media screen and (min-width : 600px) {
-    .grid-container {
-    padding: 10px ;
+@media screen and (min-width: 600px) {
+  .grid-container {
+    padding: 10px;
     margin: 15px;
   }
   .customer-cancel-button {
     margin: 10px 20px;
   }
-  
+  .order-download-button {
+    font-size: 1rem;
+    /* text-2xl */
+    color: #fff;
+    background-color: #046e3d;
+    margin-top: 30px;
+  }
+  .order-invoice-container {
+    text-align: center;
+    justify-content: center;
+  }
+  .invoice-container {
+    width: 150%;
+  }
+  .order-download-button {
+    /* width: 100%;  */
+    margin-bottom: 15px;
+  }
+
+  .view-order-buttons {
+    position: relative;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+  }
+  /* 
+  .view-order-buttons button {
+    width: 100%;
+  } */
 }
 
-@media screen and (min-width : 768px) {
+@media screen and (min-width: 768px) {
   .grid-container {
-    padding: 10px  !important;
+    padding: 10px !important;
     margin: 15px;
     display: grid;
     gap: 20px;
@@ -48,30 +88,27 @@
   .customer-cancel-button {
     margin: 10px 20px;
   }
-  .grid-item{
+  .grid-item {
     display: grid;
     gap: 15px;
   }
-  .grid-item-refund{
+  .grid-item-refund {
     margin-top: 15px;
     display: flex;
     gap: 20px;
-
   }
-  .order-download-button{
+  .order-download-button {
     margin-top: 35px;
     padding: 12px 20px;
   }
-  .view-order-buttons{
+  .view-order-buttons {
     margin-top: 20px;
   }
-  
 }
 
-@media screen and (min-width : 992px) {
-
+@media screen and (min-width: 992px) {
   .grid-container {
-    padding: 10px  !important;
+    padding: 10px !important;
     margin: 15px;
     display: grid;
     gap: 18px;
@@ -79,166 +116,161 @@
   .customer-cancel-button {
     margin: 10px 20px;
   }
-    .grid-item{
+  .grid-item {
     display: grid;
     gap: 15px;
   }
-  .grid-item-refund{
+  .grid-item-refund {
     margin-top: 15px;
     display: flex;
     gap: 20px;
-
   }
-  .order-download-button{
+  .order-download-button {
     margin-top: 35px;
     padding: 12px 20px;
   }
-  .view-order-buttons{
+  .view-order-buttons {
     margin-top: 20px;
   }
-  
 }
 
-@media screen and (min-width : 1200px) {
-  
-    /* Center the card */
-.view-order-container {
-  max-width: 600px;
-  margin: 20px auto;
-}
+@media screen and (min-width: 1200px) {
+  /* Center the card */
+  .view-order-container {
+    max-width: 600px;
+    margin: 20px auto;
+  }
 
-.view-order-tag {
-  display: grid;
-  gap: 20px;
-  width: 90%;
-}
+  .view-order-tag {
+    display: grid;
+    gap: 20px;
+    width: 90%;
+  }
 
-.order-form .ant-form-item-label > label::after {
-  margin-left: 15px; /* add little space after colon */
-}
-/* apply only to this label */
-.view-order-tag .ant-form-item-label > label {
-  margin-right: 20px;
-  display: flex;
-}
+  .order-form .ant-form-item-label > label::after {
+    margin-left: 15px; /* add little space after colon */
+  }
+  /* apply only to this label */
+  .view-order-tag .ant-form-item-label > label {
+    margin-right: 20px;
+    display: flex;
+  }
 
-.view-name {
-  width: 100%;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 5px 0px;
-}
+  .view-name {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px 0px;
+  }
 
-.view-order-container .ant-input[disabled] {
-  background-color: #f5f5f5;
-  color: #555;
-}
+  .view-order-container .ant-input[disabled] {
+    background-color: #f5f5f5;
+    color: #555;
+  }
 
-/* Adjust spacing between form items */
-.view-order-container .ant-form-item {
-  margin-bottom: 16px;
-}
+  /* Adjust spacing between form items */
+  .view-order-container .ant-form-item {
+    margin-bottom: 16px;
+  }
 
-/* Spinner center alignment */
-.view-order-loading {
-  display: block;
-  margin: 50px auto;
-}
+  /* Spinner center alignment */
+  .view-order-loading {
+    display: block;
+    margin: 50px auto;
+  }
 
-/* Not found message */
-.view-order-not-found {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 16px;
-  color: #888;
-}
+  /* Not found message */
+  .view-order-not-found {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 16px;
+    color: #888;
+  }
 
-.vieworder-cancelbutton,
-.vieworder-savebutton {
-  background-color: #046e3d;
-  color: #f5f5f5;
-}
+  .vieworder-cancelbutton,
+  .vieworder-savebutton {
+    background-color: #046e3d;
+    color: #f5f5f5;
+  }
 
-/* .order-form {
+  /* .order-form {
   width: 100%;
 } */
 
-/* .formOrder-heading {
+  /* .formOrder-heading {
   width: 25%;
 }
 .formOrder-input {
   width: 75%;
 } */
-.view-order-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  width: 95%;
-  padding: 20px;
-  justify-content: flex-end;
-}
+  .view-order-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 95%;
+    padding: 20px;
+    justify-content: flex-end;
+  }
 
-/* The switch container */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 28px;
-}
+  /* The switch container */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+  }
 
-/* Hide default checkbox */
-.switch-box {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+  /* Hide default checkbox */
+  .switch-box {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 
-/* The slider (background of toggle) */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-}
+  /* The slider (background of toggle) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
 
-/* The circle inside */
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
+  /* The circle inside */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
 
-/* Checked state */
-.switch-box:checked + .slider {
-  background-color: #1890ff; /* Ant Design blue */
-}
+  /* Checked state */
+  .switch-box:checked + .slider {
+    background-color: #1890ff; /* Ant Design blue */
+  }
 
-.switch-box:checked + .slider:before {
-  transform: translateX(22px);
-}
+  .switch-box:checked + .slider:before {
+    transform: translateX(22px);
+  }
 
-.order-download-button {
-  font-size: 1.5rem;
-  /* text-2xl */
-  color: #fff;
-  background-color: #046e3d;
-  margin-top: 30px;
-}
-.order-invoice-container {
-  text-align: center;
-}
-
-
+  .order-download-button {
+    font-size: 1.5rem;
+    /* text-2xl */
+    color: #fff;
+    background-color: #046e3d;
+    margin-top: 30px;
+  }
+  .order-invoice-container {
+    text-align: center;
+  }
 }

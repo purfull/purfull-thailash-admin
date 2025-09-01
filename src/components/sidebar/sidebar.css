@@ -93,11 +93,37 @@
   }
 }
 
-/* ================= Medium devices (min-width: 768px) ================= */
-@media screen and (min-width: 768px) {
-  * {
-    margin: 0;
-    padding: 0;
+/* Remove background from text content */
+.side-nav-bar-container
+  .menu-bar
+  .ant-menu-item-selected
+  .ant-menu-title-content {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.ant-menu-title-content {
+  color: white;
+  opacity: 0.5;
+}
+
+.side-nav-bar-container .ant-menu-item,
+.side-nav-bar-container .ant-menu-submenu {
+  width: 90%;
+  margin: 8px auto;
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px !important;
+  color: white !important;
+  padding-right: 10px !important;
+}
+
+
+
+@media screen and (min-width : 768px) {
+   .hamburger-menu {
+    display: none;
   }
 
   .hamburger-menu {
