@@ -21,6 +21,89 @@ const ViewOrder = () => {
     contentRef: componentRef,
   });
 
+  const styles = {
+    invoiceContainer: {
+      backgroundColor: "#fff",
+      padding: "20px",
+      marginTop: "20px",
+      border: "1px solid #e5e7eb",
+      borderRadius: "8px",
+      fontFamily: "Arial, sans-serif",
+      color: "#111",
+    },
+    invoiceHeader: {
+      position: "relative",
+      borderBottom: "1px solid #ccc",
+      paddingBottom: "10px",
+      marginBottom: "20px",
+      textAlign: "center",
+    },
+    invoiceContact: {
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      fontSize: "12px",
+      color: "#111",
+      lineHeight: "1.4",
+      margin: 0,
+    },
+    invoiceLogo: {
+      maxWidth: "120px",
+      margin: "0 auto",
+      display: "block",
+    },
+    companyName: {
+      fontSize: "18px",
+      fontWeight: "bold",
+      marginTop: "10px",
+    },
+    companyAddress: {
+      fontSize: "13px",
+      color: "#6b7280",
+    },
+    section: {
+      marginBottom: "20px",
+    },
+    table: {
+      borderCollapse: "collapse",
+      width: "100%",
+      border: "1px solid #d1d5db",
+      marginTop: "10px",
+      fontSize: "13px",
+    },
+    th: {
+      border: "1px solid #d1d5db",
+      padding: "6px",
+      backgroundColor: "#f3f4f6",
+      textAlign: "left",
+    },
+    td: {
+      border: "1px solid #d1d5db",
+      padding: "6px",
+    },
+    tdRight: {
+      textAlign: "right",
+    },
+    tdLeft: {
+      textAlign: "left",
+    },
+    tdBold: {
+      fontWeight: "bold",
+    },
+    totalRow: {
+      backgroundColor: "#f9fafb",
+    },
+    button: {
+      marginTop: "15px",
+      padding: "10px 20px",
+      backgroundColor: "#046e3d",
+      color: "#fff",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+    },
+  };
+
   useEffect(() => {
     if (!orderTableData.length) {
       dispatch(getAllProduct());
@@ -87,7 +170,7 @@ const ViewOrder = () => {
               <Input value={orderData.id} disabled />
             </Form.Item>
           </Col> */}
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Order ID"
@@ -98,7 +181,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Name"
@@ -109,7 +192,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Customer Name"
@@ -119,7 +202,7 @@ const ViewOrder = () => {
               <Input value={orderData.buyerName} disabled />
             </Form.Item>
           </Col> */}
-{/* 
+      {/* 
           <Col span={12}>
             <Form.Item
               className="view-order-tag"
@@ -131,7 +214,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Country"
@@ -141,7 +224,7 @@ const ViewOrder = () => {
               <Input value={orderData.country} disabled />
             </Form.Item>
           </Col> */}
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Pin"
@@ -152,7 +235,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="City"
@@ -162,7 +245,7 @@ const ViewOrder = () => {
               <Input value={orderData.city} disabled />
             </Form.Item>
           </Col> */}
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="State"
@@ -173,7 +256,7 @@ const ViewOrder = () => {
             </Form.Item>
           </Col> */}
 
-          {/* <Col span={12}>
+      {/* <Col span={12}>
             <Form.Item
               className="view-order-tag"
               label="Quantity"
@@ -381,209 +464,215 @@ const ViewOrder = () => {
             </Form.Item>
           </Col>
         </Row>
-      </Form> */} 
+      </Form> */}
       <Form layout="horizontal" className="order-form">
-  <div className="grid-container">
-    <div className="grid-item">
-      <label>Order ID</label>
-      <Input value={orderData.order} disabled />
-    </div>
+        <div className="grid-container">
+          <div className="grid-item">
+            <label>Order ID</label>
+            <Input value={orderData.order} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Customer Name</label>
-      <Input value={orderData.buyerName} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Customer Name</label>
+            <Input value={orderData.buyerName} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Phone</label>
-      <Input value={orderData.phone} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Phone</label>
+            <Input value={orderData.phone} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Country</label>
-      <Input value={orderData.country} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Country</label>
+            <Input value={orderData.country} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Pin</label>
-      <Input value={orderData.pin} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Pin</label>
+            <Input value={orderData.pin} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>City</label>
-      <Input value={orderData.city} disabled />
-    </div>
+          <div className="grid-item">
+            <label>City</label>
+            <Input value={orderData.city} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>State</label>
-      <Input value={orderData.state} disabled />
-    </div>
+          <div className="grid-item">
+            <label>State</label>
+            <Input value={orderData.state} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Quantity</label>
-      <Input value={orderData.quantity} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Quantity</label>
+            <Input value={orderData.quantity} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Invoice Amount</label>
-      <Input value={orderData.invoiceAmount} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Invoice Amount</label>
+            <Input value={orderData.invoiceAmount} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>TaxGross</label>
-      <Input value={orderData.taxExclusiveGross} disabled />
-    </div>
+          <div className="grid-item">
+            <label>TaxGross</label>
+            <Input value={orderData.taxExclusiveGross} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>SKU</label>
-      <Input value={orderData.sku} disabled />
-    </div>
+          <div className="grid-item">
+            <label>SKU</label>
+            <Input value={orderData.sku} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>CGST</label>
-      <Input value={orderData.cgstTax} disabled />
-    </div>
+          <div className="grid-item">
+            <label>CGST</label>
+            <Input value={orderData.cgstTax} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>SGST</label>
-      <Input value={orderData.sgstTax} disabled />
-    </div>
+          <div className="grid-item">
+            <label>SGST</label>
+            <Input value={orderData.sgstTax} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>UTGST</label>
-      <Input value={orderData.utgstTax} disabled />
-    </div>
+          <div className="grid-item">
+            <label>UTGST</label>
+            <Input value={orderData.utgstTax} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>IGST</label>
-      <Input value={orderData.igstTax} disabled />
-    </div>
+          <div className="grid-item">
+            <label>IGST</label>
+            <Input value={orderData.igstTax} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Address</label>
-      <Input value={orderData.address} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Address</label>
+            <Input value={orderData.address} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Address Type</label>
-      <Input value={orderData.address_type} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Address Type</label>
+            <Input value={orderData.address_type} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Invoice Number</label>
-      <Input value={orderData.waybill} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Invoice Number</label>
+            <Input value={orderData.waybill} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Payment Method</label>
-      <Input value={orderData.payment} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Payment Method</label>
+            <Input value={orderData.payment} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Delivery Response</label>
-      <Input value={orderData.delhivery_response} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Delivery Response</label>
+            <Input value={orderData.delhivery_response} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Shipping Mode</label>
-      <Input value={orderData.shipping_mode} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Shipping Mode</label>
+            <Input value={orderData.shipping_mode} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Remarks</label>
-      <Input value={orderData.remarks} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Remarks</label>
+            <Input value={orderData.remarks} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label>Delivery Charges</label>
-      <Input value={orderData?.productInfo?.delivery_charge} disabled />
-    </div>
+          <div className="grid-item">
+            <label>Delivery Charges</label>
+            <Input value={orderData?.productInfo?.delivery_charge} disabled />
+          </div>
 
-    <div className="grid-item">
-      <label className="">Created At</label>
-      <Input
-        value={
-          orderData.createdAt
-            ? new Date(orderData.createdAt).toLocaleDateString()
-            : ""
-        }
-        disabled
-      />
-    </div>
+          <div className="grid-item">
+            <label className="">Created At</label>
+            <Input
+              value={
+                orderData.createdAt
+                  ? new Date(orderData.createdAt).toLocaleDateString()
+                  : ""
+              }
+              disabled
+            />
+          </div>
 
-    <div className="grid-item-refund">
-      <label>Refund</label>
-      <Switch
-        checkedChildren="Refunded"
-        unCheckedChildren="Not Refunded"
-        checked={orderData.status === "refunded"}
-        onChange={(checked) =>
-          setOrderData({
-            ...orderData,
-            status: checked ? "refunded" : ".",
-          })
-        }
-      />
-    </div>
-  </div>
-</Form>
-
+          <div className="grid-item-refund">
+            <label>Refund</label>
+            <Switch
+              checkedChildren="Refunded"
+              unCheckedChildren="Not Refunded"
+              checked={orderData.status === "refunded"}
+              onChange={(checked) =>
+                setOrderData({
+                  ...orderData,
+                  status: checked ? "refunded" : ".",
+                })
+              }
+            />
+          </div>
+        </div>
+      </Form>
 
       {editingData && (
-        <div ref={componentRef} className="invoice-container">
-          <div className="invoice-header">
-            <p className="invoice-contact">
+        <div ref={componentRef} style={styles.invoiceContainer}>
+          <div style={styles.invoiceHeader}>
+            {/* <p className="invoice-contact"> */}
+            <p style={styles.invoiceContact}>
               Cell: 9597266083 <br /> 9003857938
             </p>
-            <img alt="Thailash Logo" src={thailashlogo} />
-            <p className="company-name">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
-            <p className="company-address">
+            <img
+              alt="Thailash Logo"
+              src={thailashlogo}
+              style={styles.invoiceLogo}
+            />
+            <p style={styles.companyName}>
+              THAILASH ORIGINAL THENNAMARAKUDI OIL
+            </p>
+            <p style={styles.companyAddress}>
               3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
               Nagapattinam - 611 104
             </p>
           </div>
 
           {/* Customer & Invoice Details */}
-          <table className="invoice-table">
-            <tbody className="table-body">
+          <table style={styles.table}>
+            <tbody>
               <tr>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Invoice Number:</strong>{" "}
                   {String(orderData?.invoiceNumber ?? "").padStart(4, "0")}
                 </td>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Invoice Date:</strong> {orderData?.invoiceDate}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Customer Name:</strong> {orderData?.name}
                 </td>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Contact Number:</strong> {orderData?.phone}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Billing Address:</strong> {orderData?.address}
                 </td>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Place Of Supply:</strong> {orderData?.place}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>City:</strong> {orderData?.city}
                 </td>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>State:</strong> {orderData?.state}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>GSTIN:</strong> {orderData?.customerBillToGST}
                 </td>
-                <td colSpan="6">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Date:</strong>{" "}
                   {new Date(orderData?.invoiceDate).toLocaleDateString()}
                 </td>
@@ -592,78 +681,83 @@ const ViewOrder = () => {
           </table>
 
           {/* Product Details */}
-          <table className="product-table">
+          <table style={styles.table}>
             <thead>
               <tr>
-                <th className="th-main">S.No</th>
-                <th>Particulars</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Discount</th>
-                <th>Amount</th>
-                <th>Taxable Amount</th>
+                <th style={styles.th}>S.No</th>
+                <th style={styles.th}>Particulars</th>
+                <th style={styles.th}>Quantity</th>
+                <th style={styles.th}>Rate</th>
+                <th style={styles.th}>Discount</th>
+                <th style={styles.th}>Amount</th>
+                <th style={styles.th}>Taxable Amount</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>{orderData?.productInfo?.name}</td>
-                <td>{orderData?.quantity}</td>
-                <td>{parseInt(orderData?.productInfo?.offer_price || 0)}</td>
+                <td style={styles.td}>1</td>
+                <td style={styles.td}>{orderData?.productInfo?.name}</td>
+                <td style={styles.td}>{orderData?.quantity}</td>
+                <td style={styles.td}>
+                  {parseInt(orderData?.productInfo?.offer_price || 0)}
+                </td>
 
-                <td>
+                <td style={styles.td}>
                   {orderData?.transactionType === "Pre-paid" ? "10%" : "-"}
                 </td>
-                <td>{parseInt(orderData?.productInfo?.offer_price || 0) * orderData?.quantity}</td>
+                <td style={styles.td}>
+                  {parseInt(orderData?.productInfo?.offer_price || 0) *
+                    orderData?.quantity}
+                </td>
 
-                <td>{orderData?.taxExclusiveGross}</td>
+                <td style={styles.td}>{orderData?.taxExclusiveGross}</td>
               </tr>
             </tbody>
           </table>
 
           {/* GST & Totals */}
-          <table className="invoice-table" >
-            <tbody className="table-body">
+          <table style={styles.table}>
+            <tbody>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   SGST:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.sgstTax || 0).toFixed(2)}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   CGST:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {" "}
                   {Number(orderData?.cgstTax || 0).toFixed(2)}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   IGST:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.igstTax || 0).toFixed(2)}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   UTGST:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.utgstTax || 0).toFixed(2)}
                 </td>
               </tr>
 
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   {" "}
                   Total GST Amount:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.totalTaxAmount || 0).toFixed(2)}
                 </td>
                 {/* <td colSpan="2">
@@ -676,25 +770,29 @@ const ViewOrder = () => {
                      </td> */}
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   Delivery charge:
                 </td>
 
-                <td>{orderData?.productInfo?.delivery_charge}</td>
+                <td style={{ ...styles.td, ...styles.tdRight }}>
+                  {orderData?.productInfo?.delivery_charge}
+                </td>
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   Roundoff:
                 </td>
-                <td colSpan="2">
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.roundOff || 0).toFixed(2)}
                 </td>
               </tr>
               <tr>
-                <td colSpan="6" className="td-right">
+                <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   <strong>Total Invoice Amount:</strong>
                 </td>
-                <td colSpan="2">{Math.round(orderData?.invoiceAmount || 0)}</td>
+                <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
+                  {Math.round(orderData?.invoiceAmount || 0)}
+                </td>
               </tr>
             </tbody>
           </table>
