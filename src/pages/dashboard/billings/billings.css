@@ -479,6 +479,13 @@ table {
     width: 100%; /* make input stretch full width */
     max-width: none;
   }
+  .invoice-container {
+    width: 300%;
+  }
+  .view-order-buttons {
+    position: sticky;
+    z-index: 50;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -488,6 +495,10 @@ table {
     /* stack fields in one column */
     gap: 15px;
     margin: 20px;
+  }
+  .view-order-buttons {
+    position: sticky;
+    z-index: 50;
   }
 }
 
@@ -502,20 +513,28 @@ table {
   .view-order-buttons {
     margin-top: 25px;
   }
+  .invoice-container {
+    width: 150%;
+  }
+  .tax-container {
+    width: 150%;
+  }
 }
 
 @media screen and (min-width: 992px) {
-   .view-billings-input-styles {
+  .view-billings-input-styles {
     display: grid;
     grid-template-columns: 1fr;
     /* stack fields in one column */
     gap: 15px;
   }
- 
+  .invoice-container {
+    width: 100%;
+  }
 }
 
-@media screen and (min-width : 1200px) {
-   .view-billings-input-styles {
+@media screen and (min-width: 1200px) {
+  .view-billings-input-styles {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -525,5 +544,7 @@ table {
     padding: 0.1rem;
     padding-top: 25px;
   }
-  
+  .invoice-container {
+    width: 100%;
+  }
 }

@@ -644,10 +644,10 @@ const ViewBillings = () => {
         </table>
       </div> */}
 
-      <div ref={componentRef} style={styles.invoiceContainer}>
+      <div ref={componentRef} style={styles.invoiceContainer} className="invoice-container">
         {/* Header */}
-        <div style={styles.invoiceHeader}>
-          <p style={styles.invoiceContact}>
+        <div style={styles.invoiceHeader} className="invoice-header">
+          <p style={styles.invoiceContact} className="invoice-contact">
             Cell: 9597266083 <br /> 9003857938
           </p>
           <img
@@ -655,16 +655,16 @@ const ViewBillings = () => {
             src={ThailashLogo}
             style={styles.invoiceLogo}
           />
-          <p style={styles.companyName}>THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
-          <p style={styles.companyAddress}>
+          <p style={styles.companyName} className="company-name">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
+          <p style={styles.companyAddress} className="company-address">
             3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
             Nagapattinam - 611 104
           </p>
         </div>
 
         {/* Customer & Invoice Details */}
-        <table style={styles.invoiceTable}>
-          <tbody>
+        <table style={styles.invoiceTable} className="invoice-table">
+          <tbody className="table-body">
             <tr>
               <td colSpan="6" style={styles.invoiceCell}>
                 <strong>Invoice Number:</strong>{" "}
@@ -711,7 +711,7 @@ const ViewBillings = () => {
         </table>
 
         {/* Product Details */}
-        <table style={styles.invoiceTable}>
+        <table style={styles.invoiceTable} className="product-table">
           <thead>
             <tr>
               <th style={styles.invoiceCell}>S.No</th>
@@ -723,7 +723,7 @@ const ViewBillings = () => {
               <th style={styles.invoiceCell}>Taxable Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {items.map((item, index) => {
               const amount = item.quantity * item.rate - (item.discount || 0);
               const taxable = amount - amount * 0.12;
@@ -743,8 +743,8 @@ const ViewBillings = () => {
         </table>
 
         {/* GST & Totals */}
-        <table style={styles.invoiceTable}>
-          <tbody>
+        <table style={styles.invoiceTable} className="invoice-table">
+          <tbody className="table-body">
             <tr>
               <td
                 colSpan="6"

@@ -1,3 +1,6 @@
+.invoice-contact {
+  padding-right: 15px;
+}
 @media screen and (max-width: 600px) {
   .grid-container {
     display: grid;
@@ -5,6 +8,7 @@
     margin: 10px;
   }
   .grid-item {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     display: grid;
@@ -21,7 +25,7 @@
     flex-direction: row;
   }
   .invoice-container {
-    width: 300%;
+    width: 200%;
   }
   .order-download-button {
     font-size: 1rem;
@@ -56,7 +60,7 @@
     justify-content: center;
   }
   .invoice-container {
-    width: 150%;
+    width: 200%;
   }
   .order-download-button {
     /* width: 100%;  */
@@ -72,10 +76,6 @@
     justify-content: center;
     padding: 10px;
   }
-  /* 
-  .view-order-buttons button {
-    width: 100%;
-  } */
 }
 
 @media screen and (min-width: 768px) {
@@ -103,6 +103,9 @@
   }
   .view-order-buttons {
     margin-top: 20px;
+  }
+  .invoice-container {
+    width: 100%;
   }
 }
 
@@ -132,6 +135,9 @@
   .view-order-buttons {
     margin-top: 20px;
   }
+  .invoice-container {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -146,7 +152,7 @@
     gap: 20px;
     width: 90%;
   }
- .invoice-container {
+  .invoice-container {
     width: 100%;
   }
   .order-form .ant-form-item-label > label::after {
@@ -274,5 +280,8 @@
   }
   .order-invoice-container {
     text-align: center;
+  }
+  .invoice-container {
+    width: 200%;
   }
 }
