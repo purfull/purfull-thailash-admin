@@ -196,6 +196,59 @@ const ViewBillings = () => {
     }));
   }, [items, taxValues]);
 
+  const styles = {
+    invoiceContainer: {
+      backgroundColor: "#fff",
+      padding: "1rem",
+      marginTop: "1rem",
+    },
+    invoiceHeader: {
+      position: "relative",
+      border: "1px solid #ccc",
+      padding: "0.5rem",
+      textAlign: "center",
+    },
+    invoiceContact: {
+      position: "absolute",
+      top: "1rem",
+      right: "1rem",
+      fontSize: "0.875rem",
+      color: "#111",
+      lineHeight: "1.4",
+      margin: 0,
+    },
+    invoiceLogo: {
+      maxWidth: "150px",
+      margin: "0 auto",
+      display: "block",
+    },
+    companyName: {
+      fontSize: "1.125rem",
+      fontWeight: "bold",
+    },
+    companyAddress: {
+      fontSize: "0.875rem",
+      color: "#6b7280",
+    },
+    invoiceTable: {
+      borderCollapse: "collapse",
+      border: "1px solid #d1d5db",
+      width: "100%",
+      textAlign: "left",
+    },
+    invoiceCell: {
+      border: "1px solid #d1d5db",
+      padding: "0.5rem",
+    },
+    tdRight: {
+      width: "77%",
+      textAlign: "right",
+    },
+    tdBold: {
+      fontWeight: "bold",
+    },
+  };
+
   return (
     <div className="view-order-title">
       <div className="view-name">View Bills</div>
@@ -431,7 +484,7 @@ const ViewBillings = () => {
         </div>
       </Form>
 
-      <div ref={componentRef} className="invoice-container">
+      {/* <div ref={componentRef} className="invoice-container">
         <div className="invoice-header">
           <p className="invoice-contact">
             Cell: 9597266083 <br /> 9003857938
@@ -444,7 +497,7 @@ const ViewBillings = () => {
           </p>
         </div>
 
-        {/* Customer & Invoice Details */}
+        
         <table className="invoice-table">
           <tbody className="table-body">
             <tr>
@@ -492,7 +545,7 @@ const ViewBillings = () => {
           </tbody>
         </table>
 
-        {/* Product Details */}
+       
         <table className="product-table">
           <thead>
             <tr>
@@ -524,7 +577,7 @@ const ViewBillings = () => {
           </tbody>
         </table>
 
-        {/* GST & Totals */}
+       
         <table className="invoice-table">
           <tbody className="table-body">
             <tr>
@@ -569,14 +622,7 @@ const ViewBillings = () => {
               <td colSpan="2">
                 {Number(billingsdata?.taxExclusiveGross * 0.12 || 0).toFixed(2)}
               </td>
-              {/* <td colSpan="2">
-                {(
-                  Number(taxValues?.cgst || 0) +
-                  Number(taxValues?.sgst || 0) +
-                  Number(taxValues?.igst || 0) +
-                  Number(taxValues?.utgst || 0)
-                ).toFixed(2)}
-              </td> */}
+             
             </tr>
             <tr>
               <td colSpan="6" className="td-right">
@@ -596,7 +642,219 @@ const ViewBillings = () => {
             </tr>
           </tbody>
         </table>
+      </div> */}
+
+      <div ref={componentRef} style={styles.invoiceContainer}>
+        {/* Header */}
+        <div style={styles.invoiceHeader}>
+          <p style={styles.invoiceContact}>
+            Cell: 9597266083 <br /> 9003857938
+          </p>
+          <img
+            alt="Thailash Logo"
+            src={ThailashLogo}
+            style={styles.invoiceLogo}
+          />
+          <p style={styles.companyName}>THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
+          <p style={styles.companyAddress}>
+            3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
+            Nagapattinam - 611 104
+          </p>
+        </div>
+
+        {/* Customer & Invoice Details */}
+        <table style={styles.invoiceTable}>
+          <tbody>
+            <tr>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Invoice Number:</strong>{" "}
+                {String(billingsdata?.invoiceNumber ?? "").padStart(4, "0")}
+              </td>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Invoice Date:</strong> {billingsdata?.invoiceDate}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Customer Name:</strong> {billingsdata?.name}
+              </td>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Contact Number:</strong> {billingsdata?.phone}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Billing Address:</strong> {billingsdata?.address}
+              </td>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Place Of Supply:</strong> {billingsdata?.place}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>City:</strong> {billingsdata?.city}
+              </td>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>State:</strong> {billingsdata?.state}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>GSTIN:</strong> {billingsdata?.customerBillToGST}
+              </td>
+              <td colSpan="6" style={styles.invoiceCell}>
+                <strong>Date:</strong>{" "}
+                {new Date(billingsdata?.invoiceDate).toLocaleDateString()}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* Product Details */}
+        <table style={styles.invoiceTable}>
+          <thead>
+            <tr>
+              <th style={styles.invoiceCell}>S.No</th>
+              <th style={styles.invoiceCell}>Particulars</th>
+              <th style={styles.invoiceCell}>Quantity</th>
+              <th style={styles.invoiceCell}>Rate</th>
+              <th style={styles.invoiceCell}>Discount</th>
+              <th style={styles.invoiceCell}>Amount</th>
+              <th style={styles.invoiceCell}>Taxable Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item, index) => {
+              const amount = item.quantity * item.rate - (item.discount || 0);
+              const taxable = amount - amount * 0.12;
+              return (
+                <tr key={index}>
+                  <td style={styles.invoiceCell}>{index + 1}</td>
+                  <td style={styles.invoiceCell}>{item.product}</td>
+                  <td style={styles.invoiceCell}>{item.quantity}</td>
+                  <td style={styles.invoiceCell}>{item.rate}</td>
+                  <td style={styles.invoiceCell}>{item.discount}</td>
+                  <td style={styles.invoiceCell}>{amount.toFixed(2)}</td>
+                  <td style={styles.invoiceCell}>{taxable.toFixed(2)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+
+        {/* GST & Totals */}
+        <table style={styles.invoiceTable}>
+          <tbody>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                SGST:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.sgstTax || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                CGST:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.cgstTax || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                IGST:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.igstTax || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                UTGST:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.utgstTax || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                Total GST Amount:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.taxExclusiveGross * 0.12 || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                Roundoff:
+              </td>
+              <td colSpan="2" style={styles.invoiceCell}>
+                {Number(billingsdata?.roundOff || 0).toFixed(2)}
+              </td>
+            </tr>
+            <tr>
+              <td
+                colSpan="6"
+                style={{ ...styles.invoiceCell, ...styles.tdRight }}
+              >
+                <strong>Total Invoice Amount:</strong>
+              </td>
+              <td
+                colSpan="2"
+                style={{ ...styles.invoiceCell, ...styles.tdBold }}
+              >
+                {Math.round(billingsdata?.invoiceAmount || 0)}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      {/* Download & Action Buttons */}
+      {/* <div style={styles.downloadButton}>
+        <button
+          type="button"
+          style={styles.downloadInvoice}
+          disabled={!billingsdata?.id}
+          onClick={onPrintClick}
+        >
+          Download Invoice
+        </button>
+      </div> */}
+
+      {/* <div style={styles.viewOrderButtons}>
+        <button
+          style={{ ...styles.actionButton, ...styles.cancelButton }}
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+        <button
+          style={{ ...styles.actionButton, ...styles.saveButton }}
+          onClick={handleSave}
+        >
+          Save Bill
+        </button>
+      </div> */}
 
       <div className="download-button">
         <button
