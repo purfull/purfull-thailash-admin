@@ -612,10 +612,14 @@ const ViewOrder = () => {
       </Form>
 
       {editingData && (
-        <div ref={componentRef} style={styles.invoiceContainer}>
-          <div style={styles.invoiceHeader}>
+        <div
+          ref={componentRef}
+          style={styles.invoiceContainer}
+          className="invoice-container"
+        >
+          <div style={styles.invoiceHeader} className="invoice-header">
             {/* <p className="invoice-contact"> */}
-            <p style={styles.invoiceContact}>
+            <p style={styles.invoiceContact} className="invoice-contact">
               Cell: 9597266083 <br /> 9003857938
             </p>
             <img
@@ -623,18 +627,18 @@ const ViewOrder = () => {
               src={thailashlogo}
               style={styles.invoiceLogo}
             />
-            <p style={styles.companyName}>
+            <p style={styles.companyName} className="company-name">
               THAILASH ORIGINAL THENNAMARAKUDI OIL
             </p>
-            <p style={styles.companyAddress}>
+            <p style={styles.companyAddress} className="company-address">
               3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
               Nagapattinam - 611 104
             </p>
           </div>
 
           {/* Customer & Invoice Details */}
-          <table style={styles.table}>
-            <tbody>
+          <table style={styles.table} className="invoice-table">
+            <tbody className="table-body">
               <tr>
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Invoice Number:</strong>{" "}
@@ -681,7 +685,7 @@ const ViewOrder = () => {
           </table>
 
           {/* Product Details */}
-          <table style={styles.table}>
+          <table style={styles.table} className="product-table">
             <thead>
               <tr>
                 <th style={styles.th}>S.No</th>
@@ -716,8 +720,8 @@ const ViewOrder = () => {
           </table>
 
           {/* GST & Totals */}
-          <table style={styles.table}>
-            <tbody>
+          <table style={styles.table} className="invoice-table">
+            <tbody className="table-body">
               <tr>
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   SGST:
