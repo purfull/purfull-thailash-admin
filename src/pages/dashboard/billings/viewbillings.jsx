@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Form, Input, Spin } from "antd";
 import { useReactToPrint } from "react-to-print";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import {
   ViewBillbyid,
   CreateBill,
@@ -122,14 +124,14 @@ const ViewBillings = () => {
     setItems(updatedItems);
   };
 
-  const handlePrint = useReactToPrint({
-    contentRef: componentRef,
-  });
-  //print
-  const onPrintClick = () => {
-    console.log("Print clicked");
-    handlePrint();
-  };
+  // const handlePrint = useReactToPrint({
+  //   contentRef: componentRef,
+  // });
+
+  // const onPrintClick = () => {
+  //   console.log("Print clicked");
+  //   handlePrint();
+  // };
 
   //for adding or removing items
 
@@ -248,6 +250,48 @@ const ViewBillings = () => {
       fontWeight: "bold",
     },
   };
+
+  // Desktop print (works reliably on desktop browsers)
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: `Invoice_${billingsdata?.invoiceNumber || "Draft"}`,
+  });
+
+  // Mobile fallback → generate PDF directly
+  const handleDownloadPDF = async () => {
+    if (!componentRef.current) return;
+
+    const element = componentRef.current;
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // First page
+    pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    // Add more pages if needed
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    pdf.save(`Invoice_${billingsdata?.invoiceNumber || "Draft"}.pdf`);
+  };
+
+  // Detect mobile device
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <div className="view-order-title">
@@ -644,7 +688,11 @@ const ViewBillings = () => {
         </table>
       </div> */}
 
-      <div ref={componentRef} style={styles.invoiceContainer} className="invoice-container">
+      <div
+        ref={componentRef}
+        style={styles.invoiceContainer}
+        className="invoice-container"
+      >
         {/* Header */}
         <div style={styles.invoiceHeader} className="invoice-header">
           <p style={styles.invoiceContact} className="invoice-contact">
@@ -655,7 +703,9 @@ const ViewBillings = () => {
             src={ThailashLogo}
             style={styles.invoiceLogo}
           />
-          <p style={styles.companyName} className="company-name">THAILASH ORIGINAL THENNAMARAKUDI OIL</p>
+          <p style={styles.companyName} className="company-name">
+            THAILASH ORIGINAL THENNAMARAKUDI OIL
+          </p>
           <p style={styles.companyAddress} className="company-address">
             3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
             Nagapattinam - 611 104
@@ -841,22 +891,18 @@ const ViewBillings = () => {
         </button>
       </div> */}
 
-      {/* <div style={styles.viewOrderButtons}>
-        <button
-          style={{ ...styles.actionButton, ...styles.cancelButton }}
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button
-          style={{ ...styles.actionButton, ...styles.saveButton }}
-          onClick={handleSave}
-        >
-          Save Bill
-        </button>
-      </div> */}
-
+      {/* Single Button → behaves differently based on device */}
       <div className="download-button">
+        <button
+          type="button"
+          className="download-invoice"
+          disabled={!billingsdata?.id}
+          onClick={isMobile ? handleDownloadPDF : handlePrint}
+        >
+          {isMobile ? "Download Invoice" : " Download Invoice"}
+        </button>
+      </div>
+      {/* <div className="download-button">
         <button
           type="button"
           className="download-invoice"
@@ -865,7 +911,7 @@ const ViewBillings = () => {
         >
           Download Invoice
         </button>
-      </div>
+      </div> */}
 
       <div className="view-order-buttons">
         <Button className="vieworder-cancelbutton" onClick={handleCancel}>
