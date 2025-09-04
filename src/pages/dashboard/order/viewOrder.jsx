@@ -5,6 +5,8 @@ import { Switch, Form, Input, Spin, Row, Col, Button } from "antd";
 import { getAllProduct, updateOrder } from "../../../store/slice/orderSlice";
 import "./viewOrder.css";
 import { useReactToPrint } from "react-to-print";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import thailashlogo from "../../dashboard/order/assets/logo/logo.svg";
 
 const ViewOrder = () => {
@@ -17,9 +19,50 @@ const ViewOrder = () => {
   const [orderData, setOrderData] = useState(null);
 
   const componentRef = useRef(null);
+  // const handlePrint = useReactToPrint({
+  //   contentRef: componentRef,
+  // });
+  // Desktop print (works reliably on desktop browsers)
   const handlePrint = useReactToPrint({
-    contentRef: componentRef,
+    content: () => componentRef.current,
+    documentTitle: `Invoice_${orderData?.invoiceNumber || "Draft"}`,
   });
+
+  // Mobile fallback → generate PDF directly
+  const handleDownloadPDF = async () => {
+    if (!componentRef.current) return;
+
+    const element = componentRef.current;
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // First page
+    pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    // Add more pages if needed
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    pdf.save(`Invoice_${orderData?.invoiceNumber || "Draft"}.pdf`);
+  };
+
+  // Detect mobile device
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const styles = {
     invoiceContainer: {
@@ -803,13 +846,23 @@ const ViewOrder = () => {
         </div>
       )}
 
-      <div className="order-invoice-container">
+      {/* <div className="order-invoice-container">
         <button
           type="button"
           onClick={handlePrint}
           className="order-download-button"
         >
           Download Invoice
+        </button>
+      </div> */}
+      <div className="download-button">
+        <button
+          type="button"
+          className="download-invoice"
+          disabled={!orderData?.id}
+          onClick={isMobile ? handleDownloadPDF : handlePrint}
+        >
+          {isMobile ? "Download Invoice" : " Download Invoice"}
         </button>
       </div>
 
