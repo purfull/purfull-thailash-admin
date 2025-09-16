@@ -24,7 +24,7 @@ const ViewOrder = () => {
   // });
   // Desktop print (works reliably on desktop browsers)
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+     contentRef: componentRef,
     documentTitle: `Invoice_${orderData?.invoiceNumber || "Draft"}`,
   });
 
@@ -36,7 +36,7 @@ const ViewOrder = () => {
     const canvas = await html2canvas(element, { scale: 2 });
     const imgData = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF("p", "mm", "a4");
+    const pdf = new jsPDF("p", "mm", "a5");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -111,7 +111,7 @@ const ViewOrder = () => {
       borderCollapse: "collapse",
       width: "100%",
       border: "1px solid #d1d5db",
-      marginTop: "10px",
+      // marginTop: "10px",
       fontSize: "13px",
     },
     th: {
@@ -719,10 +719,10 @@ const ViewOrder = () => {
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>GSTIN:</strong> {orderData?.customerBillToGST}
                 </td>
-                <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
+                {/* <td colSpan="6" style={{ ...styles.td, ...styles.tdLeft }}>
                   <strong>Date:</strong>{" "}
                   {new Date(orderData?.invoiceDate).toLocaleDateString()}
-                </td>
+                </td> */}
               </tr>
             </tbody>
           </table>

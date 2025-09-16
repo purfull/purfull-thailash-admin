@@ -1,3 +1,5 @@
+
+
 /* Wrapper */
 .invoice-container {
   background-color: white;
@@ -486,6 +488,11 @@ table {
     position: sticky;
     z-index: 50;
   }
+   
+  .item-card {
+  grid-template-columns: 1fr;
+
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -517,7 +524,7 @@ table {
     width: 150%;
   }
   .tax-container {
-    width: 150%;
+    width: 100%;
   }
 }
 
