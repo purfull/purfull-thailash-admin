@@ -100,11 +100,25 @@ const ViewBillings = () => {
     const payload = {
       ...billingsdata,
       orderItems: items,
+    cgstTax: taxValues.cgst ? Number(totalTaxable / 2).toFixed(2) : "",
+    sgstTax: taxValues.sgst ? Number(totalTaxable / 2).toFixed(2) : "",
+    igstTax: taxValues.igst ? Number(totalTaxable).toFixed(2) : "",
+    utgstTax: taxValues.utgst ? Number(totalTaxable).toFixed(2) : "",
+
     };
 
-    dispatch(CreateBill(payload)).then(() => {
-      navigate("/dashboard/billings");
-    });
+    dispatch(CreateBill(payload))
+  .unwrap() // unwraps the fulfilled/rejected action
+  .then((res) => {
+    const id = res?.data?.id; // adjust key based on API response
+    if (id) {
+      dispatch(ViewBillbyid(id));
+    }
+  })
+  .catch((err) => {
+    console.error("Error creating bill:", err);
+  });
+
   };
 
   const handleCancel = () => {
@@ -151,14 +165,25 @@ const ViewBillings = () => {
 
   // Handle Inputchange for tax types
   // Handle tax input change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setTaxValues((prev) => ({
-      ...prev,
-      [name]: Number(value) || 0, // store as number
-    }));
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   console.log(name, value);
+    
+  //   setTaxValues((prev) => ({
+  //     ...prev,
+  //     [name]: Number(value) || 0, // store as number
+  //   }));
+  // };
 
+  const handleInputChange = (e) => {
+  const { name, type, checked, value } = e.target;
+console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
+
+  setTaxValues((prev) => ({
+    ...prev,
+    [name]: type === "checkbox" ? checked : Number(value) || 0,
+  }));
+};
   useEffect(() => {
     if (!items || items.length === 0) return;
 
@@ -170,14 +195,15 @@ const ViewBillings = () => {
       return sum + (qty * rate - discount);
     }, 0);
 
-    const sgstTax = subtotal * (Number(taxValues.sgst) / 100);
-    const cgstTax = subtotal * (Number(taxValues.cgst) / 100);
+    // const sgstTax = subtotal * (Number(taxValues.sgst) / 100);
+    const sgstTax = totalTaxable / 2;
+    const cgstTax = totalTaxable / 2;;
     const igstTax = subtotal * (Number(taxValues.igst) / 100);
     const utgstTax = subtotal * (Number(taxValues.utgst) / 100);
 
     // 3. Totals before round-off
     const totalTaxAmount = sgstTax + cgstTax + igstTax + utgstTax;
-    const invoiceAmount = subtotal + totalTaxAmount;
+    const invoiceAmount = subtotal ;
 
     // 4. Round-off calculation
     const roundedInvoiceAmount = Math.round(invoiceAmount);
@@ -253,10 +279,14 @@ const ViewBillings = () => {
 
   // Desktop print (works reliably on desktop browsers)
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    contentRef: componentRef,
     documentTitle: `Invoice_${billingsdata?.invoiceNumber || "Draft"}`,
   });
 
+  // const handlePrint = () => {
+  //   console.log("print");
+    
+  // }
   // Mobile fallback → generate PDF directly
   const handleDownloadPDF = async () => {
     if (!componentRef.current) return;
@@ -265,7 +295,7 @@ const ViewBillings = () => {
     const canvas = await html2canvas(element, { scale: 2 });
     const imgData = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF("p", "mm", "a4");
+    const pdf = new jsPDF("p", "mm", "a5");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -293,17 +323,25 @@ const ViewBillings = () => {
   // Detect mobile device
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+  const totalTaxable = items.reduce((acc, item) => {
+  const amount = item.quantity * item.rate - (item.discount || 0);
+  const taxable = (amount - (amount / 112) * 100);
+  return acc + taxable;
+}, 0);
+
+
   return (
     <div className="view-order-title">
       <div className="view-name">View Bills</div>
 
       <Form layout="horizontal" className="order-form">
         <div className="view-billings-input-styles">
-          <Form.Item label="Order ID" className="formOrder-heading">
+          <Form.Item label="Date" className="formOrder-heading">
             <Input
-              name="id"
+            type="date"
+              name="invoiceDate"
               className="formOrder-input"
-              value={billingsdata?.id || ""}
+              value={billingsdata?.invoiceDate || ""}
               onChange={handleChange}
               //disabled
             />
@@ -354,7 +392,7 @@ const ViewBillings = () => {
               // disabled
             />
           </Form.Item>
-          <Form.Item label="Country" className="formOrder-heading">
+          {/* <Form.Item label="Country" className="formOrder-heading">
             <Input
               name="country"
               className="formOrder-input"
@@ -362,7 +400,7 @@ const ViewBillings = () => {
               onChange={handleChange}
               // disabled
             />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label="Contact Number" className="formOrder-heading">
             <Input
               name="phone"
@@ -383,7 +421,7 @@ const ViewBillings = () => {
             />
           </Form.Item> */}
 
-          <Form.Item label="Invoice Amount" className="formOrder-heading">
+          {/* <Form.Item label="Invoice Amount" className="formOrder-heading">
             <Input
               name="invoiceAmount"
               className="formOrder-input"
@@ -391,7 +429,7 @@ const ViewBillings = () => {
               onChange={handleChange}
               // disabled
             />
-          </Form.Item>
+          </Form.Item> */}
         </div>
         {/* <Form.Item label="Payment Method" className="formOrder-heading">
           <Input
@@ -481,7 +519,7 @@ const ViewBillings = () => {
               <label className="tax-label">
                 SGST:
                 <input
-                  type="number"
+                  type="checkbox"
                   name="sgst"
                   // value={taxValues.sgst || ""}
                   // value={billingsdata?.sgstTax || ""}
@@ -494,7 +532,7 @@ const ViewBillings = () => {
               <label className="tax-label">
                 CGST:
                 <input
-                  type="number"
+                  type="checkbox"
                   name="cgst"
                   // value={billingsdata?.cgstTax || ""}
                   onChange={handleInputChange}
@@ -505,7 +543,7 @@ const ViewBillings = () => {
               <label className="tax-label">
                 IGST:
                 <input
-                  type="number"
+                  type="checkbox"
                   name="igst"
                   // value={billingsdata?.igstTax || ""}
                   onChange={handleInputChange}
@@ -516,7 +554,7 @@ const ViewBillings = () => {
               <label className="tax-label">
                 UTGST:
                 <input
-                  type="number"
+                  type="checkbox"
                   name="utgst"
                   // value={billingsdata?.utgstTax || ""}
                   onChange={handleInputChange}
@@ -718,10 +756,12 @@ const ViewBillings = () => {
             <tr>
               <td colSpan="6" style={styles.invoiceCell}>
                 <strong>Invoice Number:</strong>{" "}
-                {String(billingsdata?.invoiceNumber ?? "").padStart(4, "0")}
+                {String(billingsdata?.id ?? "").padStart(4, "0")}
               </td>
               <td colSpan="6" style={styles.invoiceCell}>
-                <strong>Invoice Date:</strong> {billingsdata?.invoiceDate}
+                <strong>Invoice Date:</strong>{billingsdata?.invoiceDate
+    ? new Date(billingsdata.invoiceDate).toLocaleDateString("en-GB")
+    : ""}
               </td>
             </tr>
             <tr>
@@ -752,10 +792,10 @@ const ViewBillings = () => {
               <td colSpan="6" style={styles.invoiceCell}>
                 <strong>GSTIN:</strong> {billingsdata?.customerBillToGST}
               </td>
-              <td colSpan="6" style={styles.invoiceCell}>
+              {/* <td colSpan="6" style={styles.invoiceCell}>
                 <strong>Date:</strong>{" "}
                 {new Date(billingsdata?.invoiceDate).toLocaleDateString()}
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>
@@ -776,7 +816,7 @@ const ViewBillings = () => {
           <tbody className="table-body">
             {items.map((item, index) => {
               const amount = item.quantity * item.rate - (item.discount || 0);
-              const taxable = amount - amount * 0.12;
+              const taxable = (amount / 112) * 100;
               return (
                 <tr key={index}>
                   <td style={styles.invoiceCell}>{index + 1}</td>
@@ -803,7 +843,8 @@ const ViewBillings = () => {
                 SGST:
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
-                {Number(billingsdata?.sgstTax || 0).toFixed(2)}
+                {/* {Number(billingsdata?.sgstTax || 0).toFixed(2)} */}
+                {taxValues.sgst ? Number(totalTaxable / 2).toFixed(2) : 0}
               </td>
             </tr>
             <tr>
@@ -814,7 +855,7 @@ const ViewBillings = () => {
                 CGST:
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
-                {Number(billingsdata?.cgstTax || 0).toFixed(2)}
+                {taxValues.cgst ? Number(totalTaxable / 2).toFixed(2) : 0}
               </td>
             </tr>
             <tr>
@@ -825,7 +866,7 @@ const ViewBillings = () => {
                 IGST:
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
-                {Number(billingsdata?.igstTax || 0).toFixed(2)}
+                {taxValues.igst ? Number(totalTaxable).toFixed(2) : 0}
               </td>
             </tr>
             <tr>
@@ -836,7 +877,7 @@ const ViewBillings = () => {
                 UTGST:
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
-                {Number(billingsdata?.utgstTax || 0).toFixed(2)}
+                {taxValues.utgst ? Number(totalTaxable).toFixed(2) : 0}
               </td>
             </tr>
             <tr>
@@ -847,7 +888,7 @@ const ViewBillings = () => {
                 Total GST Amount:
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
-                {Number(billingsdata?.taxExclusiveGross * 0.12 || 0).toFixed(2)}
+                {totalTaxable.toFixed(2)}
               </td>
             </tr>
             <tr>
