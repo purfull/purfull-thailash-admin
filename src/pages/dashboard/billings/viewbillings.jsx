@@ -325,7 +325,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
 
   const totalTaxable = items.reduce((acc, item) => {
   const amount = item.quantity * item.rate - (item.discount || 0);
-  const taxable = (amount - (amount / 112) * 100);
+  const taxable = (amount - (amount / 105) * 100);
   return acc + taxable;
 }, 0);
 
@@ -816,7 +816,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
           <tbody className="table-body">
             {items.map((item, index) => {
               const amount = item.quantity * item.rate - (item.discount || 0);
-              const taxable = (amount / 112) * 100;
+              const taxable = (amount / 105) * 100;
               return (
                 <tr key={index}>
                   <td style={styles.invoiceCell}>{index + 1}</td>
