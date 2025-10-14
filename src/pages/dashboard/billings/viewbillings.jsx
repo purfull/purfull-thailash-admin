@@ -411,6 +411,16 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
               // disabled
             />
           </Form.Item>
+          <Form.Item label="GST" className="formOrder-heading">
+            <Input
+              name="customerBillToGST"
+              type="text"
+              className="formOrder-input"
+              value={billingsdata?.customerBillToGST || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
           {/* <Form.Item label="Place Of Supply" className="formOrder-heading">
             <Input
               name="address"
