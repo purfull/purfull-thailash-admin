@@ -675,7 +675,7 @@ const ViewOrder = () => {
             </p>
             <p style={styles.companyAddress} className="company-address">
               3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
-              Nagapattinam - 611 104
+              Nagapattinam - 611 108
             </p>
           <p style={styles.companyAddress} className="company-address">
             GST: 33AJWPV9740M1Z2, HSN Code: 30049011
