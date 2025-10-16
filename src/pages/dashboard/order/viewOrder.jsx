@@ -677,6 +677,9 @@ const ViewOrder = () => {
               3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
               Nagapattinam - 611 104
             </p>
+          <p style={styles.companyAddress} className="company-address">
+            GST: 33AJWPV9740M1Z2, HSN Code: 30049011
+          </p>
           </div>
 
           {/* Customer & Invoice Details */}
@@ -802,7 +805,7 @@ const ViewOrder = () => {
               <tr>
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   {" "}
-                  Total GST Amount:
+                  Total GST Amount (5%):
                 </td>
                 <td colSpan="2" style={{ ...styles.td, ...styles.tdRight }}>
                   {Number(orderData?.totalTaxAmount || 0).toFixed(2)}

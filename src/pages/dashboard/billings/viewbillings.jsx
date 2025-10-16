@@ -67,7 +67,7 @@ const ViewBillings = () => {
   const [items, setItems] = useState([
     { id: 1, product: "", quantity: "", rate: "", discount: "" },
   ]);
-  console.log("Items", items);
+  // console.log("Items", items);
 
   useEffect(() => {
     if (id) {
@@ -188,12 +188,21 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
     if (!items || items.length === 0) return;
 
     // 1. Calculate subtotal
+    // const subtotal = items.reduce((sum, item) => {
+    //   const qty = Number(item.quantity) || 0;
+    //   const rate = Number(item.rate) || 0;
+    //   const discount = Number(item.discount) || 0;
+    //   return sum + (qty * rate - discount);
+    // }, 0);
     const subtotal = items.reduce((sum, item) => {
-      const qty = Number(item.quantity) || 0;
-      const rate = Number(item.rate) || 0;
-      const discount = Number(item.discount) || 0;
-      return sum + (qty * rate - discount);
-    }, 0);
+  const qty = Number(item.quantity) || 0;
+  const rate = Number(item.rate) || 0;
+  const discount = Number(item.discount) || 0; // discount in %
+  
+  const amount = qty * rate * (1 - discount / 100); // apply discount
+  return sum + amount;
+}, 0);
+
 
     // const sgstTax = subtotal * (Number(taxValues.sgst) / 100);
     const sgstTax = totalTaxable / 2;
@@ -324,7 +333,9 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const totalTaxable = items.reduce((acc, item) => {
-  const amount = item.quantity * item.rate - (item.discount || 0);
+    
+  // const amount = item.quantity * item.rate - (item.discount || 0);
+  const amount = item.quantity * item.rate * (1 - (item.discount || 0) / 100);
   const taxable = (amount - (amount / 105) * 100);
   return acc + taxable;
 }, 0);
@@ -756,7 +767,10 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
           </p>
           <p style={styles.companyAddress} className="company-address">
             3/127, Madhura Nagar, Plot No. 144, Sirangudi Puliyur, <br />
-            Nagapattinam - 611 104
+            Nagapattinam - 611 108
+          </p>
+          <p style={styles.companyAddress} className="company-address">
+            GST: 33AJWPV9740M1Z2, HSN Code: 30049011
           </p>
         </div>
 
@@ -770,8 +784,8 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
               </td>
               <td colSpan="6" style={styles.invoiceCell}>
                 <strong>Invoice Date:</strong>{billingsdata?.invoiceDate
-    ? new Date(billingsdata.invoiceDate).toLocaleDateString("en-GB")
-    : ""}
+                ? new Date(billingsdata.invoiceDate).toLocaleDateString("en-GB")
+                : ""}
               </td>
             </tr>
             <tr>
@@ -825,7 +839,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
           </thead>
           <tbody className="table-body">
             {items.map((item, index) => {
-              const amount = item.quantity * item.rate - (item.discount || 0);
+              const amount = item.quantity * item.rate * (1 - (item.discount || 0) / 100);
               const taxable = (amount / 105) * 100;
               return (
                 <tr key={index}>
@@ -833,7 +847,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
                   <td style={styles.invoiceCell}>{item.product}</td>
                   <td style={styles.invoiceCell}>{item.quantity}</td>
                   <td style={styles.invoiceCell}>{item.rate}</td>
-                  <td style={styles.invoiceCell}>{item.discount}</td>
+                  <td style={styles.invoiceCell}>{item.discount ? `${item.discount}%`: `0`}</td>
                   <td style={styles.invoiceCell}>{amount.toFixed(2)}</td>
                   <td style={styles.invoiceCell}>{taxable.toFixed(2)}</td>
                 </tr>
@@ -895,7 +909,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
                 colSpan="6"
                 style={{ ...styles.invoiceCell, ...styles.tdRight }}
               >
-                Total GST Amount:
+                Total GST Amount (5%):
               </td>
               <td colSpan="2" style={styles.invoiceCell}>
                 {totalTaxable.toFixed(2)}
