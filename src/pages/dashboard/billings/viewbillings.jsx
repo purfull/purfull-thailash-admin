@@ -797,12 +797,12 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
               </td>
             </tr>
             <tr>
-              <td colSpan="6" style={styles.invoiceCell}>
+              <td colSpan="12" style={styles.invoiceCell}>
                 <strong>Billing Address:</strong> {billingsdata?.address}
               </td>
-              <td colSpan="6" style={styles.invoiceCell}>
+              {/* <td colSpan="6" style={styles.invoiceCell}>
                 <strong>Place Of Supply:</strong> {billingsdata?.place}
-              </td>
+              </td> */}
             </tr>
             <tr>
               <td colSpan="6" style={styles.invoiceCell}>
