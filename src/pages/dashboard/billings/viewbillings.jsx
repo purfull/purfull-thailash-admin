@@ -62,6 +62,7 @@ const ViewBillings = () => {
     utgstTax: "",
     customerBillToGST: "",
     roundOff: "",
+    deliveryCharge: "",
   });
 
   const [items, setItems] = useState([
@@ -212,7 +213,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
 
     // 3. Totals before round-off
     const totalTaxAmount = sgstTax + cgstTax + igstTax + utgstTax;
-    const invoiceAmount = subtotal ;
+    const invoiceAmount = subtotal + Number(billingsdata?.deliveryCharge) ;
 
     // 4. Round-off calculation
     const roundedInvoiceAmount = Math.round(invoiceAmount);
@@ -231,7 +232,7 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
       roundOff: roundOff,
       finalInvoiceAmount: roundedInvoiceAmount.toFixed(2),
     }));
-  }, [items, taxValues]);
+  }, [items, taxValues, billingsdata?.deliveryCharge]);
 
   const styles = {
     invoiceContainer: {
@@ -428,6 +429,16 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
               type="text"
               className="formOrder-input"
               value={billingsdata?.customerBillToGST || ""}
+              onChange={handleChange}
+              // disabled
+            />
+          </Form.Item>
+          <Form.Item label="Delivery Charge" className="formOrder-heading">
+            <Input
+              name="deliveryCharge"
+              type="text"
+              className="formOrder-input"
+              value={billingsdata?.deliveryCharge || ""}
               onChange={handleChange}
               // disabled
             />
@@ -926,6 +937,15 @@ console.log(name, type, checked, value, totalTaxable, totalTaxable / 2);
                 {Number(billingsdata?.roundOff || 0).toFixed(2)}
               </td>
             </tr>
+              <tr>
+                <td colSpan="6" style={{ ...styles.invoiceCell, ...styles.tdRight }}>
+                  Delivery charge:
+                </td>
+
+                <td style={{ ...styles.invoiceCell }}>
+                  {billingsdata?.deliveryCharge || 0}
+                </td>
+              </tr>
             <tr>
               <td
                 colSpan="6"

@@ -753,11 +753,10 @@ const ViewOrder = () => {
                 </td>
 
                 <td style={styles.td}>
-                  {orderData?.transactionType === "Pre-paid" ? "10%" : "-"}
+                  {orderData?.transactionType === "Pre-paid" ? "25" : "-"}
                 </td>
                 <td style={styles.td}>
-                  {parseInt(orderData?.productInfo?.offer_price || 0) *
-                    orderData?.quantity}
+                  {parseInt(orderData?.invoiceAmount || 0)}
                 </td>
 
                 <td style={styles.td}>{orderData?.taxExclusiveGross}</td>
@@ -819,7 +818,7 @@ const ViewOrder = () => {
                        ).toFixed(2)}
                      </td> */}
               </tr>
-              <tr>
+              {/* <tr>
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   Delivery charge:
                 </td>
@@ -827,7 +826,7 @@ const ViewOrder = () => {
                 <td style={{ ...styles.td, ...styles.tdRight }}>
                   {orderData?.productInfo?.delivery_charge}
                 </td>
-              </tr>
+              </tr>*/}
               <tr>
                 <td colSpan="6" style={{ ...styles.td, ...styles.tdRight }}>
                   Roundoff:
